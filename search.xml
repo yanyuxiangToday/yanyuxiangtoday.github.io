@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>一个优质的软件开发流程必备要素</title>
+    <url>/2022/01/13/%E3%80%90%E5%B7%A5%E4%BD%9C%E5%BF%83%E5%BE%97%20-%2001%E3%80%91%E4%B8%80%E4%B8%AA%E4%BC%98%E8%B4%A8%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B%E5%BF%85%E5%A4%87%E8%A6%81%E7%B4%A0/</url>
+    <content><![CDATA[<h1 id="codereview"><a href="#codereview" class="headerlink" title="codereview"></a>codereview</h1><ul>
+<li>在日常工作中想必大家都经历过codereview，这是一个艰苦卓绝、费心费时费力的工作，但确实如此的必要。有许多因素导致在各个企业中codereview的地位如此重要，其中最关键的就是防止破窗效应、保持项目组代码风格统一。这两者都是为了以后的协作开发提高工作效率而服务的。</li>
+<li>防止破窗效应可以让大家有主人翁意识，尽量避免因为一个人写的烂而导致大家一起写的烂。</li>
+<li>保持项目组代码风格统一可以提升新人和相互之间读代码的效率，让整个项目好像出自一个人之手。</li>
+</ul>
+<h1 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h1><ul>
+<li>相信从事软件开发工作的人们对单元测试都非常熟悉了，以单元测试驱动的编程过程有助于你将代码解耦，首先编写单元测试可以让你明确代码的接口、降低耦合程度、将它们变成一个个独立的模块，后续可以大幅降低工作量。</li>
+<li>相比之下，算法工程师的日常工作中可能对单元测试接触的比较少，但是也推荐大家去以单元测试的思路去编程，一样可以提高代码可读性，受益匪浅。</li>
+</ul>
+<h1 id="写文档、检查语法"><a href="#写文档、检查语法" class="headerlink" title="写文档、检查语法"></a>写文档、检查语法</h1><ul>
+<li>可以用pylint等工具检查语法。</li>
+<li>给每个函数写注释，然后用api自己生成代码文档。注释中可以包含输入、输出、示例等。这都有助于提高后期的工作效率。</li>
+<li>业务文档。</li>
+</ul>
+<h1 id="多人协作开发流程"><a href="#多人协作开发流程" class="headerlink" title="多人协作开发流程"></a>多人协作开发流程</h1><ol>
+<li>首先，想清楚需求。需求的提出者不一定明白自己想要什么，你们需要一遍遍的讨论去明确或者帮助需求方去明确他们想要的东西。</li>
+<li>设计单元测试，单元测试的作用是给实现这个需求进行模块的划分，想清楚自己的每个模块完成什么功能、提供什么接口。</li>
+<li>动手写代码，这是最简单的一步。不过要时刻谨记写出高可读的代码。可以参考我的<a href="https://blog.csdn.net/yanyuxiangtoday/article/details/119767148?spm=1001.2014.3001.5501">《编写可读代码的艺术》读书笔记</a>。</li>
+<li>写完之后要接入自动化测试流程，让别人的每次commit都会自动的进行单元测试，保证其他人的提交无害，保证多人协作代码的兼容。（如果你们还没有自动化测试流程，那为什么你不动手做呢？）</li>
+<li>自动集成自动发布（CICD）。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>工作心得</category>
+      </categories>
+      <tags>
+        <tag>CodeReview</tag>
+        <tag>UnitTest</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>工程优化三板斧</title>
+    <url>/2022/01/13/20210927%E5%88%86%E4%BA%AB/</url>
+    <content><![CDATA[<h1 id="优化“哲学”的例子"><a href="#优化“哲学”的例子" class="headerlink" title="优化“哲学”的例子"></a>优化“哲学”的例子</h1><ul>
+<li>优化最怕跳转，<code>for if等</code></li>
+<li>如一个<code>if else</code>结构，大概率为真的放前面。</li>
+</ul>
+<h1 id="优化三板斧"><a href="#优化三板斧" class="headerlink" title="优化三板斧"></a>优化三板斧</h1><ul>
+<li>人多力量大<ul>
+<li>SIMD（单指令多数据流）</li>
+<li>多核多线程</li>
+<li>GPU、FPGA</li>
+</ul>
+</li>
+<li>空间换时间<ul>
+<li>胸有成竹（查表）</li>
+<li>粘贴复制（循环展开、inline）</li>
+</ul>
+</li>
+<li>乾坤大挪移（不改变算法逻辑，只改变排列方式）<ul>
+<li>物以类聚</li>
+<li>化整为零</li>
+<li>一心一意</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+<h1 id="人多力量大"><a href="#人多力量大" class="headerlink" title="人多力量大"></a>人多力量大</h1><ul>
+<li>SIMD（单指令多数据流）<ul>
+<li>细粒度的并行计算，并行度是确定的</li>
+<li>效率提升幅度与寄存器的位宽成正比关系</li>
+<li>优化要点是提高计算密度</li>
+</ul>
+</li>
+<li>多核多线程<ul>
+<li>粗颗粒度的并行计算，并行度有波动</li>
+<li>效率提升幅度与CPU核数和任务的划分分配方式有关</li>
+<li>优化要点是任务分配要碎片话，平均化</li>
+</ul>
+</li>
+</ul>
+<h1 id="SIMD小技巧"><a href="#SIMD小技巧" class="headerlink" title="SIMD小技巧"></a>SIMD小技巧</h1><ul>
+<li>矩阵转置很有用<ul>
+<li>应用在IDCT和SATD以及滤波器计算等</li>
+</ul>
+</li>
+<li>遇到判断该怎么办<ul>
+<li>真假各计算一遍，有一定开销，但是可以并行<ul>
+<li>计算判断为真的结果<code>-&gt;_T</code></li>
+<li>计算判断为假的结果<code>-&gt;_F</code></li>
+<li>判断结果<code>-&gt;_M</code></li>
+<li><code>_R = _T&amp;_M</code></li>
+<li><code>_R| = _F&amp;(~_M)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="多核多线程"><a href="#多核多线程" class="headerlink" title="多核多线程"></a>多核多线程</h1><ul>
+<li>多线程并行计算</li>
+<li>减少等待时间</li>
+</ul>
+<h1 id="空间换时间"><a href="#空间换时间" class="headerlink" title="空间换时间"></a>空间换时间</h1><ul>
+<li>查表<ul>
+<li>查表就是计算过程的固化</li>
+<li>优点：速度快</li>
+<li>缺点：因空间限制，自变量的范围有限（自变量如果是int，那么表就需要4GB，但是16位的short，只需要64KB）</li>
+</ul>
+</li>
+<li>循环或者inline函数展开<ul>
+<li>大多数硬件平台，跳转会打断指令执行流水线，造成延时</li>
+<li>适用范围：循环次数固定且比较少，循环内指令量也比较少</li>
+<li>需要测试比较，因循环跳转造成的延时多，还是展开后代码量增大造成读取指令缓存不中比较多</li>
+</ul>
+</li>
+<li>查表小技巧<ul>
+<li>NEON指令集查表指令(<code>t, tbl</code>指令，并行查表)：<code>int8x8_t vtbl1_s8(init8x8_t__a, int8x8_t__b)</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="乾坤大挪移"><a href="#乾坤大挪移" class="headerlink" title="乾坤大挪移"></a>乾坤大挪移</h1><ul>
+<li>不改变算法逻辑，只改变代码的排列方式</li>
+<li>如<code>for</code>循环纵向取数改为横向取数</li>
+</ul>
+<h2 id="物以类聚"><a href="#物以类聚" class="headerlink" title="物以类聚"></a>物以类聚</h2><ul>
+<li>一次DDR内存boost读写需要最少10cycle</li>
+<li>chache以line为基本单元组织起来，每个line映射一组内存</li>
+<li>长度是有限的，一般是64byge</li>
+<li>为了提高cache使用效率，最好把一次计算时用到的所有数据摆放到一起，或者若干连续计算所需数据连续摆放<h2 id="化整为零"><a href="#化整为零" class="headerlink" title="化整为零"></a>化整为零</h2></li>
+<li>cache容量有限，先入先出，在处理大量数据时，后面的数据会将前方数据顶出cache</li>
+<li>大量数据如需多次计算，应该分段分块处理以提高cache效率<h2 id="一心一意"><a href="#一心一意" class="headerlink" title="一心一意"></a>一心一意</h2></li>
+<li>大量数据经过分割后，分块数据应该集中做完所有计算，以提高cache效率</li>
+<li>如一个filter处理二维图像<ul>
+<li>可以先多线程各做一行</li>
+<li>然后多线程做纵向的一块</li>
+<li>进一步优化：</li>
+</ul>
+</li>
+</ul>
+<h1 id="练好内功"><a href="#练好内功" class="headerlink" title="练好内功"></a>练好内功</h1><ul>
+<li>熟悉硬件（CPU, memory, cache, 指令集, DMA···）</li>
+<li>熟悉汇编和编译</li>
+<li>熟悉算法</li>
+<li>反汇编，看看指令是否能合并，看看是否哪里可以优化，看看最底层的东西，比如取数据，操作流程？</li>
+<li>学习过程：去学习别人优化的比较好的代码。比如<code>ffmpeg</code>，想想他们为什么要这样写</li>
+</ul>
+]]></content>
+      <categories>
+        <category>工程优化</category>
+      </categories>
+      <tags>
+        <tag>SIMD</tag>
+        <tag>工程优化</tag>
+        <tag>推理加速</tag>
+        <tag>汇编</tag>
+        <tag>cache</tag>
+      </tags>
+  </entry>
+</search>
