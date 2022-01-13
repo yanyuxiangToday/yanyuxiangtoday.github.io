@@ -1,6 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>分发自己的python包</title>
+    <url>/2022/01/13/python%20-%20%E5%88%86%E5%8F%91%E8%87%AA%E5%B7%B1%E7%9A%84python%E5%8C%85/</url>
+    <content><![CDATA[<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>哪一个程序员不想有一个自己的包呢？<br>在项目开发工作中，会用到大量工具。虽然可以把这些工具模块化之后再不同项目中复制粘贴，但是既繁琐又不够酷。但是如果可以分发自己的包？够酷！</p>
+<span id="more"></span>
+<h1 id="1-创建自己的项目"><a href="#1-创建自己的项目" class="headerlink" title="1. 创建自己的项目"></a>1. 创建自己的项目</h1><ul>
+<li>这个项目的目录结构<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">|--project </span><br><span class="line">	| --example_pkg</span><br><span class="line">			|--_init__.py</span><br><span class="line">			|--hello.py</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="2-编写包的功能"><a href="#2-编写包的功能" class="headerlink" title="2. 编写包的功能"></a>2. 编写包的功能</h1><ul>
+<li>就和日常写代码一样，把自己经常需要用的函数模块化之后封装好即可。</li>
+</ul>
+<h1 id="3-创建配置文件"><a href="#3-创建配置文件" class="headerlink" title="3. 创建配置文件"></a>3. 创建配置文件</h1><ul>
+<li>按照以下格式和目录层级增加三个文件，内容稍后会介绍。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">|--project</span><br><span class="line">	|--example_pkg</span><br><span class="line">		|--__init__.py</span><br><span class="line">		|--hello.py</span><br><span class="line">	|--setup.py</span><br><span class="line">	|--LICENSE</span><br><span class="line">	|--README.md</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="3-1-setup-py"><a href="#3-1-setup-py" class="headerlink" title="3.1 setup.py"></a>3.1 setup.py</h2><ul>
+<li>这个是setuptools的构建脚本。告诉setuptools一些必须的信息。可以直接参照我的写。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import setuptools</span><br><span class="line"></span><br><span class="line">with open(&quot;README.md&quot;, &quot;r&quot;) as fh:</span><br><span class="line">    long_description = fh.read()</span><br><span class="line"></span><br><span class="line">setuptools.setup(</span><br><span class="line">    name=&quot;example_pkg&quot;,</span><br><span class="line">    version=&quot;0.0.1&quot;,</span><br><span class="line">    author=&quot;your name&quot;,</span><br><span class="line">    author_email=&quot;your_name@example.com&quot;,</span><br><span class="line">    description=&quot;Briefly describe your package&quot;,</span><br><span class="line">    long_description=long_description,</span><br><span class="line">    long_description_content_type=&quot;text/markdown&quot;,</span><br><span class="line">    url=&quot;https://github.com/your_id/your_project&quot;,</span><br><span class="line">    packages=setuptools.find_packages(),</span><br><span class="line">    classifiers=[</span><br><span class="line">        &quot;Programming Language :: Python :: 3&quot;,</span><br><span class="line">        &quot;License :: OSI Approved :: MIT License&quot;,</span><br><span class="line">        &quot;Operating System :: OS Independent&quot;,</span><br><span class="line">    ],</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="3-2-README-md"><a href="#3-2-README-md" class="headerlink" title="3.2 README.md"></a>3.2 README.md</h2></li>
+<li>在这里写一些对包的详细说明。<h2 id="3-3-LICENSE"><a href="#3-3-LICENSE" class="headerlink" title="3.3 LICENSE"></a>3.3 LICENSE</h2></li>
+<li>许可信息，通常我们采用MIT许可，将以下内容复制到LICENSE中。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Copyright (c) 2018 The Python Packaging Authority</span><br><span class="line"></span><br><span class="line">Permission is hereby granted, free of charge, to any person obtaining a copy</span><br><span class="line">of this software and associated documentation files (the &quot;Software&quot;), to deal</span><br><span class="line">in the Software without restriction, including without limitation the rights</span><br><span class="line">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span><br><span class="line">copies of the Software, and to permit persons to whom the Software is</span><br><span class="line">furnished to do so, subject to the following conditions:</span><br><span class="line"></span><br><span class="line">The above copyright notice and this permission notice shall be included in all</span><br><span class="line">copies or substantial portions of the Software.</span><br><span class="line"></span><br><span class="line">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span><br><span class="line">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span><br><span class="line">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span><br><span class="line">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span><br><span class="line">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span><br><span class="line">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span><br><span class="line">SOFTWARE.</span><br></pre></td></tr></table></figure>
+<h1 id="4-生成分发文档"><a href="#4-生成分发文档" class="headerlink" title="4. 生成分发文档"></a>4. 生成分发文档</h1></li>
+<li>安装setuptools、wheel、twine包<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ pip3 install --upgrade setuptools wheel twine</span><br></pre></td></tr></table></figure></li>
+<li>在项目根目录下运行<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ python3 setup.py sdist bdist_wheel</span><br></pre></td></tr></table></figure></li>
+<li>该命令会在项目下生成build文件夹和dist文件夹，内含构建信息<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">|--project</span><br><span class="line">	|--build</span><br><span class="line">		|--xxx</span><br><span class="line">	|--dist</span><br><span class="line">		|--example_pkg-0.0.1-py3-none-any.whl</span><br><span class="line">		|--example_pkg-0.0.1.tar.gz</span><br><span class="line">	|--example_pkg</span><br><span class="line">		|--__init__.py</span><br><span class="line">		|--hello.py</span><br><span class="line">	|--setup.py</span><br><span class="line">	|--LICENSE</span><br><span class="line">	|--README.md</span><br></pre></td></tr></table></figure>
+<h1 id="5-上传PyPI并测试"><a href="#5-上传PyPI并测试" class="headerlink" title="5. 上传PyPI并测试"></a>5. 上传PyPI并测试</h1></li>
+<li>在<a href="https://test.pypi.org/account/register/">Test PyPI</a>和<a href="https://pypi.org/account/register/">PyPI</a>上个注册一个账户（可以相同），Test PyPI是用于测试的，PyPI是正式发布的。</li>
+<li>使用twine upload命令上传dist目录下的存档<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ python3 -m twine upload --repository-url https://test.pypi.org/legacy/ dist/*</span><br></pre></td></tr></table></figure></li>
+<li>安装当前库的测试版并测试<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ pip3 install --index-url https://test.pypi.org/simple --no-deps example_pkg</span><br><span class="line">$ python3</span><br><span class="line">&gt;&gt;&gt; import example_pkg</span><br><span class="line">&gt;&gt;&gt; example_pkg.your_function</span><br></pre></td></tr></table></figure>
+<h1 id="6-正式发布"><a href="#6-正式发布" class="headerlink" title="6. 正式发布"></a>6. 正式发布</h1></li>
+<li>测试完每个函数没问题就可以正式发布了，执行命令：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ python3 -m twine upload dist/*</span><br></pre></td></tr></table></figure></li>
+<li>然后就可以愉快的安装你的库了<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ pip3 install example_pkg</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h1><p>可以参考我的<a href="https://github.com/yanyuxiangToday/yyx_tools">github repo</a>，有时候会将在不同的项目中大量用到的代码都放到这个工具包中，可以大幅降低自己的代码量。</p>
+]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【python基础 - 02】__len__</title>
+    <url>/2022/01/13/%E3%80%90python%E5%9F%BA%E7%A1%80%20-%2002%E3%80%91__len__%20/</url>
+    <content><![CDATA[<p><code>__len__</code>方法是一种常见的方法，顾名思义，主要用于判断某个类的长度。</p>
+<span id="more"></span>
+
+<p>定义<code>Test</code>类如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.num_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(self.num_list)</span><br></pre></td></tr></table></figure>
+
+<p>执行</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = Test()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面两行等价</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(x.num_list))</span><br><span class="line"><span class="built_in">print</span>(x.__len__())</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">3</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+
+<p>由此可以看出<code>__len__</code>方法主要用于判断类中某属性的长度，只是直接调用<code>len(x)</code>时预设了输出某种属性的长度。</p>
+<p>如果将代码改为：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.num_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(x))</span><br></pre></td></tr></table></figure>
+<p>则会输出</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;xxx&quot;, line 9, in &lt;module&gt;</span><br><span class="line">    print(x.__len__())</span><br><span class="line">AttributeError: &#x27;Test&#x27; object has no attribute &#x27;__len__&#x27;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>python pep8 代码规范</title>
     <url>/2022/01/13/python%20-%20python%20pep8%20%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/</url>
     <content><![CDATA[<p>写出优雅、规范的代码是程序员的基础能力，这篇文章一起学习一下 python pep8 规范。</p>
@@ -67,99 +134,6 @@
       </tags>
   </entry>
   <entry>
-    <title>分发自己的python包</title>
-    <url>/2022/01/13/python%20-%20%E5%88%86%E5%8F%91%E8%87%AA%E5%B7%B1%E7%9A%84python%E5%8C%85/</url>
-    <content><![CDATA[<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>哪一个程序员不想有一个自己的包呢？<br>在项目开发工作中，会用到大量工具。虽然可以把这些工具模块化之后再不同项目中复制粘贴，但是既繁琐又不够酷。但是如果可以分发自己的包？够酷！</p>
-<span id="more"></span>
-<h1 id="1-创建自己的项目"><a href="#1-创建自己的项目" class="headerlink" title="1. 创建自己的项目"></a>1. 创建自己的项目</h1><ul>
-<li>这个项目的目录结构<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">|--project </span><br><span class="line">	| --example_pkg</span><br><span class="line">			|--_init__.py</span><br><span class="line">			|--hello.py</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="2-编写包的功能"><a href="#2-编写包的功能" class="headerlink" title="2. 编写包的功能"></a>2. 编写包的功能</h1><ul>
-<li>就和日常写代码一样，把自己经常需要用的函数模块化之后封装好即可。</li>
-</ul>
-<h1 id="3-创建配置文件"><a href="#3-创建配置文件" class="headerlink" title="3. 创建配置文件"></a>3. 创建配置文件</h1><ul>
-<li>按照以下格式和目录层级增加三个文件，内容稍后会介绍。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">|--project</span><br><span class="line">	|--example_pkg</span><br><span class="line">		|--__init__.py</span><br><span class="line">		|--hello.py</span><br><span class="line">	|--setup.py</span><br><span class="line">	|--LICENSE</span><br><span class="line">	|--README.md</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="3-1-setup-py"><a href="#3-1-setup-py" class="headerlink" title="3.1 setup.py"></a>3.1 setup.py</h2><ul>
-<li>这个是setuptools的构建脚本。告诉setuptools一些必须的信息。可以直接参照我的写。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import setuptools</span><br><span class="line"></span><br><span class="line">with open(&quot;README.md&quot;, &quot;r&quot;) as fh:</span><br><span class="line">    long_description = fh.read()</span><br><span class="line"></span><br><span class="line">setuptools.setup(</span><br><span class="line">    name=&quot;example_pkg&quot;,</span><br><span class="line">    version=&quot;0.0.1&quot;,</span><br><span class="line">    author=&quot;your name&quot;,</span><br><span class="line">    author_email=&quot;your_name@example.com&quot;,</span><br><span class="line">    description=&quot;Briefly describe your package&quot;,</span><br><span class="line">    long_description=long_description,</span><br><span class="line">    long_description_content_type=&quot;text/markdown&quot;,</span><br><span class="line">    url=&quot;https://github.com/your_id/your_project&quot;,</span><br><span class="line">    packages=setuptools.find_packages(),</span><br><span class="line">    classifiers=[</span><br><span class="line">        &quot;Programming Language :: Python :: 3&quot;,</span><br><span class="line">        &quot;License :: OSI Approved :: MIT License&quot;,</span><br><span class="line">        &quot;Operating System :: OS Independent&quot;,</span><br><span class="line">    ],</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<h2 id="3-2-README-md"><a href="#3-2-README-md" class="headerlink" title="3.2 README.md"></a>3.2 README.md</h2></li>
-<li>在这里写一些对包的详细说明。<h2 id="3-3-LICENSE"><a href="#3-3-LICENSE" class="headerlink" title="3.3 LICENSE"></a>3.3 LICENSE</h2></li>
-<li>许可信息，通常我们采用MIT许可，将以下内容复制到LICENSE中。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Copyright (c) 2018 The Python Packaging Authority</span><br><span class="line"></span><br><span class="line">Permission is hereby granted, free of charge, to any person obtaining a copy</span><br><span class="line">of this software and associated documentation files (the &quot;Software&quot;), to deal</span><br><span class="line">in the Software without restriction, including without limitation the rights</span><br><span class="line">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span><br><span class="line">copies of the Software, and to permit persons to whom the Software is</span><br><span class="line">furnished to do so, subject to the following conditions:</span><br><span class="line"></span><br><span class="line">The above copyright notice and this permission notice shall be included in all</span><br><span class="line">copies or substantial portions of the Software.</span><br><span class="line"></span><br><span class="line">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span><br><span class="line">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span><br><span class="line">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span><br><span class="line">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span><br><span class="line">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span><br><span class="line">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span><br><span class="line">SOFTWARE.</span><br></pre></td></tr></table></figure>
-<h1 id="4-生成分发文档"><a href="#4-生成分发文档" class="headerlink" title="4. 生成分发文档"></a>4. 生成分发文档</h1></li>
-<li>安装setuptools、wheel、twine包<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ pip3 install --upgrade setuptools wheel twine</span><br></pre></td></tr></table></figure></li>
-<li>在项目根目录下运行<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ python3 setup.py sdist bdist_wheel</span><br></pre></td></tr></table></figure></li>
-<li>该命令会在项目下生成build文件夹和dist文件夹，内含构建信息<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">|--project</span><br><span class="line">	|--build</span><br><span class="line">		|--xxx</span><br><span class="line">	|--dist</span><br><span class="line">		|--example_pkg-0.0.1-py3-none-any.whl</span><br><span class="line">		|--example_pkg-0.0.1.tar.gz</span><br><span class="line">	|--example_pkg</span><br><span class="line">		|--__init__.py</span><br><span class="line">		|--hello.py</span><br><span class="line">	|--setup.py</span><br><span class="line">	|--LICENSE</span><br><span class="line">	|--README.md</span><br></pre></td></tr></table></figure>
-<h1 id="5-上传PyPI并测试"><a href="#5-上传PyPI并测试" class="headerlink" title="5. 上传PyPI并测试"></a>5. 上传PyPI并测试</h1></li>
-<li>在<a href="https://test.pypi.org/account/register/">Test PyPI</a>和<a href="https://pypi.org/account/register/">PyPI</a>上个注册一个账户（可以相同），Test PyPI是用于测试的，PyPI是正式发布的。</li>
-<li>使用twine upload命令上传dist目录下的存档<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ python3 -m twine upload --repository-url https://test.pypi.org/legacy/ dist/*</span><br></pre></td></tr></table></figure></li>
-<li>安装当前库的测试版并测试<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ pip3 install --index-url https://test.pypi.org/simple --no-deps example_pkg</span><br><span class="line">$ python3</span><br><span class="line">&gt;&gt;&gt; import example_pkg</span><br><span class="line">&gt;&gt;&gt; example_pkg.your_function</span><br></pre></td></tr></table></figure>
-<h1 id="6-正式发布"><a href="#6-正式发布" class="headerlink" title="6. 正式发布"></a>6. 正式发布</h1></li>
-<li>测试完每个函数没问题就可以正式发布了，执行命令：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ python3 -m twine upload dist/*</span><br></pre></td></tr></table></figure></li>
-<li>然后就可以愉快的安装你的库了<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ pip3 install example_pkg</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h1><p>可以参考我的<a href="https://github.com/yanyuxiangToday/yyx_tools">github repo</a>，有时候会将在不同的项目中大量用到的代码都放到这个工具包中，可以大幅降低自己的代码量。</p>
-]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【python基础 - 01】__call__</title>
-    <url>/2022/01/13/%E3%80%90python%E5%9F%BA%E7%A1%80%20-%2001%E3%80%91__call__/</url>
-    <content><![CDATA[<p><code>__call__</code>方法是一种常见的方法，顾名思义，主要用于调用某个类。</p>
-<span id="more"></span>
-
-<p>定义<code>Test</code>类如下：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span>(<span class="params">self, <span class="built_in">any</span>=<span class="literal">None</span></span>):</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">any</span>)</span><br></pre></td></tr></table></figure>
-
-<p>执行</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = Test()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面三行等价</span></span><br><span class="line">Test()()</span><br><span class="line">x.__call__()</span><br><span class="line">x()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面三行等价</span></span><br><span class="line">Test()(<span class="string">&#x27;hello&#x27;</span>)</span><br><span class="line">x.__call__(<span class="string">&#x27;hello&#x27;</span>)</span><br><span class="line">x(<span class="string">&#x27;hello&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>输出</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">None</span><br><span class="line">None</span><br><span class="line">None</span><br><span class="line"></span><br><span class="line">hello</span><br><span class="line">hello</span><br><span class="line">hello</span><br></pre></td></tr></table></figure>
-
-<p>由此可以看出<code>__call__</code>方法主要用于调用某个类，通常在深度学习框架中，如keras，pytorch中常能见到该写法，如：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">y = tf.keras.layers.Dense(<span class="number">1</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>)(x)</span><br></pre></td></tr></table></figure>
-<p>等价于</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">tf.keras.layers.Dense(<span class="number">1</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>).__call__(x)</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【python基础 - 02】__len__</title>
-    <url>/2022/01/13/%E3%80%90python%E5%9F%BA%E7%A1%80%20-%2002%E3%80%91__len__%20/</url>
-    <content><![CDATA[<p><code>__len__</code>方法是一种常见的方法，顾名思义，主要用于判断某个类的长度。</p>
-<span id="more"></span>
-
-<p>定义<code>Test</code>类如下：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.num_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(self.num_list)</span><br></pre></td></tr></table></figure>
-
-<p>执行</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = Test()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面两行等价</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(x.num_list))</span><br><span class="line"><span class="built_in">print</span>(x.__len__())</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>输出</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">3</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
-
-<p>由此可以看出<code>__len__</code>方法主要用于判断类中某属性的长度，只是直接调用<code>len(x)</code>时预设了输出某种属性的长度。</p>
-<p>如果将代码改为：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.num_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(x))</span><br></pre></td></tr></table></figure>
-<p>则会输出</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;xxx&quot;, line 9, in &lt;module&gt;</span><br><span class="line">    print(x.__len__())</span><br><span class="line">AttributeError: &#x27;Test&#x27; object has no attribute &#x27;__len__&#x27;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【python基础 - 03】__getitem__</title>
     <url>/2022/01/13/%E3%80%90python%E5%9F%BA%E7%A1%80%20-%2003%E3%80%91__getitem__/</url>
     <content><![CDATA[<p><code>__getitem__</code>方法是一种常见的方法，常用于获取类中的某些信息。</p>
@@ -176,6 +150,32 @@
 
 <p>由此可以看出<code>__getitem__</code>方法主要用于获取类中的某些信息，当然你也可以定义其他数据结构，尝试写自己的<code>__getitem__</code>，通常在项目中的config文件中会使用。</p>
 ]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【python基础 - 04】__getattr__</title>
+    <url>/2022/01/13/%E3%80%90python%E5%9F%BA%E7%A1%80%20-%2004%E3%80%91__getattr__/</url>
+    <content><![CDATA[<p><code>__getattr__</code>方法常用于以属性的方式调用类中的属性或方法，如<code>MyClass.my_func()</code>.</p>
+<span id="more"></span>
+
+<p>定义<code>Test</code>类如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_my_default</span>(<span class="params">self, *args</span>):</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;func input <span class="subst">&#123;args&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getattr__</span>(<span class="params">self, key</span>):</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;<span class="subst">&#123;key&#125;</span> not defined in Test&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span> self._my_default</span><br></pre></td></tr></table></figure>
+
+<p>执行</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = Test()</span><br><span class="line">x.test_func(<span class="string">&#x27;test getattr&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">test_func not defined in Test</span><br><span class="line">func input (&#x27;test getattr&#x27;,)</span><br></pre></td></tr></table></figure>
+
+<p>由此可以看出采用<code>.</code>的形式去调用属性、方法时就是在调用<code>__getattr__</code>，我们还可以使用该特性实现以属性的方式去调用<code>dict</code>中的元素，示例如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dict2Attr</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, m_dict</span>):</span></span><br><span class="line">        self.m_dict = m_dict</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getattr__</span>(<span class="params">self, key</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.m_dict[key]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">m_dict = <span class="built_in">dict</span>(</span><br><span class="line">    item1=<span class="string">&#x27;value1&#x27;</span>,</span><br><span class="line">    item2=<span class="string">&#x27;value2&#x27;</span>,</span><br><span class="line">)</span><br><span class="line">m_attr_dict = Dict2Attr(m_dict)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以下每两行都是等价的</span></span><br><span class="line"><span class="built_in">print</span>(m_dict[<span class="string">&#x27;item1&#x27;</span>])</span><br><span class="line"><span class="built_in">print</span>(m_attr_dict.item1)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(m_dict[<span class="string">&#x27;item2&#x27;</span>])</span><br><span class="line"><span class="built_in">print</span>(m_attr_dict.item2)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(m_dict[<span class="string">&#x27;item3&#x27;</span>])</span><br><span class="line"><span class="built_in">print</span>(m_attr_dict.item3)  <span class="comment"># 执行结果同上</span></span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">value1</span><br><span class="line">value1</span><br><span class="line">value2</span><br><span class="line">value2</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;xxx&quot;, line 22, in &lt;module&gt;</span><br><span class="line">    print(m_dict[&#x27;item3&#x27;])</span><br><span class="line">KeyError: &#x27;item3&#x27;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>python</category>
       </categories>
@@ -220,25 +220,29 @@
       </tags>
   </entry>
   <entry>
-    <title>【深度学习基础知识 - 01】L1和L2损失函数的区别</title>
-    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2001%E3%80%91L1%E5%92%8CL2%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<p>机器学习、深度学习任务中经常提到L1和L2损失的概念，但是刚开始接触的时候很容易混淆，在这里做一下笔记。</p>
+    <title>【python基础 - 01】__call__</title>
+    <url>/2022/01/13/%E3%80%90python%E5%9F%BA%E7%A1%80%20-%2001%E3%80%91__call__/</url>
+    <content><![CDATA[<p><code>__call__</code>方法是一种常见的方法，顾名思义，主要用于调用某个类。</p>
 <span id="more"></span>
-<h1 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h1><ul>
-<li>L1损失函数全称为MAE(Mean Abs Error)，即平均绝对误差，也就是预测值和真实值之间差值的绝对值。</li>
-<li>L2损失函数又称为MSE(Mean Square Error)，即平均平方误差，也就是预测值和真实值之间差值的平方。<h1 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h1></li>
-<li>因为计算的方式类似，只有一个平方的差异，因此使用的场合都很相近，通常用于回归任务中。<h1 id="差异"><a href="#差异" class="headerlink" title="差异"></a>差异</h1></li>
-<li>L2没有L1鲁棒，直观来说，L2会将误差平方，如果误差大于1，则误差会被放大很多，因此模型会对异常样本更敏感，这样会牺牲许多正常的样本。当训练集中含有更多异常值的时候，L1会更有效。</li>
-<li>如果是图像重建任务，如超分辨率、深度估计、视频插帧等，L2会更加有效，这是由任务特性决定的，图像重建任务中通常预测值和真实值之间的差异不大，因此需要用L2损失来放大差异，进而指导模型的优化。</li>
-<li>L1的问题在于它的梯度在极值点会发生跃变，并且很小的差异也会带来很大的梯度，不利于学习，因此在使用时通常会设定学习率衰减策略。而L2作为损失函数的时候本身由于其函数的特性，自身就会对梯度进行缩放，因此有的任务在使用L2时甚至不会调整学习率，不过随着现在的行业认知，学习率衰减策略在很多场景中依然是获得更优模型的手段。<h1 id="变体"><a href="#变体" class="headerlink" title="变体"></a>变体</h1></li>
-<li>最近也有很多场景中出现了加权的L1和L2，即两者的加权求和。或者其他L1和L2的变体，如分段使用L1和L2，在预测值满足一定条件时使用L1计算损失，其他情况下使用L2计算损失。这要由具体的任务来定。<h1 id="L1和L2的函数图像"><a href="#L1和L2的函数图像" class="headerlink" title="L1和L2的函数图像"></a>L1和L2的函数图像</h1><img src="https://img-blog.csdnimg.cn/b3403a2016da4d1d87e4a1f201051567.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbnl1eGlhbmd0b2RheQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><img src="https://img-blog.csdnimg.cn/10745f39659e47539ee7af9641d8e18a.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbnl1eGlhbmd0b2RheQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
-</ul>
-]]></content>
+
+<p>定义<code>Test</code>类如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span>(<span class="params">self, <span class="built_in">any</span>=<span class="literal">None</span></span>):</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">any</span>)</span><br></pre></td></tr></table></figure>
+
+<p>执行</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = Test()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面三行等价</span></span><br><span class="line">Test()()</span><br><span class="line">x.__call__()</span><br><span class="line">x()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面三行等价</span></span><br><span class="line">Test()(<span class="string">&#x27;hello&#x27;</span>)</span><br><span class="line">x.__call__(<span class="string">&#x27;hello&#x27;</span>)</span><br><span class="line">x(<span class="string">&#x27;hello&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">None</span><br><span class="line">None</span><br><span class="line">None</span><br><span class="line"></span><br><span class="line">hello</span><br><span class="line">hello</span><br><span class="line">hello</span><br></pre></td></tr></table></figure>
+
+<p>由此可以看出<code>__call__</code>方法主要用于调用某个类，通常在深度学习框架中，如keras，pytorch中常能见到该写法，如：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">y = tf.keras.layers.Dense(<span class="number">1</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>)(x)</span><br></pre></td></tr></table></figure>
+<p>等价于</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">tf.keras.layers.Dense(<span class="number">1</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>).__call__(x)</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>深度学习</category>
+        <category>python</category>
       </categories>
       <tags>
-        <tag>深度学习</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -268,92 +272,18 @@
       </tags>
   </entry>
   <entry>
-    <title>【python基础 - 04】__getattr__</title>
-    <url>/2022/01/13/%E3%80%90python%E5%9F%BA%E7%A1%80%20-%2004%E3%80%91__getattr__/</url>
-    <content><![CDATA[<p><code>__getattr__</code>方法常用于以属性的方式调用类中的属性或方法，如<code>MyClass.my_func()</code>.</p>
+    <title>【深度学习基础知识 - 01】L1和L2损失函数的区别</title>
+    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2001%E3%80%91L1%E5%92%8CL2%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<p>机器学习、深度学习任务中经常提到L1和L2损失的概念，但是刚开始接触的时候很容易混淆，在这里做一下笔记。</p>
 <span id="more"></span>
-
-<p>定义<code>Test</code>类如下：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_my_default</span>(<span class="params">self, *args</span>):</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;func input <span class="subst">&#123;args&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getattr__</span>(<span class="params">self, key</span>):</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;<span class="subst">&#123;key&#125;</span> not defined in Test&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span> self._my_default</span><br></pre></td></tr></table></figure>
-
-<p>执行</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = Test()</span><br><span class="line">x.test_func(<span class="string">&#x27;test getattr&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>输出</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">test_func not defined in Test</span><br><span class="line">func input (&#x27;test getattr&#x27;,)</span><br></pre></td></tr></table></figure>
-
-<p>由此可以看出采用<code>.</code>的形式去调用属性、方法时就是在调用<code>__getattr__</code>，我们还可以使用该特性实现以属性的方式去调用<code>dict</code>中的元素，示例如下：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dict2Attr</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, m_dict</span>):</span></span><br><span class="line">        self.m_dict = m_dict</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getattr__</span>(<span class="params">self, key</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.m_dict[key]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">m_dict = <span class="built_in">dict</span>(</span><br><span class="line">    item1=<span class="string">&#x27;value1&#x27;</span>,</span><br><span class="line">    item2=<span class="string">&#x27;value2&#x27;</span>,</span><br><span class="line">)</span><br><span class="line">m_attr_dict = Dict2Attr(m_dict)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以下每两行都是等价的</span></span><br><span class="line"><span class="built_in">print</span>(m_dict[<span class="string">&#x27;item1&#x27;</span>])</span><br><span class="line"><span class="built_in">print</span>(m_attr_dict.item1)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(m_dict[<span class="string">&#x27;item2&#x27;</span>])</span><br><span class="line"><span class="built_in">print</span>(m_attr_dict.item2)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(m_dict[<span class="string">&#x27;item3&#x27;</span>])</span><br><span class="line"><span class="built_in">print</span>(m_attr_dict.item3)  <span class="comment"># 执行结果同上</span></span><br></pre></td></tr></table></figure>
-<p>输出</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">value1</span><br><span class="line">value1</span><br><span class="line">value2</span><br><span class="line">value2</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;xxx&quot;, line 22, in &lt;module&gt;</span><br><span class="line">    print(m_dict[&#x27;item3&#x27;])</span><br><span class="line">KeyError: &#x27;item3&#x27;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【深度学习基础知识 - 03】梯度消失和梯度爆炸的概念及解决方案</title>
-    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2003%E3%80%91%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1%E5%92%8C%E6%A2%AF%E5%BA%A6%E7%88%86%E7%82%B8%E7%9A%84%E6%A6%82%E5%BF%B5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[<p>梯度消失和梯度爆炸是人工智能领域出现的高频词汇，这篇文章对其进行简要介绍。</p>
-<span id="more"></span>
-<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
-<li>梯度消失就是指在网络反向传播过程中由于链式求导法则不断的累积，如果每一层的梯度都小于1，由于累乘效应，出现了某些参数的梯度非常小的现象。在使用这些梯度更新梯度的时候参数值基本没有发生变化，因此就出现了网络训练停滞、模型无法继续优化的问题。</li>
-<li>梯度爆炸与之刚好相反，在网络反向传播过程中由于链式求导法则的累乘效应，在每一层梯度都大于1的时候，就可能会出现某些参数的梯度非常大。在使用这些梯度更新参数的时候就会导致参数变化过大，就会出现损失函数震荡的现象。<h1 id="梯度消失和梯度爆炸的解决方案"><a href="#梯度消失和梯度爆炸的解决方案" class="headerlink" title="梯度消失和梯度爆炸的解决方案"></a>梯度消失和梯度爆炸的解决方案</h1></li>
-<li>预训练和fine-tuning<ul>
-<li>就是将一些在公开训练集上训练好的模型参数加载到自己对应的模型中，这样损失函数通常就能稳定的优化。</li>
-</ul>
-</li>
-<li>梯度裁剪<ul>
-<li>梯度裁剪是一个针对梯度爆炸的解决方案，也就是说将梯度限制在某个阈值范围内，如果梯度超过的这个阈值，那么就将其设置为这个阈值。</li>
-</ul>
-</li>
-<li>正则化<ul>
-<li>正则化也是一种限制梯度爆炸的解决方案，同时也有限制过拟合的作用。</li>
-</ul>
-</li>
-<li>使用relu、leakrelu、elu等激活函数<ul>
-<li>梯度消失通常是因为损失函数选择sigmoid导致的，而relu激活函数在正数部分梯度是恒等于1的，由于1不会累积加权的特性，自然就可以避免梯度消失或梯度爆炸现象。但是relu同样有缺点，作为分段函数，relu在负数部分恒为0，导致一些神经元无法被激活。而leakyrelu、elu就可以避免这个问题。</li>
-</ul>
-</li>
-<li>BN（batch normalization）<ul>
-<li>BN可以加速网络收敛提升训练的稳定性，它把每一层神经网络的任意神经元输入值的分布规范为正态分布，如果采用sigmoid激活函数，那么就可以使得激活函数的输入落在梯度较大的区域，因此就能一定程度解决梯度消失的问题。</li>
-</ul>
-</li>
-<li>使用类似ResNet的跳线结构<ul>
-<li>由于离输出近的层学习效果好，而由于链式求导法则的影响可能会导致梯度消失或者梯度爆炸，因此可以模仿ResNet在网络的中间增加跳线结构，这样对应层求导梯度时候由于跳线的连接可以增加一个让梯度无损传播的通路，从而避免梯度消失或者梯度爆炸。</li>
-</ul>
-</li>
-<li>LSTM等结构<ul>
-<li>在NLP领域中，LSTM有时也会被用于对抗梯度现象，这是由于其具有复杂的门结构来控制梯度更新。</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【深度学习基础知识 - 04】过拟合和欠拟合的概念及解决方案</title>
-    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2004%E3%80%91%E8%BF%87%E6%8B%9F%E5%90%88%E5%92%8C%E6%AC%A0%E6%8B%9F%E5%90%88%E7%9A%84%E6%A6%82%E5%BF%B5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
-<li>过拟合就是随着模型的训练，模型在训练集上的表现越来越好，但是在验证集上的表现却越来越差，也就是说对训练集的拟合程度过高，导致模型的泛化能力降低。<span id="more"></span></li>
-<li>欠拟合就是模型在训练集上也无法达到满意的精度。<h1 id="过拟合的解决方案"><a href="#过拟合的解决方案" class="headerlink" title="过拟合的解决方案"></a>过拟合的解决方案</h1>过拟合通常是由于训练数据过少、模型复杂度过大等问题导致的，因此相应的解决方案也是从这两个角度考虑。</li>
-<li>使用更多的数据进行训练，并且数据集尽量均匀，做一些数据增强。</li>
-<li>降低模型复杂度。并不是说模型越复杂越好，如果模型过于复杂，而训练集又较少，那么参数就很容易拟合到一个过于适配训练集的参数空间中，自然就会导致过拟合的出现。</li>
-<li>Early Stop，简单来说就是减少迭代次数。随着训练次数的增加，模型对训练数据的拟合程度也会随之增高，所以也可以通过减少训练时间的方法避免过拟合，提高模型泛化能力。</li>
-<li>L1、L2正则化方法，限制模型权重。</li>
-<li>在数据中增加一些噪声，从而通过影响损失函数的优化方向避免过拟合。</li>
-<li>Dropout，目的也是降低模型的复杂度。</li>
-<li>ResNet。是的，ResNet也可以解决过拟合问题，因为ResNet的跳线结构可以让部分参数权重归零，进而达到类似于Dropout的效果。<h1 id="欠拟合的解决方案"><a href="#欠拟合的解决方案" class="headerlink" title="欠拟合的解决方案"></a>欠拟合的解决方案</h1>欠拟合通常是由于模型表征能力不足、数据量过大导致的，刚好和过拟合相反。</li>
-<li>使用更复杂的模型。</li>
-<li>增加迭代次数。</li>
-<li>减少数据中的噪声。</li>
+<h1 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h1><ul>
+<li>L1损失函数全称为MAE(Mean Abs Error)，即平均绝对误差，也就是预测值和真实值之间差值的绝对值。</li>
+<li>L2损失函数又称为MSE(Mean Square Error)，即平均平方误差，也就是预测值和真实值之间差值的平方。<h1 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h1></li>
+<li>因为计算的方式类似，只有一个平方的差异，因此使用的场合都很相近，通常用于回归任务中。<h1 id="差异"><a href="#差异" class="headerlink" title="差异"></a>差异</h1></li>
+<li>L2没有L1鲁棒，直观来说，L2会将误差平方，如果误差大于1，则误差会被放大很多，因此模型会对异常样本更敏感，这样会牺牲许多正常的样本。当训练集中含有更多异常值的时候，L1会更有效。</li>
+<li>如果是图像重建任务，如超分辨率、深度估计、视频插帧等，L2会更加有效，这是由任务特性决定的，图像重建任务中通常预测值和真实值之间的差异不大，因此需要用L2损失来放大差异，进而指导模型的优化。</li>
+<li>L1的问题在于它的梯度在极值点会发生跃变，并且很小的差异也会带来很大的梯度，不利于学习，因此在使用时通常会设定学习率衰减策略。而L2作为损失函数的时候本身由于其函数的特性，自身就会对梯度进行缩放，因此有的任务在使用L2时甚至不会调整学习率，不过随着现在的行业认知，学习率衰减策略在很多场景中依然是获得更优模型的手段。<h1 id="变体"><a href="#变体" class="headerlink" title="变体"></a>变体</h1></li>
+<li>最近也有很多场景中出现了加权的L1和L2，即两者的加权求和。或者其他L1和L2的变体，如分段使用L1和L2，在预测值满足一定条件时使用L1计算损失，其他情况下使用L2计算损失。这要由具体的任务来定。<h1 id="L1和L2的函数图像"><a href="#L1和L2的函数图像" class="headerlink" title="L1和L2的函数图像"></a>L1和L2的函数图像</h1><img src="https://img-blog.csdnimg.cn/b3403a2016da4d1d87e4a1f201051567.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbnl1eGlhbmd0b2RheQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><img src="https://img-blog.csdnimg.cn/10745f39659e47539ee7af9641d8e18a.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbnl1eGlhbmd0b2RheQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
 </ul>
 ]]></content>
       <categories>
@@ -371,22 +301,6 @@
 <ul>
 <li>其主要原因是为了保护位置信息，使用奇数的卷积核，保证了中心点刚好在中间，避免了位置信息发生偏移。在需要使用位置信息的任务，如目标检测、目标识别、三维重建、图像重建等任务中非常有价值。</li>
 <li>另一个就是因为padding时候能够保证左右对称，实际上也是为了位置信息。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【深度学习基础知识 - 06】inception的提出背景和主要特点</title>
-    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2006%E3%80%91inception%E7%9A%84%E6%8F%90%E5%87%BA%E8%83%8C%E6%99%AF%E5%92%8C%E4%B8%BB%E8%A6%81%E7%89%B9%E7%82%B9/</url>
-    <content><![CDATA[<h1 id="inception的提出背景"><a href="#inception的提出背景" class="headerlink" title="inception的提出背景"></a>inception的提出背景</h1><ul>
-<li>inception最早是Google在2014年在GoogLeNet中提出的，在2014年业界的共识是增加模型的参数量可以提高模型精度，那时业界远没触碰到模型复杂度的瓶颈，学者都是通过增加网络深度来堆叠参数的，而google则是通过增加网络的宽度来堆叠参数。<span id="more"></span>
-<h1 id="inception的主要特点"><a href="#inception的主要特点" class="headerlink" title="inception的主要特点"></a>inception的主要特点</h1></li>
-<li>它的主要特征就是将常用的卷积核：1x1、3x3、5x5和池化操作堆叠在一起，这样让模型自适应的去选择合适的感受野，同时增加了网络的宽度和参数量，在那一年的ImageNet中取得了极好的成绩。</li>
 </ul>
 ]]></content>
       <categories>
@@ -457,6 +371,68 @@
       </tags>
   </entry>
   <entry>
+    <title>【深度学习基础知识 - 03】梯度消失和梯度爆炸的概念及解决方案</title>
+    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2003%E3%80%91%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1%E5%92%8C%E6%A2%AF%E5%BA%A6%E7%88%86%E7%82%B8%E7%9A%84%E6%A6%82%E5%BF%B5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[<p>梯度消失和梯度爆炸是人工智能领域出现的高频词汇，这篇文章对其进行简要介绍。</p>
+<span id="more"></span>
+<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
+<li>梯度消失就是指在网络反向传播过程中由于链式求导法则不断的累积，如果每一层的梯度都小于1，由于累乘效应，出现了某些参数的梯度非常小的现象。在使用这些梯度更新梯度的时候参数值基本没有发生变化，因此就出现了网络训练停滞、模型无法继续优化的问题。</li>
+<li>梯度爆炸与之刚好相反，在网络反向传播过程中由于链式求导法则的累乘效应，在每一层梯度都大于1的时候，就可能会出现某些参数的梯度非常大。在使用这些梯度更新参数的时候就会导致参数变化过大，就会出现损失函数震荡的现象。<h1 id="梯度消失和梯度爆炸的解决方案"><a href="#梯度消失和梯度爆炸的解决方案" class="headerlink" title="梯度消失和梯度爆炸的解决方案"></a>梯度消失和梯度爆炸的解决方案</h1></li>
+<li>预训练和fine-tuning<ul>
+<li>就是将一些在公开训练集上训练好的模型参数加载到自己对应的模型中，这样损失函数通常就能稳定的优化。</li>
+</ul>
+</li>
+<li>梯度裁剪<ul>
+<li>梯度裁剪是一个针对梯度爆炸的解决方案，也就是说将梯度限制在某个阈值范围内，如果梯度超过的这个阈值，那么就将其设置为这个阈值。</li>
+</ul>
+</li>
+<li>正则化<ul>
+<li>正则化也是一种限制梯度爆炸的解决方案，同时也有限制过拟合的作用。</li>
+</ul>
+</li>
+<li>使用relu、leakrelu、elu等激活函数<ul>
+<li>梯度消失通常是因为损失函数选择sigmoid导致的，而relu激活函数在正数部分梯度是恒等于1的，由于1不会累积加权的特性，自然就可以避免梯度消失或梯度爆炸现象。但是relu同样有缺点，作为分段函数，relu在负数部分恒为0，导致一些神经元无法被激活。而leakyrelu、elu就可以避免这个问题。</li>
+</ul>
+</li>
+<li>BN（batch normalization）<ul>
+<li>BN可以加速网络收敛提升训练的稳定性，它把每一层神经网络的任意神经元输入值的分布规范为正态分布，如果采用sigmoid激活函数，那么就可以使得激活函数的输入落在梯度较大的区域，因此就能一定程度解决梯度消失的问题。</li>
+</ul>
+</li>
+<li>使用类似ResNet的跳线结构<ul>
+<li>由于离输出近的层学习效果好，而由于链式求导法则的影响可能会导致梯度消失或者梯度爆炸，因此可以模仿ResNet在网络的中间增加跳线结构，这样对应层求导梯度时候由于跳线的连接可以增加一个让梯度无损传播的通路，从而避免梯度消失或者梯度爆炸。</li>
+</ul>
+</li>
+<li>LSTM等结构<ul>
+<li>在NLP领域中，LSTM有时也会被用于对抗梯度现象，这是由于其具有复杂的门结构来控制梯度更新。</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【深度学习基础知识 - 10】图像的梯度</title>
+    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2010%E3%80%91%E5%9B%BE%E5%83%8F%E7%9A%84%E6%A2%AF%E5%BA%A6/</url>
+    <content><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
+<li>对于图像的梯度，如果理解数学中离散点的梯度求导方法就会发现一点也不神秘。梯度表示的是某一函数在该点处的方向导数沿着这个方向取得最大值，简单来说就是它总指向函数增长最快的方向。<span id="more"></span></li>
+<li>一句话概括图像梯度，图像x方向上的梯度就是x方向上两个相邻像素值相减，y方向上的梯度就是y方向上两个相邻像素值相减。<h1 id="特点及含义"><a href="#特点及含义" class="headerlink" title="特点及含义"></a>特点及含义</h1></li>
+<li>梯度是一个矢量，也就是既有大小也有方向，因此会加以区分x方向、y方向的正向梯度、反向梯度。</li>
+<li>图像的梯度通常反映了图像的纹理信息，纹理发生突变的区域通常会有更高的响应。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【深度学习基础知识 - 09】tensorflow和pytorch的相同点和区别</title>
     <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2009%E3%80%91tensorflow%E5%92%8Cpytorch%E7%9A%84%E7%9B%B8%E5%90%8C%E7%82%B9%E5%92%8C%E5%8C%BA%E5%88%AB/</url>
     <content><![CDATA[<h1 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h1><ul>
@@ -478,13 +454,89 @@
       </tags>
   </entry>
   <entry>
-    <title>【深度学习基础知识 - 10】图像的梯度</title>
-    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2010%E3%80%91%E5%9B%BE%E5%83%8F%E7%9A%84%E6%A2%AF%E5%BA%A6/</url>
+    <title>【深度学习基础知识 - 11】什么是景深</title>
+    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2011%E3%80%91%E4%BB%80%E4%B9%88%E6%98%AF%E6%99%AF%E6%B7%B1/</url>
+    <content><![CDATA[<p>在计算机视觉中的一些任务中可能会出现景深的概念，如深度估计、SLAM、视觉里程计等，这篇文章简单介绍一下景深概念。</p>
+<span id="more"></span>
+<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
+<li>我们拍照的时候都知道，对焦在相机成像平面上的物体才是清晰的，而物体的对焦平面可以通过相机镜头来控制，同时也与物体和拍摄点之间的距离有关，当我们对焦到距离拍摄点稍远的物体时，近距离的物体就会变得模糊，反之亦然。但是，我们对焦到一个物体之后，可以看到对焦点附近的物体成像也都是清晰的，而它们处于不同的焦平面上，这是为什么呢？因为在焦平面的前后会出现一个弥散斑，这个弥散斑的直观影响就是对焦平面附近的几个焦平面也会有清晰的成像，而能够清晰成像的这一段距离范围，就是景深。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【深度学习基础知识 - 04】过拟合和欠拟合的概念及解决方案</title>
+    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2004%E3%80%91%E8%BF%87%E6%8B%9F%E5%90%88%E5%92%8C%E6%AC%A0%E6%8B%9F%E5%90%88%E7%9A%84%E6%A6%82%E5%BF%B5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
-<li>对于图像的梯度，如果理解数学中离散点的梯度求导方法就会发现一点也不神秘。梯度表示的是某一函数在该点处的方向导数沿着这个方向取得最大值，简单来说就是它总指向函数增长最快的方向。<span id="more"></span></li>
-<li>一句话概括图像梯度，图像x方向上的梯度就是x方向上两个相邻像素值相减，y方向上的梯度就是y方向上两个相邻像素值相减。<h1 id="特点及含义"><a href="#特点及含义" class="headerlink" title="特点及含义"></a>特点及含义</h1></li>
-<li>梯度是一个矢量，也就是既有大小也有方向，因此会加以区分x方向、y方向的正向梯度、反向梯度。</li>
-<li>图像的梯度通常反映了图像的纹理信息，纹理发生突变的区域通常会有更高的响应。</li>
+<li>过拟合就是随着模型的训练，模型在训练集上的表现越来越好，但是在验证集上的表现却越来越差，也就是说对训练集的拟合程度过高，导致模型的泛化能力降低。<span id="more"></span></li>
+<li>欠拟合就是模型在训练集上也无法达到满意的精度。<h1 id="过拟合的解决方案"><a href="#过拟合的解决方案" class="headerlink" title="过拟合的解决方案"></a>过拟合的解决方案</h1>过拟合通常是由于训练数据过少、模型复杂度过大等问题导致的，因此相应的解决方案也是从这两个角度考虑。</li>
+<li>使用更多的数据进行训练，并且数据集尽量均匀，做一些数据增强。</li>
+<li>降低模型复杂度。并不是说模型越复杂越好，如果模型过于复杂，而训练集又较少，那么参数就很容易拟合到一个过于适配训练集的参数空间中，自然就会导致过拟合的出现。</li>
+<li>Early Stop，简单来说就是减少迭代次数。随着训练次数的增加，模型对训练数据的拟合程度也会随之增高，所以也可以通过减少训练时间的方法避免过拟合，提高模型泛化能力。</li>
+<li>L1、L2正则化方法，限制模型权重。</li>
+<li>在数据中增加一些噪声，从而通过影响损失函数的优化方向避免过拟合。</li>
+<li>Dropout，目的也是降低模型的复杂度。</li>
+<li>ResNet。是的，ResNet也可以解决过拟合问题，因为ResNet的跳线结构可以让部分参数权重归零，进而达到类似于Dropout的效果。<h1 id="欠拟合的解决方案"><a href="#欠拟合的解决方案" class="headerlink" title="欠拟合的解决方案"></a>欠拟合的解决方案</h1>欠拟合通常是由于模型表征能力不足、数据量过大导致的，刚好和过拟合相反。</li>
+<li>使用更复杂的模型。</li>
+<li>增加迭代次数。</li>
+<li>减少数据中的噪声。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【深度学习基础知识 - 15】反卷积的概念以及使用场景</title>
+    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2015%E3%80%91%E5%8F%8D%E5%8D%B7%E7%A7%AF%E7%9A%84%E6%A6%82%E5%BF%B5%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/</url>
+    <content><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
+<li>反卷积（deconv）是输入一张小的特征图，输出一张大的特征图。首先会对特征图进行padding，然后就可以像正常卷积操作一样进行计算。</li>
+<li>反卷积比正常卷积增加了一个参数，叫做output_shape，这是由于不同的特征图，如5x5和6x6的特征图在进行3x3的卷积之后都会得到3x3的特征图，因此反卷积的时候就需要输入一个参数用于指定输出的特征图尺寸。<span id="more"></span>
+<h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1></li>
+<li>通常在一些图像重建任务中，主要目的是对特征图进行放大，如一些分割任务、图像重建任务等，当通过一个backbone进行特征提取之后需要恢复到原始的分辨率，这个时候就可以采用deconv来计算。另一种常见的方法就是直接进行upsample对图像进行插值，然后进行正常的卷积，具体使用哪一种还要结合任务目标来设计和实验。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【深度学习基础知识 - 06】inception的提出背景和主要特点</title>
+    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2006%E3%80%91inception%E7%9A%84%E6%8F%90%E5%87%BA%E8%83%8C%E6%99%AF%E5%92%8C%E4%B8%BB%E8%A6%81%E7%89%B9%E7%82%B9/</url>
+    <content><![CDATA[<h1 id="inception的提出背景"><a href="#inception的提出背景" class="headerlink" title="inception的提出背景"></a>inception的提出背景</h1><ul>
+<li>inception最早是Google在2014年在GoogLeNet中提出的，在2014年业界的共识是增加模型的参数量可以提高模型精度，那时业界远没触碰到模型复杂度的瓶颈，学者都是通过增加网络深度来堆叠参数的，而google则是通过增加网络的宽度来堆叠参数。<span id="more"></span>
+<h1 id="inception的主要特点"><a href="#inception的主要特点" class="headerlink" title="inception的主要特点"></a>inception的主要特点</h1></li>
+<li>它的主要特征就是将常用的卷积核：1x1、3x3、5x5和池化操作堆叠在一起，这样让模型自适应的去选择合适的感受野，同时增加了网络的宽度和参数量，在那一年的ImageNet中取得了极好的成绩。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【深度学习基础知识 - 16】空洞卷积的概念以及使用场景</title>
+    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2016%E3%80%91%E7%A9%BA%E6%B4%9E%E5%8D%B7%E7%A7%AF%E7%9A%84%E6%A6%82%E5%BF%B5%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/</url>
+    <content><![CDATA[<p>空洞卷积（dilated convolution）也是一种常见的卷积方式，主要目标是在不提升计算量和降低特征图分辨率的情况下获得更大的感受野。</p>
+<span id="more"></span>
+<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
+<li>空洞卷积就是在卷积的时候不是对连续的值进行计算，而是会中间隔开几个值，其他与普通的卷积并无差异。可以理解为一个稀疏的大卷积核，只有个别值有效，其余值为零。<h1 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h1></li>
+<li>在不增加计算量和降低特征图分辨率的情况下增大感受野。<h1 id="问题和解决方法"><a href="#问题和解决方法" class="headerlink" title="问题和解决方法"></a>问题和解决方法</h1></li>
+<li>空洞卷积的主要问题也是它的主要特点，就是卷积核不连续，最终可能会导致并非特征图中的所有点都能参与计算，这也会丢失信息的连续性，尤其是对于像素级的任务（如图像分割）来说非常不适用。并且这种设计主要针对在原始图像中占有更多像素点的较大物体，而对于较小的物体可能会失效，因为小物体并不需要较大的感受野。</li>
+<li>对于上述问题的一种解决方法就是将一组空洞卷积的dilation rate设计成一个没有大于1的公约数的数值，也就是锯齿状的空洞卷积，如[1,2,5,1,2,5]这样的循环结构，这样就可以保证在每一个循环中所有的像素点都能参与计算。</li>
 </ul>
 ]]></content>
       <categories>
@@ -525,22 +577,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【深度学习基础知识 - 11】什么是景深</title>
-    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2011%E3%80%91%E4%BB%80%E4%B9%88%E6%98%AF%E6%99%AF%E6%B7%B1/</url>
-    <content><![CDATA[<p>在计算机视觉中的一些任务中可能会出现景深的概念，如深度估计、SLAM、视觉里程计等，这篇文章简单介绍一下景深概念。</p>
-<span id="more"></span>
-<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
-<li>我们拍照的时候都知道，对焦在相机成像平面上的物体才是清晰的，而物体的对焦平面可以通过相机镜头来控制，同时也与物体和拍摄点之间的距离有关，当我们对焦到距离拍摄点稍远的物体时，近距离的物体就会变得模糊，反之亦然。但是，我们对焦到一个物体之后，可以看到对焦点附近的物体成像也都是清晰的，而它们处于不同的焦平面上，这是为什么呢？因为在焦平面的前后会出现一个弥散斑，这个弥散斑的直观影响就是对焦平面附近的几个焦平面也会有清晰的成像，而能够清晰成像的这一段距离范围，就是景深。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【深度学习基础知识 - 13】smooth loss</title>
     <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2013%E3%80%91smooth%20loss/</url>
     <content><![CDATA[<p>smooth loss通常用在各种图像重建任务中主要解决平滑问题，如图像分割、深度估计、视频插帧等。</p>
@@ -557,49 +593,12 @@
       </tags>
   </entry>
   <entry>
-    <title>【深度学习基础知识 - 15】反卷积的概念以及使用场景</title>
-    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2015%E3%80%91%E5%8F%8D%E5%8D%B7%E7%A7%AF%E7%9A%84%E6%A6%82%E5%BF%B5%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/</url>
-    <content><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
-<li>反卷积（deconv）是输入一张小的特征图，输出一张大的特征图。首先会对特征图进行padding，然后就可以像正常卷积操作一样进行计算。</li>
-<li>反卷积比正常卷积增加了一个参数，叫做output_shape，这是由于不同的特征图，如5x5和6x6的特征图在进行3x3的卷积之后都会得到3x3的特征图，因此反卷积的时候就需要输入一个参数用于指定输出的特征图尺寸。<span id="more"></span>
-<h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1></li>
-<li>通常在一些图像重建任务中，主要目的是对特征图进行放大，如一些分割任务、图像重建任务等，当通过一个backbone进行特征提取之后需要恢复到原始的分辨率，这个时候就可以采用deconv来计算。另一种常见的方法就是直接进行upsample对图像进行插值，然后进行正常的卷积，具体使用哪一种还要结合任务目标来设计和实验。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【深度学习基础知识 - 16】空洞卷积的概念以及使用场景</title>
-    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2016%E3%80%91%E7%A9%BA%E6%B4%9E%E5%8D%B7%E7%A7%AF%E7%9A%84%E6%A6%82%E5%BF%B5%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/</url>
-    <content><![CDATA[<p>空洞卷积（dilated convolution）也是一种常见的卷积方式，主要目标是在不提升计算量和降低特征图分辨率的情况下获得更大的感受野。</p>
+    <title>【深度学习基础知识 - 19】VGG为什么使用3x3的卷积核</title>
+    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2019%E3%80%91VGG%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A83x3%E7%9A%84%E5%8D%B7%E7%A7%AF%E6%A0%B8/</url>
+    <content><![CDATA[<p>VGG为什么选择3x3的卷积核，这个问题是算法面试的高频问题。</p>
 <span id="more"></span>
-<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
-<li>空洞卷积就是在卷积的时候不是对连续的值进行计算，而是会中间隔开几个值，其他与普通的卷积并无差异。可以理解为一个稀疏的大卷积核，只有个别值有效，其余值为零。<h1 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h1></li>
-<li>在不增加计算量和降低特征图分辨率的情况下增大感受野。<h1 id="问题和解决方法"><a href="#问题和解决方法" class="headerlink" title="问题和解决方法"></a>问题和解决方法</h1></li>
-<li>空洞卷积的主要问题也是它的主要特点，就是卷积核不连续，最终可能会导致并非特征图中的所有点都能参与计算，这也会丢失信息的连续性，尤其是对于像素级的任务（如图像分割）来说非常不适用。并且这种设计主要针对在原始图像中占有更多像素点的较大物体，而对于较小的物体可能会失效，因为小物体并不需要较大的感受野。</li>
-<li>对于上述问题的一种解决方法就是将一组空洞卷积的dilation rate设计成一个没有大于1的公约数的数值，也就是锯齿状的空洞卷积，如[1,2,5,1,2,5]这样的循环结构，这样就可以保证在每一个循环中所有的像素点都能参与计算。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【深度学习基础知识 - 14】group convolution</title>
-    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2014%E3%80%91group%20convolution/</url>
-    <content><![CDATA[<p>group convolution又称为组卷积，是一种常见的降低计算量的方法。</p>
-<span id="more"></span>
-<h1 id="计算方式"><a href="#计算方式" class="headerlink" title="计算方式"></a>计算方式</h1><ul>
-<li>首先要将通道进行分组，然后对每一组进行卷积，卷积之后再进行通道的叠加<h1 id="带来的问题"><a href="#带来的问题" class="headerlink" title="带来的问题"></a>带来的问题</h1></li>
-<li>这种方法一定程度上失去了通道之间的联系，导致通道之间的相关性减弱，并且非常依赖与分组超参的设置。因此后续就有人提出了shuffle net来解决这个问题，也就是在进行组卷机分组之前随机打算每个通道，这样可以增大随机性，提升模型的鲁棒性。</li>
+<ul>
+<li>因为通过串联两个3x3的卷积核可以达到5x5卷积核的感受野，同时降低了模型的参数量。并且多个3x3卷积核的串联有更多的激活函数，有更强的非线性表达能力。</li>
 </ul>
 ]]></content>
       <categories>
@@ -647,31 +646,13 @@
       </tags>
   </entry>
   <entry>
-    <title>【深度学习基础知识 - 19】VGG为什么使用3x3的卷积核</title>
-    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2019%E3%80%91VGG%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A83x3%E7%9A%84%E5%8D%B7%E7%A7%AF%E6%A0%B8/</url>
-    <content><![CDATA[<p>VGG为什么选择3x3的卷积核，这个问题是算法面试的高频问题。</p>
+    <title>【深度学习基础知识 - 14】group convolution</title>
+    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2014%E3%80%91group%20convolution/</url>
+    <content><![CDATA[<p>group convolution又称为组卷积，是一种常见的降低计算量的方法。</p>
 <span id="more"></span>
-<ul>
-<li>因为通过串联两个3x3的卷积核可以达到5x5卷积核的感受野，同时降低了模型的参数量。并且多个3x3卷积核的串联有更多的激活函数，有更强的非线性表达能力。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【深度学习基础知识 - 20】ReLU的特点和使用场景</title>
-    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2020%E3%80%91ReLU%E7%9A%84%E7%89%B9%E7%82%B9%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/</url>
-    <content><![CDATA[<p>ReLU是深度学习任务中常见的激活函数，这里简单介绍它的特点和使用场景。</p>
-<span id="more"></span>
-<h1 id="ReLU的特点"><a href="#ReLU的特点" class="headerlink" title="ReLU的特点"></a>ReLU的特点</h1><ul>
-<li>ReLU是一个分段函数，当输入小于零的时候，输出为零，当输入大于零的时候，将输入值作为输出。<h1 id="ReLU的使用场景"><a href="#ReLU的使用场景" class="headerlink" title="ReLU的使用场景"></a>ReLU的使用场景</h1></li>
-<li>主要用于避免梯度消失和梯度爆炸。对于梯度消失，因为sigmoid的梯度最大值只有0.25，在链式求导过程中可能就会导致梯度消失，而ReLU在激活函数大于零的时候梯度恒为1，因此可以有效避免梯度消失和梯度爆炸的现象。<a href="https://blog.csdn.net/yanyuxiangtoday/article/details/119789602?spm=1001.2014.3001.5501">点我看梯度消失和梯度爆炸的概念和解决方案</a></li>
-<li>另一方面，采用ReLU激活函数能够使得网络的收敛速度加快。</li>
-<li>但是如果说希望网络最后输出一张图片，那么肯定是希望这张图像的像素在0到1之间，这个时候仍然可以在输出层采用sigmoid激活函数，将网络的输出限制到0到1之间。</li>
+<h1 id="计算方式"><a href="#计算方式" class="headerlink" title="计算方式"></a>计算方式</h1><ul>
+<li>首先要将通道进行分组，然后对每一组进行卷积，卷积之后再进行通道的叠加<h1 id="带来的问题"><a href="#带来的问题" class="headerlink" title="带来的问题"></a>带来的问题</h1></li>
+<li>这种方法一定程度上失去了通道之间的联系，导致通道之间的相关性减弱，并且非常依赖与分组超参的设置。因此后续就有人提出了shuffle net来解决这个问题，也就是在进行组卷机分组之前随机打算每个通道，这样可以增大随机性，提升模型的鲁棒性。</li>
 </ul>
 ]]></content>
       <categories>
@@ -707,18 +688,52 @@
       </tags>
   </entry>
   <entry>
-    <title>【深度学习基础知识 - 23】深度学习中常用的优化器</title>
-    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2023%E3%80%91%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E4%BC%98%E5%8C%96%E5%99%A8/</url>
-    <content><![CDATA[<p>深度学习任务中一般都采用优化器来决定模型的梯度更新算法，本文简单对常用的优化器做个简单介绍。</p>
+    <title>【深度学习基础知识 - 20】ReLU的特点和使用场景</title>
+    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2020%E3%80%91ReLU%E7%9A%84%E7%89%B9%E7%82%B9%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/</url>
+    <content><![CDATA[<p>ReLU是深度学习任务中常见的激活函数，这里简单介绍它的特点和使用场景。</p>
 <span id="more"></span>
-<h1 id="SGD"><a href="#SGD" class="headerlink" title="SGD"></a>SGD</h1><ul>
-<li>SGD（stochastic gradient descent）随机梯度下降：单条数据就可以对参数进行一次更新。优点是参数更新快，缺点是每次更新采用的数据量小，容易震荡。<h1 id="BGD"><a href="#BGD" class="headerlink" title="BGD"></a>BGD</h1></li>
-<li>BGD（batch gradient descent）批量梯度下降：所有数据都参与参数的每一次更新。优点是梯度更新平滑，缺点是参数更新较慢。<h1 id="MBGD"><a href="#MBGD" class="headerlink" title="MBGD"></a>MBGD</h1></li>
-<li>MBGD（min-batch gradient descent）小批量梯度下降：每次更新都只取数据中的一部分参与运算，是目前最常见的梯度更新策略。有点事相随与随机梯度下降，梯度更新更加平滑，且不会像BGD一样参数更新缓慢。但是需要制定每个batch中的数据均衡策略保证训练不会出现震荡。<h1 id="momentum"><a href="#momentum" class="headerlink" title="momentum"></a>momentum</h1></li>
-<li>主要解决随机梯度下降时的震荡问题，通过加入一个momentum参数，以本次计算得到的梯度和上次梯度更新的加权和作为本次要更新的梯度，加速网络收敛，同时抑制震荡，但是有可能难以找到最优点，因此在模型训练的后期通常会将其关闭。<h1 id="Adagrad"><a href="#Adagrad" class="headerlink" title="Adagrad"></a>Adagrad</h1></li>
-<li>Adagrad（adaptive gradient algorithm），实际上是在梯度更新时依据每个参数的重要程度对其进行自适应加权，具体做法是将低频的参数和高频的参数分开处理，对低频参数做较大的更新，高频参数进行较小的更新。可以不用手动调节学习率，但是最红学习率会变得非常小。<h1 id="RMSprop"><a href="#RMSprop" class="headerlink" title="RMSprop"></a>RMSprop</h1></li>
-<li>主要解决Adagrad学习率会急剧下降的问题。<h1 id="Adam"><a href="#Adam" class="headerlink" title="Adam"></a>Adam</h1></li>
-<li>Adam（adaptive moment estimation）是目前最常被采用的优化器，是每个参数自适应学习率的方法。相当于RMSprop和momentum的结合。</li>
+<h1 id="ReLU的特点"><a href="#ReLU的特点" class="headerlink" title="ReLU的特点"></a>ReLU的特点</h1><ul>
+<li>ReLU是一个分段函数，当输入小于零的时候，输出为零，当输入大于零的时候，将输入值作为输出。<h1 id="ReLU的使用场景"><a href="#ReLU的使用场景" class="headerlink" title="ReLU的使用场景"></a>ReLU的使用场景</h1></li>
+<li>主要用于避免梯度消失和梯度爆炸。对于梯度消失，因为sigmoid的梯度最大值只有0.25，在链式求导过程中可能就会导致梯度消失，而ReLU在激活函数大于零的时候梯度恒为1，因此可以有效避免梯度消失和梯度爆炸的现象。<a href="https://blog.csdn.net/yanyuxiangtoday/article/details/119789602?spm=1001.2014.3001.5501">点我看梯度消失和梯度爆炸的概念和解决方案</a></li>
+<li>另一方面，采用ReLU激活函数能够使得网络的收敛速度加快。</li>
+<li>但是如果说希望网络最后输出一张图片，那么肯定是希望这张图像的像素在0到1之间，这个时候仍然可以在输出层采用sigmoid激活函数，将网络的输出限制到0到1之间。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【深度学习基础知识 - 24】1x1卷积核的作用和使用场景</title>
+    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2024%E3%80%911x1%E5%8D%B7%E7%A7%AF%E6%A0%B8%E7%9A%84%E4%BD%9C%E7%94%A8%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/</url>
+    <content><![CDATA[<p>1x1卷积核虽然不能增加特征的感受野，但仍然常被采用，本文简单介绍它的几点作用。</p>
+<span id="more"></span>
+<h1 id="1x1卷积核的作用和使用场景"><a href="#1x1卷积核的作用和使用场景" class="headerlink" title="1x1卷积核的作用和使用场景"></a>1x1卷积核的作用和使用场景</h1><ul>
+<li>降低通道数。模型的计算计算量和复杂度与每一层的通道数息息相关，如果想要降低某一层的通道数同时又想对特征进行一次组合，那么就可以采用1x1的卷积核。</li>
+<li>多通道整合。降低通道数的同事又可以进行一次通道整合，通常见于网络或者块的输出增，特征通过concat之后通常需要一次信息的整合，这个时候就可以采用1x1的卷积核。</li>
+<li>实现通道数的改变。在某些层中，可能希望实现通道数的增加而不是减少，这个时候又不想增加太多的计算量，就可以采用1x1的卷积核来完成。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【深度学习基础知识 - 25】提升模型泛化能力的方法</title>
+    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2025%E3%80%91%E6%8F%90%E5%8D%87%E6%A8%A1%E5%9E%8B%E6%B3%9B%E5%8C%96%E8%83%BD%E5%8A%9B%E7%9A%84%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="提升模型泛化能力的方法"><a href="#提升模型泛化能力的方法" class="headerlink" title="提升模型泛化能力的方法"></a>提升模型泛化能力的方法</h1><span id="more"></span>
+<ul>
+<li>从数据角度上来说。可以通过数据增强、扩充训练集等方法提高泛化能力。</li>
+<li>在训练策略上，可以增加每个batch size的大小，进而让模型每次迭代时见到更多数据，防止过拟合。</li>
+<li>调整数据分布，做训练数据集的类别均衡。</li>
+<li>调整网络结构。如果数据集较小，可以降低模型复杂度防止过拟合。如果数据集较大，可以尝试更加复杂的模型。</li>
+<li>减少过拟合的方法也可以提升模型的泛化能力。<a href="https://blog.csdn.net/yanyuxiangtoday/article/details/119790029?spm=1001.2014.3001.5502">点我看过拟合和欠拟合的概念及解决方案</a></li>
 </ul>
 ]]></content>
       <categories>
@@ -748,15 +763,18 @@
       </tags>
   </entry>
   <entry>
-    <title>【深度学习基础知识 - 25】提升模型泛化能力的方法</title>
-    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2025%E3%80%91%E6%8F%90%E5%8D%87%E6%A8%A1%E5%9E%8B%E6%B3%9B%E5%8C%96%E8%83%BD%E5%8A%9B%E7%9A%84%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="提升模型泛化能力的方法"><a href="#提升模型泛化能力的方法" class="headerlink" title="提升模型泛化能力的方法"></a>提升模型泛化能力的方法</h1><span id="more"></span>
-<ul>
-<li>从数据角度上来说。可以通过数据增强、扩充训练集等方法提高泛化能力。</li>
-<li>在训练策略上，可以增加每个batch size的大小，进而让模型每次迭代时见到更多数据，防止过拟合。</li>
-<li>调整数据分布，做训练数据集的类别均衡。</li>
-<li>调整网络结构。如果数据集较小，可以降低模型复杂度防止过拟合。如果数据集较大，可以尝试更加复杂的模型。</li>
-<li>减少过拟合的方法也可以提升模型的泛化能力。<a href="https://blog.csdn.net/yanyuxiangtoday/article/details/119790029?spm=1001.2014.3001.5502">点我看过拟合和欠拟合的概念及解决方案</a></li>
+    <title>【深度学习基础知识 - 23】深度学习中常用的优化器</title>
+    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2023%E3%80%91%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E4%BC%98%E5%8C%96%E5%99%A8/</url>
+    <content><![CDATA[<p>深度学习任务中一般都采用优化器来决定模型的梯度更新算法，本文简单对常用的优化器做个简单介绍。</p>
+<span id="more"></span>
+<h1 id="SGD"><a href="#SGD" class="headerlink" title="SGD"></a>SGD</h1><ul>
+<li>SGD（stochastic gradient descent）随机梯度下降：单条数据就可以对参数进行一次更新。优点是参数更新快，缺点是每次更新采用的数据量小，容易震荡。<h1 id="BGD"><a href="#BGD" class="headerlink" title="BGD"></a>BGD</h1></li>
+<li>BGD（batch gradient descent）批量梯度下降：所有数据都参与参数的每一次更新。优点是梯度更新平滑，缺点是参数更新较慢。<h1 id="MBGD"><a href="#MBGD" class="headerlink" title="MBGD"></a>MBGD</h1></li>
+<li>MBGD（min-batch gradient descent）小批量梯度下降：每次更新都只取数据中的一部分参与运算，是目前最常见的梯度更新策略。有点事相随与随机梯度下降，梯度更新更加平滑，且不会像BGD一样参数更新缓慢。但是需要制定每个batch中的数据均衡策略保证训练不会出现震荡。<h1 id="momentum"><a href="#momentum" class="headerlink" title="momentum"></a>momentum</h1></li>
+<li>主要解决随机梯度下降时的震荡问题，通过加入一个momentum参数，以本次计算得到的梯度和上次梯度更新的加权和作为本次要更新的梯度，加速网络收敛，同时抑制震荡，但是有可能难以找到最优点，因此在模型训练的后期通常会将其关闭。<h1 id="Adagrad"><a href="#Adagrad" class="headerlink" title="Adagrad"></a>Adagrad</h1></li>
+<li>Adagrad（adaptive gradient algorithm），实际上是在梯度更新时依据每个参数的重要程度对其进行自适应加权，具体做法是将低频的参数和高频的参数分开处理，对低频参数做较大的更新，高频参数进行较小的更新。可以不用手动调节学习率，但是最红学习率会变得非常小。<h1 id="RMSprop"><a href="#RMSprop" class="headerlink" title="RMSprop"></a>RMSprop</h1></li>
+<li>主要解决Adagrad学习率会急剧下降的问题。<h1 id="Adam"><a href="#Adam" class="headerlink" title="Adam"></a>Adam</h1></li>
+<li>Adam（adaptive moment estimation）是目前最常被采用的优化器，是每个参数自适应学习率的方法。相当于RMSprop和momentum的结合。</li>
 </ul>
 ]]></content>
       <categories>
@@ -789,14 +807,40 @@
       </tags>
   </entry>
   <entry>
-    <title>【深度学习基础知识 - 24】1x1卷积核的作用和使用场景</title>
-    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2024%E3%80%911x1%E5%8D%B7%E7%A7%AF%E6%A0%B8%E7%9A%84%E4%BD%9C%E7%94%A8%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/</url>
-    <content><![CDATA[<p>1x1卷积核虽然不能增加特征的感受野，但仍然常被采用，本文简单介绍它的几点作用。</p>
+    <title>【深度学习基础知识 - 28】三维重建中的点云、体素、mesh</title>
+    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2028%E3%80%91%E4%B8%89%E7%BB%B4%E9%87%8D%E5%BB%BA%E4%B8%AD%E7%9A%84%E7%82%B9%E4%BA%91%E3%80%81%E4%BD%93%E7%B4%A0%E3%80%81mesh/</url>
+    <content><![CDATA[<p>点云、体素和mesh都是三维重建中常用的三维物体的表示方法，这篇博客简单做个介绍。</p>
 <span id="more"></span>
-<h1 id="1x1卷积核的作用和使用场景"><a href="#1x1卷积核的作用和使用场景" class="headerlink" title="1x1卷积核的作用和使用场景"></a>1x1卷积核的作用和使用场景</h1><ul>
-<li>降低通道数。模型的计算计算量和复杂度与每一层的通道数息息相关，如果想要降低某一层的通道数同时又想对特征进行一次组合，那么就可以采用1x1的卷积核。</li>
-<li>多通道整合。降低通道数的同事又可以进行一次通道整合，通常见于网络或者块的输出增，特征通过concat之后通常需要一次信息的整合，这个时候就可以采用1x1的卷积核。</li>
-<li>实现通道数的改变。在某些层中，可能希望实现通道数的增加而不是减少，这个时候又不想增加太多的计算量，就可以采用1x1的卷积核来完成。</li>
+<h1 id="1-点云"><a href="#1-点云" class="headerlink" title="1. 点云"></a>1. 点云</h1><h2 id="1-1-点云的概念"><a href="#1-1-点云的概念" class="headerlink" title="1.1 点云的概念"></a>1.1 点云的概念</h2><ul>
+<li>点云是不规则的数据结构，就是用一堆点来表示物体，这种方法的限制是点与点之间没有联系，缺乏物体的表面信息。<h2 id="1-2-点云的表示方法"><a href="#1-2-点云的表示方法" class="headerlink" title="1.2 点云的表示方法"></a>1.2 点云的表示方法</h2></li>
+<li>点云一般采用NxNxN的三维矩阵，或编码xyz三个通道的栅格数据，或以深度图的方式进行表示。<h1 id="2-体素"><a href="#2-体素" class="headerlink" title="2. 体素"></a>2. 体素</h1><h2 id="2-1-体素的概念"><a href="#2-1-体素的概念" class="headerlink" title="2.1 体素的概念"></a>2.1 体素的概念</h2></li>
+<li>体素就相当于图像中的像素，可以理解为三维物体中的像素，这就使得三维空间中的物体可以基于规则的空间体素进行表示，进而将图像领域的框架挪用到三维领域，使用3D卷积等方式直接对体素进行处理，缺点是会消耗大量的计算资源，因此限制了体素的分辨率。<h2 id="2-2-体素的表示方法"><a href="#2-2-体素的表示方法" class="headerlink" title="2.2. 体素的表示方法"></a>2.2. 体素的表示方法</h2></li>
+<li>SDF（signed distance field）即有效距离场。也就是通过给每个体素赋予SDF来模拟物体表面。如果SDF值大于0，表示该体素在当前表面前，如果SDF值小于0，则表示体素在表面后，SDF越接近0，表明它越接近场景真实表面。不过这种表示方法会占用大量的资源，因此有人提出了TSDF。</li>
+<li>TSDF是为了降低体素表示方法的资源消耗而提出的。TSDF采用栅格立方体代表三维空间，每个栅格中存放的是其到物体表面的距离，TSDF值的政府分别表示被表面遮挡与可见，而表面上的点则经过零点。<h1 id="3-mesh"><a href="#3-mesh" class="headerlink" title="3. mesh"></a>3. mesh</h1></li>
+<li>理解了点云就理解了mesh，因为mesh就是点云的升级版，可以将点云的信息表示的更精细，可以理解为一种可视化方法。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【深度学习基础知识 - 29】基于深度图的三维重建概述</title>
+    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2029%E3%80%91%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%9B%BE%E7%9A%84%E4%B8%89%E7%BB%B4%E9%87%8D%E5%BB%BA%E6%A6%82%E8%BF%B0/</url>
+    <content><![CDATA[<p>三维重建是计算机视觉立体几何方向的主要任务，本文会对基于深度图的三维重建流程做一个简单概述。</p>
+<span id="more"></span>
+<h1 id="1-获取深度图以及尺度信息"><a href="#1-获取深度图以及尺度信息" class="headerlink" title="1. 获取深度图以及尺度信息"></a>1. 获取深度图以及尺度信息</h1><ul>
+<li>第一步，是获取深度图以及尺度信息，如果是结构化的双目相机，就可以直接通过深度估计得到尺度关系，如果是多视角相机，就可以通过深度估计加上相机位姿估计得到尺度关系。</li>
+<li>关于其他深度估计的方法，可以参考我的另一篇文章<a href="https://blog.csdn.net/yanyuxiangtoday/article/details/119812203">深度估计概述</a>。<h1 id="2-将像素坐标转换为世界坐标"><a href="#2-将像素坐标转换为世界坐标" class="headerlink" title="2. 将像素坐标转换为世界坐标"></a>2. 将像素坐标转换为世界坐标</h1></li>
+<li>像素坐标通过相机的内参矩阵以及第一步获得的尺度关系，可以直接得到基于这个相机的世界坐标信息。</li>
+<li>更多细节可以参考我的另一篇文章<a href="https://blog.csdn.net/yanyuxiangtoday/article/details/119849286">相机的内参、外参以及像素坐标和世界坐标的转换</a><h1 id="3-通过RT矩阵转换到世界坐标并得到点云"><a href="#3-通过RT矩阵转换到世界坐标并得到点云" class="headerlink" title="3. 通过RT矩阵转换到世界坐标并得到点云"></a>3. 通过RT矩阵转换到世界坐标并得到点云</h1></li>
+<li>经过第二步获得不同相机的世界坐标结果，接下来可以通过RT矩阵融合到同一个世界坐标系下，进而就能得到点云信息。<h1 id="4-获得三角面片"><a href="#4-获得三角面片" class="headerlink" title="4. 获得三角面片"></a>4. 获得三角面片</h1></li>
+<li>得到点云之后，就可以根据它的法线方向得到三角面片，再将图像的纹理信息填充到三角面片的顶点上，就完成了三维重建。</li>
+<li>其中，法线方向的获取方法是：确定三维点之后，从相机中心发出的射线的反方向就是它的法线方向。<h1 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a>5. 总结</h1></li>
+<li>以上介绍的是基于深度图的三维重建方法，其实还有其他方法如将三维重建过程分解成一个个的子任务，包括通过图像估计出物体的深度、轮廓、法向图等，然后基于这些信息完成三维重建等。</li>
 </ul>
 ]]></content>
       <categories>
@@ -826,27 +870,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【深度学习基础知识 - 28】三维重建中的点云、体素、mesh</title>
-    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2028%E3%80%91%E4%B8%89%E7%BB%B4%E9%87%8D%E5%BB%BA%E4%B8%AD%E7%9A%84%E7%82%B9%E4%BA%91%E3%80%81%E4%BD%93%E7%B4%A0%E3%80%81mesh/</url>
-    <content><![CDATA[<p>点云、体素和mesh都是三维重建中常用的三维物体的表示方法，这篇博客简单做个介绍。</p>
-<span id="more"></span>
-<h1 id="1-点云"><a href="#1-点云" class="headerlink" title="1. 点云"></a>1. 点云</h1><h2 id="1-1-点云的概念"><a href="#1-1-点云的概念" class="headerlink" title="1.1 点云的概念"></a>1.1 点云的概念</h2><ul>
-<li>点云是不规则的数据结构，就是用一堆点来表示物体，这种方法的限制是点与点之间没有联系，缺乏物体的表面信息。<h2 id="1-2-点云的表示方法"><a href="#1-2-点云的表示方法" class="headerlink" title="1.2 点云的表示方法"></a>1.2 点云的表示方法</h2></li>
-<li>点云一般采用NxNxN的三维矩阵，或编码xyz三个通道的栅格数据，或以深度图的方式进行表示。<h1 id="2-体素"><a href="#2-体素" class="headerlink" title="2. 体素"></a>2. 体素</h1><h2 id="2-1-体素的概念"><a href="#2-1-体素的概念" class="headerlink" title="2.1 体素的概念"></a>2.1 体素的概念</h2></li>
-<li>体素就相当于图像中的像素，可以理解为三维物体中的像素，这就使得三维空间中的物体可以基于规则的空间体素进行表示，进而将图像领域的框架挪用到三维领域，使用3D卷积等方式直接对体素进行处理，缺点是会消耗大量的计算资源，因此限制了体素的分辨率。<h2 id="2-2-体素的表示方法"><a href="#2-2-体素的表示方法" class="headerlink" title="2.2. 体素的表示方法"></a>2.2. 体素的表示方法</h2></li>
-<li>SDF（signed distance field）即有效距离场。也就是通过给每个体素赋予SDF来模拟物体表面。如果SDF值大于0，表示该体素在当前表面前，如果SDF值小于0，则表示体素在表面后，SDF越接近0，表明它越接近场景真实表面。不过这种表示方法会占用大量的资源，因此有人提出了TSDF。</li>
-<li>TSDF是为了降低体素表示方法的资源消耗而提出的。TSDF采用栅格立方体代表三维空间，每个栅格中存放的是其到物体表面的距离，TSDF值的政府分别表示被表面遮挡与可见，而表面上的点则经过零点。<h1 id="3-mesh"><a href="#3-mesh" class="headerlink" title="3. mesh"></a>3. mesh</h1></li>
-<li>理解了点云就理解了mesh，因为mesh就是点云的升级版，可以将点云的信息表示的更精细，可以理解为一种可视化方法。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【深度学习基础知识 - 30】softmax的概念、作用以及存在的问题</title>
     <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2030%E3%80%91softmax%E7%9A%84%E6%A6%82%E5%BF%B5%E3%80%81%E4%BD%9C%E7%94%A8%E4%BB%A5%E5%8F%8A%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<p>softmax是深度学习任务中常用于计算最终输出类别的函数。</p>
@@ -862,29 +885,6 @@
 <li>当我们通过softmax取得每个元素的概率之后，我们如果想获得最终的类别，需要使用argmax函数获得最大的概率所在的位置，但是该函数是不可导的。输出相当于python中的语句<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">prob_list.index(<span class="built_in">max</span>(prob_list))</span><br></pre></td></tr></table></figure>
 <h1 id="5-soft-argmax"><a href="#5-soft-argmax" class="headerlink" title="5. soft-argmax"></a>5. soft-argmax</h1></li>
 <li>为了解决argmax函数不可导问题提出了softargmax，最终输出也是最大概率所在的位置，只是这种计算方式是可导的。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【深度学习基础知识 - 29】基于深度图的三维重建概述</title>
-    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2029%E3%80%91%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%9B%BE%E7%9A%84%E4%B8%89%E7%BB%B4%E9%87%8D%E5%BB%BA%E6%A6%82%E8%BF%B0/</url>
-    <content><![CDATA[<p>三维重建是计算机视觉立体几何方向的主要任务，本文会对基于深度图的三维重建流程做一个简单概述。</p>
-<span id="more"></span>
-<h1 id="1-获取深度图以及尺度信息"><a href="#1-获取深度图以及尺度信息" class="headerlink" title="1. 获取深度图以及尺度信息"></a>1. 获取深度图以及尺度信息</h1><ul>
-<li>第一步，是获取深度图以及尺度信息，如果是结构化的双目相机，就可以直接通过深度估计得到尺度关系，如果是多视角相机，就可以通过深度估计加上相机位姿估计得到尺度关系。</li>
-<li>关于其他深度估计的方法，可以参考我的另一篇文章<a href="https://blog.csdn.net/yanyuxiangtoday/article/details/119812203">深度估计概述</a>。<h1 id="2-将像素坐标转换为世界坐标"><a href="#2-将像素坐标转换为世界坐标" class="headerlink" title="2. 将像素坐标转换为世界坐标"></a>2. 将像素坐标转换为世界坐标</h1></li>
-<li>像素坐标通过相机的内参矩阵以及第一步获得的尺度关系，可以直接得到基于这个相机的世界坐标信息。</li>
-<li>更多细节可以参考我的另一篇文章<a href="https://blog.csdn.net/yanyuxiangtoday/article/details/119849286">相机的内参、外参以及像素坐标和世界坐标的转换</a><h1 id="3-通过RT矩阵转换到世界坐标并得到点云"><a href="#3-通过RT矩阵转换到世界坐标并得到点云" class="headerlink" title="3. 通过RT矩阵转换到世界坐标并得到点云"></a>3. 通过RT矩阵转换到世界坐标并得到点云</h1></li>
-<li>经过第二步获得不同相机的世界坐标结果，接下来可以通过RT矩阵融合到同一个世界坐标系下，进而就能得到点云信息。<h1 id="4-获得三角面片"><a href="#4-获得三角面片" class="headerlink" title="4. 获得三角面片"></a>4. 获得三角面片</h1></li>
-<li>得到点云之后，就可以根据它的法线方向得到三角面片，再将图像的纹理信息填充到三角面片的顶点上，就完成了三维重建。</li>
-<li>其中，法线方向的获取方法是：确定三维点之后，从相机中心发出的射线的反方向就是它的法线方向。<h1 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a>5. 总结</h1></li>
-<li>以上介绍的是基于深度图的三维重建方法，其实还有其他方法如将三维重建过程分解成一个个的子任务，包括通过图像估计出物体的深度、轮廓、法向图等，然后基于这些信息完成三维重建等。</li>
 </ul>
 ]]></content>
       <categories>
@@ -935,19 +935,38 @@
       </tags>
   </entry>
   <entry>
-    <title>【深度学习基础知识 - 31】出现nan值的处理</title>
-    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2031%E3%80%91%E5%87%BA%E7%8E%B0nan%E5%80%BC%E7%9A%84%E5%A4%84%E7%90%86/</url>
-    <content><![CDATA[<p>在深度学习模型训练的时候loss可能会出现nan，本文简要介绍几个可能导致nan出现的原因。</p>
+    <title>【深度学习基础知识 - 35】python中的深层拷贝和浅层拷贝以及应用场景</title>
+    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2035%E3%80%91python%E4%B8%AD%E7%9A%84%E6%B7%B1%E5%B1%82%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E5%B1%82%E6%8B%B7%E8%B4%9D%E4%BB%A5%E5%8F%8A%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/</url>
+    <content><![CDATA[<p>python的深层拷贝和浅层拷贝是一个重要但容易忽视的基础知识，这可能会导致代码出现难以定位的错误。</p>
 <span id="more"></span>
-<ol>
-<li>最可能的原因就是除0，可以找一下模型进行数学计算时的除数是否为0，一些函数出现下溢时也会输出0，定位问题之后可以给除数加一个极小值。</li>
-<li>log(0)，对数函数的输入如果为0也会导致输出nan，也是可以给输入加一个极小值。</li>
-<li>检查数据集。输入数据损坏的时候可能也会出现nan，这个时候现象就是nan偶尔会出现，或者说模型训练着训练着在某一次迭代之后突然就nan了，这都可能是数据问题导致的。</li>
-<li>重新进行权重初始化。有时候权重随机初始化时一连串的数据初始化都过大，就会导致最终计算结果nan，因此可以重新随机初始化一次权重尝试。</li>
-<li>梯度截断。可能是因为梯度过大，导致更新之后权重过大，一连串的累积之后就会导致最终结果nan，因此可以从梯度截断的角度尝试。</li>
-<li>减少学习率。和梯度截断的考虑角度相同，不赘述。</li>
-</ol>
-<p>模型训练出现nan是一个很令人头疼的问题，以上6个解决思路需要逐一尝试，最终定位当前任务中出现nan的原因并解决。</p>
+<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
+<li>浅层拷贝。可以理解为c语言中的引用，改变其中一个值，另一个也会跟着改变。</li>
+<li>深层拷贝。就是重新生成一个和该变量完全相同的变量，他们值的改变不会相互影响。</li>
+<li>在python中，数字、字符、元组等不可变对象类型都属于值传递，即深层拷贝。字典和列表等可变对象都属于引用传递，即浅层拷贝。<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1></li>
+<li>如果想要将当前列表赋值给一个新列表保存中间结果，采用深层拷贝。</li>
+<li>如果在dfs等算法中需要多层传递维护一个共用列表，那么可以直接采用浅层拷贝，即直接赋值。</li>
+<li>如果在函数中要修改输入的列表，且需要将修改后的结果传回去，那么浅层拷贝可以帮忙节省代码量。</li>
+<li>如果在函数中要修改输入的列表，而不想影响外部对应的列表，那么需要采用深层拷贝。<h1 id="深层拷贝和浅层拷贝的示例"><a href="#深层拷贝和浅层拷贝的示例" class="headerlink" title="深层拷贝和浅层拷贝的示例"></a>深层拷贝和浅层拷贝的示例</h1></li>
+<li>在这个示例中，直接用<code>=</code>赋值就是浅层拷贝，由于是引用传递，因此<code>a</code>的改变也会导致<code>b</code>的改变。而采用<code>.copy()</code>就是深层拷贝，因此<code>a</code>的改变不会传递给<code>c</code>。<br><img src="https://img-blog.csdnimg.cn/c87b0b418e3d4225bb27bab6f2a23687.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_Q1NETiBA6ZuB5a6HdXA=,size_26,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【深度学习基础知识 - 37】解决正负样本不均衡 Focal Loss</title>
+    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2037%E3%80%91%E8%A7%A3%E5%86%B3%E6%AD%A3%E8%B4%9F%E6%A0%B7%E6%9C%AC%E4%B8%8D%E5%9D%87%E8%A1%A1%20Focal%20Loss/</url>
+    <content><![CDATA[<p>正负样本不均衡是检测任务中常见的问题，在目标检测中，大量样本都是不包含目标的负样本，只有少量是包含目标的正样本，而Focal Loss就是为了解决这个问题而提出的。</p>
+<span id="more"></span>
+<h1 id="Focal-Loss的目的"><a href="#Focal-Loss的目的" class="headerlink" title="Focal Loss的目的"></a>Focal Loss的目的</h1><ul>
+<li>focal loss的主要目的是降低易分类样本的权重，使得模型更加关注困难样本，防止大量的简单样本主导模型的优化方向。<h1 id="Focal-Loss的计算方式"><a href="#Focal-Loss的计算方式" class="headerlink" title="Focal Loss的计算方式"></a>Focal Loss的计算方式</h1></li>
+<li>解决样本数量不均衡，在交叉熵中给交叉熵一个权重，也就是相反类的比重。这样一来，对于少量的样本，权重就比较大，对于大量的样本，权重就比较小。</li>
+<li>解决难易样本不均衡，直观来说，就是对于较难的样本，给一个大权重，对于容易的样本，加一个小权重。具体计算公式如下：<br><img src="https://img-blog.csdnimg.cn/3176959dcf034e8e91dca17caad6ff6f.png" alt="在这里插入图片描述"></li>
+</ul>
 ]]></content>
       <categories>
         <category>深度学习</category>
@@ -1047,47 +1066,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【深度学习基础知识 - 37】解决正负样本不均衡 Focal Loss</title>
-    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2037%E3%80%91%E8%A7%A3%E5%86%B3%E6%AD%A3%E8%B4%9F%E6%A0%B7%E6%9C%AC%E4%B8%8D%E5%9D%87%E8%A1%A1%20Focal%20Loss/</url>
-    <content><![CDATA[<p>正负样本不均衡是检测任务中常见的问题，在目标检测中，大量样本都是不包含目标的负样本，只有少量是包含目标的正样本，而Focal Loss就是为了解决这个问题而提出的。</p>
-<span id="more"></span>
-<h1 id="Focal-Loss的目的"><a href="#Focal-Loss的目的" class="headerlink" title="Focal Loss的目的"></a>Focal Loss的目的</h1><ul>
-<li>focal loss的主要目的是降低易分类样本的权重，使得模型更加关注困难样本，防止大量的简单样本主导模型的优化方向。<h1 id="Focal-Loss的计算方式"><a href="#Focal-Loss的计算方式" class="headerlink" title="Focal Loss的计算方式"></a>Focal Loss的计算方式</h1></li>
-<li>解决样本数量不均衡，在交叉熵中给交叉熵一个权重，也就是相反类的比重。这样一来，对于少量的样本，权重就比较大，对于大量的样本，权重就比较小。</li>
-<li>解决难易样本不均衡，直观来说，就是对于较难的样本，给一个大权重，对于容易的样本，加一个小权重。具体计算公式如下：<br><img src="https://img-blog.csdnimg.cn/3176959dcf034e8e91dca17caad6ff6f.png" alt="在这里插入图片描述"></li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【深度学习基础知识 - 35】python中的深层拷贝和浅层拷贝以及应用场景</title>
-    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2035%E3%80%91python%E4%B8%AD%E7%9A%84%E6%B7%B1%E5%B1%82%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E5%B1%82%E6%8B%B7%E8%B4%9D%E4%BB%A5%E5%8F%8A%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/</url>
-    <content><![CDATA[<p>python的深层拷贝和浅层拷贝是一个重要但容易忽视的基础知识，这可能会导致代码出现难以定位的错误。</p>
-<span id="more"></span>
-<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
-<li>浅层拷贝。可以理解为c语言中的引用，改变其中一个值，另一个也会跟着改变。</li>
-<li>深层拷贝。就是重新生成一个和该变量完全相同的变量，他们值的改变不会相互影响。</li>
-<li>在python中，数字、字符、元组等不可变对象类型都属于值传递，即深层拷贝。字典和列表等可变对象都属于引用传递，即浅层拷贝。<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1></li>
-<li>如果想要将当前列表赋值给一个新列表保存中间结果，采用深层拷贝。</li>
-<li>如果在dfs等算法中需要多层传递维护一个共用列表，那么可以直接采用浅层拷贝，即直接赋值。</li>
-<li>如果在函数中要修改输入的列表，且需要将修改后的结果传回去，那么浅层拷贝可以帮忙节省代码量。</li>
-<li>如果在函数中要修改输入的列表，而不想影响外部对应的列表，那么需要采用深层拷贝。<h1 id="深层拷贝和浅层拷贝的示例"><a href="#深层拷贝和浅层拷贝的示例" class="headerlink" title="深层拷贝和浅层拷贝的示例"></a>深层拷贝和浅层拷贝的示例</h1></li>
-<li>在这个示例中，直接用<code>=</code>赋值就是浅层拷贝，由于是引用传递，因此<code>a</code>的改变也会导致<code>b</code>的改变。而采用<code>.copy()</code>就是深层拷贝，因此<code>a</code>的改变不会传递给<code>c</code>。<br><img src="https://img-blog.csdnimg.cn/c87b0b418e3d4225bb27bab6f2a23687.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_Q1NETiBA6ZuB5a6HdXA=,size_26,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【深度学习基础知识 - 38】L1正则化和L2正则化的区别</title>
     <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2038%E3%80%91L1%E6%AD%A3%E5%88%99%E5%8C%96%E5%92%8CL2%E6%AD%A3%E5%88%99%E5%8C%96%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
     <content><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
@@ -1114,21 +1092,6 @@
 <h1 id="WN"><a href="#WN" class="headerlink" title="WN"></a>WN</h1></li>
 <li>weigit normalization，主要就是对网络的权重进行正则化，使得网络不要过于复杂，权重不要过大，可以防止过拟合。<h1 id="LN"><a href="#LN" class="headerlink" title="LN"></a>LN</h1></li>
 <li>layer normalization，它相对于BN，不依赖于整个batch，而是针对某一层的输入进行规范化处理，比较适用于小batch、RNN、MLP场景中。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【深度学习基础知识 - 40】CNN为什么比DNN在图像领域更具优势</title>
-    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2040%E3%80%91CNN%E4%B8%BA%E4%BB%80%E4%B9%88%E6%AF%94DNN%E5%9C%A8%E5%9B%BE%E5%83%8F%E9%A2%86%E5%9F%9F%E6%9B%B4%E5%85%B7%E4%BC%98%E5%8A%BF/</url>
-    <content><![CDATA[<h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><ul>
-<li>CNN模型输入的一般都是图像矩阵，然后通过卷积操作进行特征提取，每次卷积都会考虑特征的上下文信息，并且随着模型的加深，从浅层提取的局部特征不断地处理、整合得到深层的高维特征。在这个过程中，特征的整合是缓慢有序发生的。同时，卷及操作还具有平移不变形特性，只管来解释就是：一个物体在图像中的任何区域都能被正确识别。因此，CNN在处理图像特征时候更具优势。</li>
-<li>DNN的输入时向量形式，并未考虑到图像的结构信息，每一层都会做一个全局的特征提取，但是由于这个过程并非递进的，因此最终的特征质量并不好，因此难以在图像领域发挥出优势。</li>
 </ul>
 ]]></content>
       <categories>
@@ -1175,32 +1138,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【深度学习基础知识 - 42】逻辑回归详解</title>
-    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2042%E3%80%91%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E8%AF%A6%E8%A7%A3/</url>
-    <content><![CDATA[<h1 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h1><ul>
-<li>逻辑（logistic）回归是一个二分类器，函数是sigmoid形式，输出落在0~1之间，输出有概率意义。<span id="more"></span>
-<h1 id="2-优点"><a href="#2-优点" class="headerlink" title="2. 优点"></a>2. 优点</h1></li>
-<li>输出值自然落在0~1之间，有概率意义。（不能直接当做概率使用，只是一个置信度）</li>
-<li>参数代表每个特征对输出的影响，可解释强。<h1 id="3-缺点"><a href="#3-缺点" class="headerlink" title="3. 缺点"></a>3. 缺点</h1></li>
-<li>逻辑回归本质上还是线性回归，只是特征到结果的映射过程中增加了一层函数映射，即先把特征线性求和，然后使用sigmoid约束至0~1，结果值可以用于二分类或者回国预测，不可用于多分类问题。</li>
-<li>特征空间大时效果不好。</li>
-</ul>
-<h1 id="4-逻辑回归函数"><a href="#4-逻辑回归函数" class="headerlink" title="4. 逻辑回归函数"></a>4. 逻辑回归函数</h1><p>在说逻辑回归之前要了解优势比的概念：</p>
-<h2 id="4-1-优势比"><a href="#4-1-优势比" class="headerlink" title="4.1 优势比"></a>4.1 优势比</h2><ul>
-<li>假设在m个独立自变量，x1、x2…xm的作用下，记事件y取1的概率为：<br><img src="https://img-blog.csdnimg.cn/e8019f9b4fd64ecc90380e1ff634bd98.png" alt="在这里插入图片描述"><br>则事件y取0的概率为p = 1 - p，则取1和取0的概率之比为：<br><img src="https://img-blog.csdnimg.cn/f194b8ce950b4c9cb9fe790d3f84bcdb.png" alt="在这里插入图片描述"><br>上式就称为事件的优势比。<h2 id="4-2-logistic函数"><a href="#4-2-logistic函数" class="headerlink" title="4.2 logistic函数"></a>4.2 logistic函数</h2></li>
-<li>对优势比期自然对数得到logistic变换：<br><img src="https://img-blog.csdnimg.cn/50c9f561b0ff4398868e9380bec0ff01.png" alt="在这里插入图片描述"><br>令：<br><img src="https://img-blog.csdnimg.cn/1f1653a3b4664e90890a38350b0880dd.png" alt="在这里插入图片描述"><br>则有：<br><img src="https://img-blog.csdnimg.cn/d02c0ed7c1fa4d099b6c8939486de9bd.png" alt="在这里插入图片描述"><br>上式即为logistic函数，也是sigmoid函数，p就是P(y|X)的概率，其中X代表了一系列特征。函数图像如下：<br><img src="https://img-blog.csdnimg.cn/d5e620cd257844b0b8991c0894678341.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ZuB5a6HdXA=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><h1 id="5-逻辑回归模型"><a href="#5-逻辑回归模型" class="headerlink" title="5. 逻辑回归模型"></a>5. 逻辑回归模型</h1></li>
-<li>令上式中的<br><img src="https://img-blog.csdnimg.cn/391c3a4eb4eb4cbf8e64d6894f77af2c.png" alt="在这里插入图片描述"><br>则有：<br><img src="https://img-blog.csdnimg.cn/5a900ae1f06240e4b9a20e9ce65feb5e.png" alt="在这里插入图片描述"><br>实际上计算的就是p(y=1)和1-p(y=0)的优势比，当优势比接近于正无穷时，逻辑回归函数越接近于1，反之当这个优势比越接近于负无穷，那么逻辑回归函数越接近于0。<h1 id="6-总结"><a href="#6-总结" class="headerlink" title="6. 总结"></a>6. 总结</h1></li>
-<li>逻辑回归本质上还是线性回归，只是特征到结果中加了一层函数映射，即sigmoid函数，先把特征线性求和，然后使用sigmoid函数将线性和约束至（0，1）之间，结果值用于二分类或者回归预测。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【深度学习基础知识 - 43】优势比的概念</title>
     <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2043%E3%80%91%E4%BC%98%E5%8A%BF%E6%AF%94%E7%9A%84%E6%A6%82%E5%BF%B5/</url>
     <content><![CDATA[<h1 id="优势比"><a href="#优势比" class="headerlink" title="优势比"></a>优势比</h1><ul>
@@ -1234,12 +1171,60 @@
       </tags>
   </entry>
   <entry>
-    <title>【深度学习基础知识 - 45】机器学习中常用的距离计算方法</title>
-    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2045%E3%80%91%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E8%B7%9D%E7%A6%BB%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>假设有两个点(x1, y1) (x2, y2)</p>
+    <title>【深度学习基础知识 - 42】逻辑回归详解</title>
+    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2042%E3%80%91%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E8%AF%A6%E8%A7%A3/</url>
+    <content><![CDATA[<h1 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h1><ul>
+<li>逻辑（logistic）回归是一个二分类器，函数是sigmoid形式，输出落在0~1之间，输出有概率意义。<span id="more"></span>
+<h1 id="2-优点"><a href="#2-优点" class="headerlink" title="2. 优点"></a>2. 优点</h1></li>
+<li>输出值自然落在0~1之间，有概率意义。（不能直接当做概率使用，只是一个置信度）</li>
+<li>参数代表每个特征对输出的影响，可解释强。<h1 id="3-缺点"><a href="#3-缺点" class="headerlink" title="3. 缺点"></a>3. 缺点</h1></li>
+<li>逻辑回归本质上还是线性回归，只是特征到结果的映射过程中增加了一层函数映射，即先把特征线性求和，然后使用sigmoid约束至0~1，结果值可以用于二分类或者回国预测，不可用于多分类问题。</li>
+<li>特征空间大时效果不好。</li>
+</ul>
+<h1 id="4-逻辑回归函数"><a href="#4-逻辑回归函数" class="headerlink" title="4. 逻辑回归函数"></a>4. 逻辑回归函数</h1><p>在说逻辑回归之前要了解优势比的概念：</p>
+<h2 id="4-1-优势比"><a href="#4-1-优势比" class="headerlink" title="4.1 优势比"></a>4.1 优势比</h2><ul>
+<li>假设在m个独立自变量，x1、x2…xm的作用下，记事件y取1的概率为：<br><img src="https://img-blog.csdnimg.cn/e8019f9b4fd64ecc90380e1ff634bd98.png" alt="在这里插入图片描述"><br>则事件y取0的概率为p = 1 - p，则取1和取0的概率之比为：<br><img src="https://img-blog.csdnimg.cn/f194b8ce950b4c9cb9fe790d3f84bcdb.png" alt="在这里插入图片描述"><br>上式就称为事件的优势比。<h2 id="4-2-logistic函数"><a href="#4-2-logistic函数" class="headerlink" title="4.2 logistic函数"></a>4.2 logistic函数</h2></li>
+<li>对优势比期自然对数得到logistic变换：<br><img src="https://img-blog.csdnimg.cn/50c9f561b0ff4398868e9380bec0ff01.png" alt="在这里插入图片描述"><br>令：<br><img src="https://img-blog.csdnimg.cn/1f1653a3b4664e90890a38350b0880dd.png" alt="在这里插入图片描述"><br>则有：<br><img src="https://img-blog.csdnimg.cn/d02c0ed7c1fa4d099b6c8939486de9bd.png" alt="在这里插入图片描述"><br>上式即为logistic函数，也是sigmoid函数，p就是P(y|X)的概率，其中X代表了一系列特征。函数图像如下：<br><img src="https://img-blog.csdnimg.cn/d5e620cd257844b0b8991c0894678341.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ZuB5a6HdXA=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><h1 id="5-逻辑回归模型"><a href="#5-逻辑回归模型" class="headerlink" title="5. 逻辑回归模型"></a>5. 逻辑回归模型</h1></li>
+<li>令上式中的<br><img src="https://img-blog.csdnimg.cn/391c3a4eb4eb4cbf8e64d6894f77af2c.png" alt="在这里插入图片描述"><br>则有：<br><img src="https://img-blog.csdnimg.cn/5a900ae1f06240e4b9a20e9ce65feb5e.png" alt="在这里插入图片描述"><br>实际上计算的就是p(y=1)和1-p(y=0)的优势比，当优势比接近于正无穷时，逻辑回归函数越接近于1，反之当这个优势比越接近于负无穷，那么逻辑回归函数越接近于0。<h1 id="6-总结"><a href="#6-总结" class="headerlink" title="6. 总结"></a>6. 总结</h1></li>
+<li>逻辑回归本质上还是线性回归，只是特征到结果中加了一层函数映射，即sigmoid函数，先把特征线性求和，然后使用sigmoid函数将线性和约束至（0，1）之间，结果值用于二分类或者回归预测。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【深度学习基础知识 - 40】CNN为什么比DNN在图像领域更具优势</title>
+    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2040%E3%80%91CNN%E4%B8%BA%E4%BB%80%E4%B9%88%E6%AF%94DNN%E5%9C%A8%E5%9B%BE%E5%83%8F%E9%A2%86%E5%9F%9F%E6%9B%B4%E5%85%B7%E4%BC%98%E5%8A%BF/</url>
+    <content><![CDATA[<h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><ul>
+<li>CNN模型输入的一般都是图像矩阵，然后通过卷积操作进行特征提取，每次卷积都会考虑特征的上下文信息，并且随着模型的加深，从浅层提取的局部特征不断地处理、整合得到深层的高维特征。在这个过程中，特征的整合是缓慢有序发生的。同时，卷及操作还具有平移不变形特性，只管来解释就是：一个物体在图像中的任何区域都能被正确识别。因此，CNN在处理图像特征时候更具优势。</li>
+<li>DNN的输入时向量形式，并未考虑到图像的结构信息，每一层都会做一个全局的特征提取，但是由于这个过程并非递进的，因此最终的特征质量并不好，因此难以在图像领域发挥出优势。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【深度学习基础知识 - 31】出现nan值的处理</title>
+    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2031%E3%80%91%E5%87%BA%E7%8E%B0nan%E5%80%BC%E7%9A%84%E5%A4%84%E7%90%86/</url>
+    <content><![CDATA[<p>在深度学习模型训练的时候loss可能会出现nan，本文简要介绍几个可能导致nan出现的原因。</p>
 <span id="more"></span>
-<p>欧氏距离<br><img src="https://img-blog.csdnimg.cn/f580363c526247a1b6b8de7cb9f5b70d.png" alt="在这里插入图片描述"></p>
-<p>曼哈顿距离<br><img src="https://img-blog.csdnimg.cn/51f6e836c47f4b81af8c781122a3275d.png" alt="在这里插入图片描述"><br>余弦距离<br><img src="https://img-blog.csdnimg.cn/514aa3122e0e4d7da9713245d968ad4a.png" alt="在这里插入图片描述"></p>
+<ol>
+<li>最可能的原因就是除0，可以找一下模型进行数学计算时的除数是否为0，一些函数出现下溢时也会输出0，定位问题之后可以给除数加一个极小值。</li>
+<li>log(0)，对数函数的输入如果为0也会导致输出nan，也是可以给输入加一个极小值。</li>
+<li>检查数据集。输入数据损坏的时候可能也会出现nan，这个时候现象就是nan偶尔会出现，或者说模型训练着训练着在某一次迭代之后突然就nan了，这都可能是数据问题导致的。</li>
+<li>重新进行权重初始化。有时候权重随机初始化时一连串的数据初始化都过大，就会导致最终计算结果nan，因此可以重新随机初始化一次权重尝试。</li>
+<li>梯度截断。可能是因为梯度过大，导致更新之后权重过大，一连串的累积之后就会导致最终结果nan，因此可以从梯度截断的角度尝试。</li>
+<li>减少学习率。和梯度截断的考虑角度相同，不赘述。</li>
+</ol>
+<p>模型训练出现nan是一个很令人头疼的问题，以上6个解决思路需要逐一尝试，最终定位当前任务中出现nan的原因并解决。</p>
 ]]></content>
       <categories>
         <category>深度学习</category>
@@ -1326,15 +1311,12 @@
       </tags>
   </entry>
   <entry>
-    <title>【深度学习基础知识 - 49】Kmeans</title>
-    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2049%E3%80%91Kmeans/</url>
-    <content><![CDATA[<p>Kmeans是一个原理较为简单的聚类模型，它的操作步骤是</p>
-<ol>
-<li>随机选择k个点作为初始类心。</li>
-<li>计算每个元素和k个类心之间的距离并归类到最近的类里面。</li>
-<li>以每个类的均值作为新的类心。</li>
-<li>重复2和3知道所有的类心不再变化。</li>
-</ol>
+    <title>【深度学习基础知识 - 45】机器学习中常用的距离计算方法</title>
+    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2045%E3%80%91%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E8%B7%9D%E7%A6%BB%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>假设有两个点(x1, y1) (x2, y2)</p>
+<span id="more"></span>
+<p>欧氏距离<br><img src="https://img-blog.csdnimg.cn/f580363c526247a1b6b8de7cb9f5b70d.png" alt="在这里插入图片描述"></p>
+<p>曼哈顿距离<br><img src="https://img-blog.csdnimg.cn/51f6e836c47f4b81af8c781122a3275d.png" alt="在这里插入图片描述"><br>余弦距离<br><img src="https://img-blog.csdnimg.cn/514aa3122e0e4d7da9713245d968ad4a.png" alt="在这里插入图片描述"></p>
 ]]></content>
       <categories>
         <category>深度学习</category>
@@ -1378,6 +1360,24 @@
       </tags>
   </entry>
   <entry>
+    <title>【深度学习基础知识 - 49】Kmeans</title>
+    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2049%E3%80%91Kmeans/</url>
+    <content><![CDATA[<p>Kmeans是一个原理较为简单的聚类模型，它的操作步骤是</p>
+<ol>
+<li>随机选择k个点作为初始类心。</li>
+<li>计算每个元素和k个类心之间的距离并归类到最近的类里面。</li>
+<li>以每个类的均值作为新的类心。</li>
+<li>重复2和3知道所有的类心不再变化。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【深度学习基础知识 - 51】推荐算法概述</title>
     <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2051%E3%80%91%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0/</url>
     <content><![CDATA[<p>以前在网上查找资料需要进入网站之后分门别类的点进去，在一个个子类别下找到自己想要的东西，这是用户人工查找的过程。到后来的谷歌百度，可以直接搜索自己想要的内容，搜索网站就会把和你搜索目标相匹配的内容展示出来。</p>
@@ -1401,53 +1401,6 @@
 <li> 基于模型的推荐算法：主要是使用机器学习算法对目标用户建立推荐算法模型，然后对预测的结果进行打分，当然其中也需要一些人为干预，这会使得模型的结果更好。</li>
 <li> 混合推荐算法：实际应用中单一的推荐算法难以满足推荐任务的需求，所以更多情况下可能需要结合多种推荐算法来实现推荐任务，即多种推荐算法的融合。</li>
 </ol>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【深度学习目标检测系列 - 01】目标检测是什么</title>
-    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%B3%BB%E5%88%97%20-%2001%E3%80%91%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%98%AF%E4%BB%80%E4%B9%88/</url>
-    <content><![CDATA[<p>目标检测(Object Detection)一直以来都是深度学习领域的热门话题，这个系列的文章会对其进行详细的梳理。</p>
-<span id="more"></span>
-<h1 id="1-目标检测是什么"><a href="#1-目标检测是什么" class="headerlink" title="1. 目标检测是什么"></a>1. 目标检测是什么</h1><ul>
-<li>图像分类任务回答的是”图像中的物体是什么”。而目标检测任务回答的是”图像中的物体是什么，它处于图像的什么位置”。</li>
-<li>即，不但要输出目标所属的类别，还要输出物体的位置信息。位置信息通常采用bounding box表示，也就是给定一个矩形框的中心坐标以及宽高信息来定位框在图像中所属的位置。</li>
-</ul>
-<h1 id="2-如何进行目标检测"><a href="#2-如何进行目标检测" class="headerlink" title="2. 如何进行目标检测"></a>2. 如何进行目标检测</h1><ul>
-<li>从流程上进行分类一般有两种，即two-stage的方法和ont-shot的方法。</li>
-<li>two-stage的方法，也就是先产生候选区域，然后对每个候选区域进行分类，再通过回归来修正bounding box，最后通过非极大值抑制来确定最终的检测结果。</li>
-<li>one-shot方法的主要代表就是YOLO系列，它的思想是先将图片划分成一个个的单元格，然后对每个单元格进行处理，直接预测出当前位置是否存在物体、bounding box的位置以及分类的概率。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【深度学习目标检测系列 - 02】目标检测的常见算法</title>
-    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%B3%BB%E5%88%97%20-%2002%E3%80%91%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%9A%84%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<p>目标检测(Object Detection)一直以来都是深度学习领域的热门话题，这个系列的文章会对其进行详细的梳理。</p>
-<span id="more"></span>
-<h1 id="1-传统的检测算法"><a href="#1-传统的检测算法" class="headerlink" title="1. 传统的检测算法"></a>1. 传统的检测算法</h1><ul>
-<li>Cascade + HOG/DPM + Haar/SVM以及上述方法的诸多改进、优化</li>
-</ul>
-<h1 id="2-候选区域-深度学习分类："><a href="#2-候选区域-深度学习分类：" class="headerlink" title="2. 候选区域+深度学习分类："></a>2. 候选区域+深度学习分类：</h1><p>提取候选区域，对相应的区域进行以深度学习方法为主的分类。</p>
-<ul>
-<li>R-CNN</li>
-<li>SPP-NET</li>
-<li>Fast R-CNN</li>
-<li>Faster R-CNN</li>
-</ul>
-<h1 id="3-基于深度学习的回归方法，YOLO-SSD-DenseBox"><a href="#3-基于深度学习的回归方法，YOLO-SSD-DenseBox" class="headerlink" title="3. 基于深度学习的回归方法，YOLO/SSD/DenseBox"></a>3. 基于深度学习的回归方法，YOLO/SSD/DenseBox</h1><p>看下图</p>
-<p>![[目标检测的常见算法.jpg]]</p>
 ]]></content>
       <categories>
         <category>深度学习</category>
@@ -1687,6 +1640,53 @@
       </tags>
   </entry>
   <entry>
+    <title>【深度学习目标检测系列 - 02】目标检测的常见算法</title>
+    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%B3%BB%E5%88%97%20-%2002%E3%80%91%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%9A%84%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<p>目标检测(Object Detection)一直以来都是深度学习领域的热门话题，这个系列的文章会对其进行详细的梳理。</p>
+<span id="more"></span>
+<h1 id="1-传统的检测算法"><a href="#1-传统的检测算法" class="headerlink" title="1. 传统的检测算法"></a>1. 传统的检测算法</h1><ul>
+<li>Cascade + HOG/DPM + Haar/SVM以及上述方法的诸多改进、优化</li>
+</ul>
+<h1 id="2-候选区域-深度学习分类："><a href="#2-候选区域-深度学习分类：" class="headerlink" title="2. 候选区域+深度学习分类："></a>2. 候选区域+深度学习分类：</h1><p>提取候选区域，对相应的区域进行以深度学习方法为主的分类。</p>
+<ul>
+<li>R-CNN</li>
+<li>SPP-NET</li>
+<li>Fast R-CNN</li>
+<li>Faster R-CNN</li>
+</ul>
+<h1 id="3-基于深度学习的回归方法，YOLO-SSD-DenseBox"><a href="#3-基于深度学习的回归方法，YOLO-SSD-DenseBox" class="headerlink" title="3. 基于深度学习的回归方法，YOLO/SSD/DenseBox"></a>3. 基于深度学习的回归方法，YOLO/SSD/DenseBox</h1><p>看下图</p>
+<p>![[目标检测的常见算法.jpg]]</p>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【深度学习目标检测系列 - 01】目标检测是什么</title>
+    <url>/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%B3%BB%E5%88%97%20-%2001%E3%80%91%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%98%AF%E4%BB%80%E4%B9%88/</url>
+    <content><![CDATA[<p>目标检测(Object Detection)一直以来都是深度学习领域的热门话题，这个系列的文章会对其进行详细的梳理。</p>
+<span id="more"></span>
+<h1 id="1-目标检测是什么"><a href="#1-目标检测是什么" class="headerlink" title="1. 目标检测是什么"></a>1. 目标检测是什么</h1><ul>
+<li>图像分类任务回答的是”图像中的物体是什么”。而目标检测任务回答的是”图像中的物体是什么，它处于图像的什么位置”。</li>
+<li>即，不但要输出目标所属的类别，还要输出物体的位置信息。位置信息通常采用bounding box表示，也就是给定一个矩形框的中心坐标以及宽高信息来定位框在图像中所属的位置。</li>
+</ul>
+<h1 id="2-如何进行目标检测"><a href="#2-如何进行目标检测" class="headerlink" title="2. 如何进行目标检测"></a>2. 如何进行目标检测</h1><ul>
+<li>从流程上进行分类一般有两种，即two-stage的方法和ont-shot的方法。</li>
+<li>two-stage的方法，也就是先产生候选区域，然后对每个候选区域进行分类，再通过回归来修正bounding box，最后通过非极大值抑制来确定最终的检测结果。</li>
+<li>one-shot方法的主要代表就是YOLO系列，它的思想是先将图片划分成一个个的单元格，然后对每个单元格进行处理，直接预测出当前位置是否存在物体、bounding box的位置以及分类的概率。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【通过算法题学习python技巧 - 02】剑指 Offer 04. 二维数组中的查找</title>
     <url>/2022/01/13/%E3%80%90%E9%80%9A%E8%BF%87%E7%AE%97%E6%B3%95%E9%A2%98%E5%AD%A6%E4%B9%A0python%E6%8A%80%E5%B7%A7%20-%2002%E3%80%91%E5%89%91%E6%8C%87%20Offer%2004.%20%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE/</url>
     <content><![CDATA[<p>本专栏的目的是通过算法题学习python技巧，并非实现算法题的最优解。</p>
@@ -1780,31 +1780,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【通过算法题学习python技巧 - 06】剑指 Offer 15. 二进制中1的个数</title>
-    <url>/2022/01/13/%E3%80%90%E9%80%9A%E8%BF%87%E7%AE%97%E6%B3%95%E9%A2%98%E5%AD%A6%E4%B9%A0python%E6%8A%80%E5%B7%A7%20-%2006%E3%80%91%E5%89%91%E6%8C%87%20Offer%2015.%20%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%B8%AD1%E7%9A%84%E4%B8%AA%E6%95%B0/</url>
-    <content><![CDATA[<p>本专栏的目的是通过算法题学习python技巧，并非实现算法题的最优解。</p>
-<span id="more"></span>
-
-
-<h1 id="剑指-Offer-15-二进制中1的个数"><a href="#剑指-Offer-15-二进制中1的个数" class="headerlink" title="剑指 Offer 15. 二进制中1的个数"></a>剑指 Offer 15. 二进制中1的个数</h1><p><a href="https://leetcode-cn.com/problems/er-jin-zhi-zhong-1de-ge-shu-lcof/">题目链接</a></p>
-<blockquote>
-<p>编写一个函数，输入是一个无符号整数（以二进制串的形式），返回其二进制表达式中数字位数为 ‘1’ 的个数（也被称为 汉明重量).）。</p>
-<p>提示：</p>
-<p>请注意，在某些语言（如 Java）中，没有无符号整数类型。在这种情况下，输入和输出都将被指定为有符号整数类型，并且不应影响您的实现，因为无论整数是有符号的还是无符号的，其内部的二进制表示形式都是相同的。<br>在 Java 中，编译器使用 二进制补码 记法来表示有符号整数。因此，在上面的 示例 3 中，输入表示有符号整数 -3。
- </p>
-<p>示例 1：</p>
-<p>输入：n = 11 (控制台输入 00000000000000000000000000001011)<br>输出：3<br>解释：输入的二进制串 00000000000000000000000000001011 中，共有三位为 ‘1’。</p>
-</blockquote>
-<p>直接用<code>bin</code>和<code>count</code></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hammingWeight</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">bin</span>(n).count(<span class="string">&#x27;1&#x27;</span>)</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【通过算法题学习python技巧 - 07】剑指 Offer 17. 打印从1到最大的n位数</title>
     <url>/2022/01/13/%E3%80%90%E9%80%9A%E8%BF%87%E7%AE%97%E6%B3%95%E9%A2%98%E5%AD%A6%E4%B9%A0python%E6%8A%80%E5%B7%A7%20-%2007%E3%80%91%E5%89%91%E6%8C%87%20Offer%2017.%20%E6%89%93%E5%8D%B0%E4%BB%8E1%E5%88%B0%E6%9C%80%E5%A4%A7%E7%9A%84n%E4%BD%8D%E6%95%B0/</url>
     <content><![CDATA[<p>本专栏的目的是通过算法题学习python技巧，并非实现算法题的最优解。</p>
@@ -1819,36 +1794,6 @@
 </blockquote>
 <p>善用<code>range</code>。</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">printNumbers</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">1</span>, <span class="number">10</span>**n))</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【通过算法题学习python技巧 - 09】剑指 Offer 20. 表示数值的字符串</title>
-    <url>/2022/01/13/%E3%80%90%E9%80%9A%E8%BF%87%E7%AE%97%E6%B3%95%E9%A2%98%E5%AD%A6%E4%B9%A0python%E6%8A%80%E5%B7%A7%20-%2009%E3%80%91%E5%89%91%E6%8C%87%20Offer%2020.%20%E8%A1%A8%E7%A4%BA%E6%95%B0%E5%80%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
-    <content><![CDATA[<p>本专栏的目的是通过算法题学习python技巧，并非实现算法题的最优解。</p>
-<span id="more"></span>
-
-
-<h1 id="剑指-Offer-20-表示数值的字符串"><a href="#剑指-Offer-20-表示数值的字符串" class="headerlink" title="剑指 Offer 20. 表示数值的字符串"></a>剑指 Offer 20. 表示数值的字符串</h1><p><a href="https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/">题目链接</a></p>
-<blockquote>
-<p>请实现一个函数用来判断字符串是否表示数值（包括整数和小数）。</p>
-<p>数值（按顺序）可以分成以下几个部分：</p>
-<p>若干空格<br>一个 小数 或者 整数<br>（可选）一个 ‘e’ 或 ‘E’ ，后面跟着一个 整数<br>若干空格<br>小数（按顺序）可以分成以下几个部分：</p>
-<p>（可选）一个符号字符（’+’ 或 ‘-‘）<br>下述格式之一：<br>至少一位数字，后面跟着一个点 ‘.’<br>至少一位数字，后面跟着一个点 ‘.’ ，后面再跟着至少一位数字<br>一个点 ‘.’ ，后面跟着至少一位数字<br>整数（按顺序）可以分成以下几个部分：</p>
-<p>（可选）一个符号字符（’+’ 或 ‘-‘）<br>至少一位数字<br>部分数值列举如下：</p>
-<p>[“+100”, “5e2”, “-123”, “3.1416”, “-1E-16”, “0123”]<br>部分非数值列举如下：</p>
-<p>[“12e”, “1a3.14”, “1.2.3”, “+-5”, “12e+5.4”]
- </p>
-<p>示例 1：</p>
-<p>输入：s = “0”<br>输出：true<br>示例 2：</p>
-<p>输入：s = “e”<br>输出：false</p>
-</blockquote>
-<p>python可以直接实现字符串和数字的转换</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isNumber</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="built_in">float</span>(s)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>python</category>
       </categories>
@@ -1880,45 +1825,23 @@
       </tags>
   </entry>
   <entry>
-    <title>【通过算法题学习python技巧 - 11】剑指 Offer 39. 数组中出现次数超过一半的数字</title>
-    <url>/2022/01/13/%E3%80%90%E9%80%9A%E8%BF%87%E7%AE%97%E6%B3%95%E9%A2%98%E5%AD%A6%E4%B9%A0python%E6%8A%80%E5%B7%A7%20-%2011%E3%80%91%E5%89%91%E6%8C%87%20Offer%2039.%20%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0%E8%B6%85%E8%BF%87%E4%B8%80%E5%8D%8A%E7%9A%84%E6%95%B0%E5%AD%97/</url>
+    <title>【通过算法题学习python技巧 - 06】剑指 Offer 15. 二进制中1的个数</title>
+    <url>/2022/01/13/%E3%80%90%E9%80%9A%E8%BF%87%E7%AE%97%E6%B3%95%E9%A2%98%E5%AD%A6%E4%B9%A0python%E6%8A%80%E5%B7%A7%20-%2006%E3%80%91%E5%89%91%E6%8C%87%20Offer%2015.%20%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%B8%AD1%E7%9A%84%E4%B8%AA%E6%95%B0/</url>
     <content><![CDATA[<p>本专栏的目的是通过算法题学习python技巧，并非实现算法题的最优解。</p>
 <span id="more"></span>
 
 
-<h1 id="剑指-Offer-39-数组中出现次数超过一半的数字"><a href="#剑指-Offer-39-数组中出现次数超过一半的数字" class="headerlink" title="剑指 Offer 39. 数组中出现次数超过一半的数字"></a>剑指 Offer 39. 数组中出现次数超过一半的数字</h1><p><a href="https://leetcode-cn.com/problems/shu-zu-zhong-chu-xian-ci-shu-chao-guo-yi-ban-de-shu-zi-lcof/">题目链接</a></p>
+<h1 id="剑指-Offer-15-二进制中1的个数"><a href="#剑指-Offer-15-二进制中1的个数" class="headerlink" title="剑指 Offer 15. 二进制中1的个数"></a>剑指 Offer 15. 二进制中1的个数</h1><p><a href="https://leetcode-cn.com/problems/er-jin-zhi-zhong-1de-ge-shu-lcof/">题目链接</a></p>
 <blockquote>
-<p>数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。</p>
-<p>你可以假设数组是非空的，并且给定的数组总是存在多数元素。
+<p>编写一个函数，输入是一个无符号整数（以二进制串的形式），返回其二进制表达式中数字位数为 ‘1’ 的个数（也被称为 汉明重量).）。</p>
+<p>提示：</p>
+<p>请注意，在某些语言（如 Java）中，没有无符号整数类型。在这种情况下，输入和输出都将被指定为有符号整数类型，并且不应影响您的实现，因为无论整数是有符号的还是无符号的，其内部的二进制表示形式都是相同的。<br>在 Java 中，编译器使用 二进制补码 记法来表示有符号整数。因此，在上面的 示例 3 中，输入表示有符号整数 -3。
  </p>
-<p>示例 1:</p>
-<p>输入: [1, 2, 3, 2, 2, 2, 5, 4, 2]<br>输出: 2</p>
+<p>示例 1：</p>
+<p>输入：n = 11 (控制台输入 00000000000000000000000000001011)<br>输出：3<br>解释：输入的二进制串 00000000000000000000000000001011 中，共有三位为 ‘1’。</p>
 </blockquote>
-<p>collections 是一个经常能用到的包。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">majorityElement</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span></span><br><span class="line">        <span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line">        <span class="keyword">for</span> k, v <span class="keyword">in</span> Counter(nums).items():</span><br><span class="line">            <span class="keyword">if</span> v &gt;= <span class="built_in">len</span>(nums) / <span class="number">2</span>:</span><br><span class="line">                <span class="keyword">return</span> k</span><br><span class="line">        <span class="keyword">return</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【通过算法题学习python技巧 - 10】剑指 Offer 21. 调整数组顺序使奇数位于偶数前面</title>
-    <url>/2022/01/13/%E3%80%90%E9%80%9A%E8%BF%87%E7%AE%97%E6%B3%95%E9%A2%98%E5%AD%A6%E4%B9%A0python%E6%8A%80%E5%B7%A7%20-%2010%E3%80%91%E5%89%91%E6%8C%87%20Offer%2021.%20%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F%E4%BD%BF%E5%A5%87%E6%95%B0%E4%BD%8D%E4%BA%8E%E5%81%B6%E6%95%B0%E5%89%8D%E9%9D%A2/</url>
-    <content><![CDATA[<p>本专栏的目的是通过算法题学习python技巧，并非实现算法题的最优解。</p>
-<span id="more"></span>
-
-
-<h1 id="剑指-Offer-21-调整数组顺序使奇数位于偶数前面"><a href="#剑指-Offer-21-调整数组顺序使奇数位于偶数前面" class="headerlink" title="剑指 Offer 21. 调整数组顺序使奇数位于偶数前面"></a>剑指 Offer 21. 调整数组顺序使奇数位于偶数前面</h1><p><a href="https://leetcode-cn.com/problems/diao-zheng-shu-zu-shun-xu-shi-qi-shu-wei-yu-ou-shu-qian-mian-lcof/">题目链接</a></p>
-<blockquote>
-<p>输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有奇数位于数组的前半部分，所有偶数位于数组的后半部分。</p>
-<p> </p>
-<p>示例：</p>
-<p>输入：nums = [1,2,3,4]<br>输出：[1,3,2,4]<br>注：[3,1,2,4] 也是正确的答案之一。</p>
-</blockquote>
-<p>列表递推表达式一行写完是不是很酷。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">exchange</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span></span><br><span class="line">        <span class="keyword">return</span> [num <span class="keyword">for</span> num <span class="keyword">in</span> nums <span class="keyword">if</span> num % <span class="number">2</span> == <span class="number">1</span>] + [num <span class="keyword">for</span> num <span class="keyword">in</span> nums <span class="keyword">if</span> num % <span class="number">2</span> == <span class="number">0</span>]</span><br></pre></td></tr></table></figure>]]></content>
+<p>直接用<code>bin</code>和<code>count</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hammingWeight</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">bin</span>(n).count(<span class="string">&#x27;1&#x27;</span>)</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>python</category>
       </categories>
@@ -1960,6 +1883,46 @@
       </tags>
   </entry>
   <entry>
+    <title>【通过算法题学习python技巧 - 11】剑指 Offer 39. 数组中出现次数超过一半的数字</title>
+    <url>/2022/01/13/%E3%80%90%E9%80%9A%E8%BF%87%E7%AE%97%E6%B3%95%E9%A2%98%E5%AD%A6%E4%B9%A0python%E6%8A%80%E5%B7%A7%20-%2011%E3%80%91%E5%89%91%E6%8C%87%20Offer%2039.%20%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0%E8%B6%85%E8%BF%87%E4%B8%80%E5%8D%8A%E7%9A%84%E6%95%B0%E5%AD%97/</url>
+    <content><![CDATA[<p>本专栏的目的是通过算法题学习python技巧，并非实现算法题的最优解。</p>
+<span id="more"></span>
+
+
+<h1 id="剑指-Offer-39-数组中出现次数超过一半的数字"><a href="#剑指-Offer-39-数组中出现次数超过一半的数字" class="headerlink" title="剑指 Offer 39. 数组中出现次数超过一半的数字"></a>剑指 Offer 39. 数组中出现次数超过一半的数字</h1><p><a href="https://leetcode-cn.com/problems/shu-zu-zhong-chu-xian-ci-shu-chao-guo-yi-ban-de-shu-zi-lcof/">题目链接</a></p>
+<blockquote>
+<p>数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。</p>
+<p>你可以假设数组是非空的，并且给定的数组总是存在多数元素。
+ </p>
+<p>示例 1:</p>
+<p>输入: [1, 2, 3, 2, 2, 2, 5, 4, 2]<br>输出: 2</p>
+</blockquote>
+<p>collections 是一个经常能用到的包。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">majorityElement</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span></span><br><span class="line">        <span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line">        <span class="keyword">for</span> k, v <span class="keyword">in</span> Counter(nums).items():</span><br><span class="line">            <span class="keyword">if</span> v &gt;= <span class="built_in">len</span>(nums) / <span class="number">2</span>:</span><br><span class="line">                <span class="keyword">return</span> k</span><br><span class="line">        <span class="keyword">return</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>root 手机</title>
+    <url>/2022/01/13/%E6%97%A5%E7%A7%AF%E7%A1%85%E6%AD%A5%20-%20root%E6%89%8B%E6%9C%BA/</url>
+    <content><![CDATA[<p>在Android开发的一个任务重需要root手机来检测手机的GPU使用情况，记录一下root手机方法，只需要两个命令。<br>首先，在命令行中启动adb shell，然后执行：</p>
+<span id="more"></span>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ adb root</span><br><span class="line">$ adb remount</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>日积硅步</category>
+      </categories>
+      <tags>
+        <tag>skill</tag>
+        <tag>adb</tag>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>cmakelists 写法</title>
     <url>/2022/01/13/%E6%97%A5%E7%A7%AF%E7%A1%85%E6%AD%A5%20-%20cmakelists%20%E5%86%99%E6%B3%95/</url>
     <content><![CDATA[<p>在某个项目的开发工作中需要用同事的代码，但是由于某些原因没有cmakelist，于是在学习过程中将一些内容记录下来。</p>
@@ -1994,6 +1957,52 @@
       <tags>
         <tag>skill</tag>
         <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【通过算法题学习python技巧 - 09】剑指 Offer 20. 表示数值的字符串</title>
+    <url>/2022/01/13/%E3%80%90%E9%80%9A%E8%BF%87%E7%AE%97%E6%B3%95%E9%A2%98%E5%AD%A6%E4%B9%A0python%E6%8A%80%E5%B7%A7%20-%2009%E3%80%91%E5%89%91%E6%8C%87%20Offer%2020.%20%E8%A1%A8%E7%A4%BA%E6%95%B0%E5%80%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
+    <content><![CDATA[<p>本专栏的目的是通过算法题学习python技巧，并非实现算法题的最优解。</p>
+<span id="more"></span>
+
+
+<h1 id="剑指-Offer-20-表示数值的字符串"><a href="#剑指-Offer-20-表示数值的字符串" class="headerlink" title="剑指 Offer 20. 表示数值的字符串"></a>剑指 Offer 20. 表示数值的字符串</h1><p><a href="https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/">题目链接</a></p>
+<blockquote>
+<p>请实现一个函数用来判断字符串是否表示数值（包括整数和小数）。</p>
+<p>数值（按顺序）可以分成以下几个部分：</p>
+<p>若干空格<br>一个 小数 或者 整数<br>（可选）一个 ‘e’ 或 ‘E’ ，后面跟着一个 整数<br>若干空格<br>小数（按顺序）可以分成以下几个部分：</p>
+<p>（可选）一个符号字符（’+’ 或 ‘-‘）<br>下述格式之一：<br>至少一位数字，后面跟着一个点 ‘.’<br>至少一位数字，后面跟着一个点 ‘.’ ，后面再跟着至少一位数字<br>一个点 ‘.’ ，后面跟着至少一位数字<br>整数（按顺序）可以分成以下几个部分：</p>
+<p>（可选）一个符号字符（’+’ 或 ‘-‘）<br>至少一位数字<br>部分数值列举如下：</p>
+<p>[“+100”, “5e2”, “-123”, “3.1416”, “-1E-16”, “0123”]<br>部分非数值列举如下：</p>
+<p>[“12e”, “1a3.14”, “1.2.3”, “+-5”, “12e+5.4”]
+ </p>
+<p>示例 1：</p>
+<p>输入：s = “0”<br>输出：true<br>示例 2：</p>
+<p>输入：s = “e”<br>输出：false</p>
+</blockquote>
+<p>python可以直接实现字符串和数字的转换</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isNumber</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="built_in">float</span>(s)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>查看cuda和cudnn版本</title>
+    <url>/2022/01/13/%E6%97%A5%E7%A7%AF%E7%A1%85%E6%AD%A5%20-%20%E6%9F%A5%E7%9C%8Bcuda%E5%92%8Ccudnn%E7%89%88%E6%9C%AC/</url>
+    <content><![CDATA[<p>cuda版本</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat /usr/<span class="built_in">local</span>/cuda/version.txt</span></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+
+<p>cudnn版本</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat /usr/<span class="built_in">local</span>/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>日积硅步</category>
+      </categories>
+      <tags>
+        <tag>cuda</tag>
       </tags>
   </entry>
   <entry>
@@ -2114,22 +2123,6 @@
       </tags>
   </entry>
   <entry>
-    <title>root 手机</title>
-    <url>/2022/01/13/%E6%97%A5%E7%A7%AF%E7%A1%85%E6%AD%A5%20-%20root%E6%89%8B%E6%9C%BA/</url>
-    <content><![CDATA[<p>在Android开发的一个任务重需要root手机来检测手机的GPU使用情况，记录一下root手机方法，只需要两个命令。<br>首先，在命令行中启动adb shell，然后执行：</p>
-<span id="more"></span>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ adb root</span><br><span class="line">$ adb remount</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>日积硅步</category>
-      </categories>
-      <tags>
-        <tag>skill</tag>
-        <tag>adb</tag>
-        <tag>Android</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>yum update 与 upgrade 的区别</title>
     <url>/2022/01/13/%E6%97%A5%E7%A7%AF%E7%A1%85%E6%AD%A5%20-%20yum%20update%E5%92%8Cupgrade%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
     <content><![CDATA[<p>在日常开发工作中，根据不同的项目会需要配置环境和包，有时候会由于版本问题出现错误，这个时候通常就需要执行<code>update</code>或者<code>upgrade</code>命令，这里简要介绍一下区别。</p>
@@ -2147,22 +2140,6 @@
       </tags>
   </entry>
   <entry>
-    <title>查看cuda和cudnn版本</title>
-    <url>/2022/01/13/%E6%97%A5%E7%A7%AF%E7%A1%85%E6%AD%A5%20-%20%E6%9F%A5%E7%9C%8Bcuda%E5%92%8Ccudnn%E7%89%88%E6%9C%AC/</url>
-    <content><![CDATA[<p>cuda版本</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat /usr/<span class="built_in">local</span>/cuda/version.txt</span></span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-
-<p>cudnn版本</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat /usr/<span class="built_in">local</span>/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>日积硅步</category>
-      </categories>
-      <tags>
-        <tag>cuda</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>多cuda版本切换</title>
     <url>/2022/01/13/%E6%97%A5%E7%A7%AF%E7%A1%85%E6%AD%A5%20-%20%E5%A4%9Acuda%E7%89%88%E6%9C%AC%E5%88%87%E6%8D%A2/</url>
     <content><![CDATA[<p>日常开发中经常会需要多个cuda版本共存，本文介绍一下切换cuda版本的方法。</p>
@@ -2174,6 +2151,29 @@
       </categories>
       <tags>
         <tag>cuda</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【通过算法题学习python技巧 - 10】剑指 Offer 21. 调整数组顺序使奇数位于偶数前面</title>
+    <url>/2022/01/13/%E3%80%90%E9%80%9A%E8%BF%87%E7%AE%97%E6%B3%95%E9%A2%98%E5%AD%A6%E4%B9%A0python%E6%8A%80%E5%B7%A7%20-%2010%E3%80%91%E5%89%91%E6%8C%87%20Offer%2021.%20%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F%E4%BD%BF%E5%A5%87%E6%95%B0%E4%BD%8D%E4%BA%8E%E5%81%B6%E6%95%B0%E5%89%8D%E9%9D%A2/</url>
+    <content><![CDATA[<p>本专栏的目的是通过算法题学习python技巧，并非实现算法题的最优解。</p>
+<span id="more"></span>
+
+
+<h1 id="剑指-Offer-21-调整数组顺序使奇数位于偶数前面"><a href="#剑指-Offer-21-调整数组顺序使奇数位于偶数前面" class="headerlink" title="剑指 Offer 21. 调整数组顺序使奇数位于偶数前面"></a>剑指 Offer 21. 调整数组顺序使奇数位于偶数前面</h1><p><a href="https://leetcode-cn.com/problems/diao-zheng-shu-zu-shun-xu-shi-qi-shu-wei-yu-ou-shu-qian-mian-lcof/">题目链接</a></p>
+<blockquote>
+<p>输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有奇数位于数组的前半部分，所有偶数位于数组的后半部分。</p>
+<p> </p>
+<p>示例：</p>
+<p>输入：nums = [1,2,3,4]<br>输出：[1,3,2,4]<br>注：[3,1,2,4] 也是正确的答案之一。</p>
+</blockquote>
+<p>列表递推表达式一行写完是不是很酷。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">exchange</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span></span><br><span class="line">        <span class="keyword">return</span> [num <span class="keyword">for</span> num <span class="keyword">in</span> nums <span class="keyword">if</span> num % <span class="number">2</span> == <span class="number">1</span>] + [num <span class="keyword">for</span> num <span class="keyword">in</span> nums <span class="keyword">if</span> num % <span class="number">2</span> == <span class="number">0</span>]</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
