@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Counter</title>
+    <url>/2022/01/13/python-Counter/</url>
+    <content><![CDATA[<p>本专栏的目的是通过算法题学习python技巧，并非实现算法题的最优解。</p>
+<span id="more"></span>
+
+
+<h1 id="剑指offer-03-数组中重复的数字"><a href="#剑指offer-03-数组中重复的数字" class="headerlink" title="剑指offer 03. 数组中重复的数字"></a>剑指offer 03. 数组中重复的数字</h1><p><a href="https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/">题目链接</a></p>
+<blockquote>
+<p>找出数组中重复的数字。</p>
+<p>在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。</p>
+<p>示例 1：</p>
+<p>输入：<br>[2, 3, 1, 0, 2, 5, 3]<br>输出：2 或 3 </p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findRepeatNumber</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;Counter会返回一个dict，key是字符，val是字符出现的次数</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line">        count = Counter(nums)</span><br><span class="line">        <span class="keyword">for</span> k, v <span class="keyword">in</span> count.items():</span><br><span class="line">            <span class="keyword">if</span> v &gt; <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> k</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>__all__</title>
     <url>/2022/01/13/python-__all__/</url>
     <content><![CDATA[<p><code>__all__</code>通常用于项目中的引用保护。</p>
@@ -88,46 +110,22 @@
       </tags>
   </entry>
   <entry>
-    <title>__call__</title>
-    <url>/2022/01/13/python-__call__/</url>
-    <content><![CDATA[<p><code>__call__</code>方法是一种常见的方法，顾名思义，主要用于调用某个类。</p>
+    <title>__getitem__</title>
+    <url>/2022/01/13/python-__getitem__/</url>
+    <content><![CDATA[<p><code>__getitem__</code>方法是一种常见的方法，常用于获取类中的某些信息。</p>
 <span id="more"></span>
 
-<p>定义<code>Test</code>类如下：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span>(<span class="params">self, <span class="built_in">any</span>=<span class="literal">None</span></span>):</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">any</span>)</span><br></pre></td></tr></table></figure>
+<p>以<code>dict</code>的情况举例，定义<code>Test</code>类如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.<span class="built_in">dict</span> = <span class="built_in">dict</span>(</span><br><span class="line">            m_key=<span class="string">&#x27;m_value&#x27;</span></span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span>(<span class="params">self, key</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.<span class="built_in">dict</span>[key]</span><br></pre></td></tr></table></figure>
 
 <p>执行</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = Test()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面三行等价</span></span><br><span class="line">Test()()</span><br><span class="line">x.__call__()</span><br><span class="line">x()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面三行等价</span></span><br><span class="line">Test()(<span class="string">&#x27;hello&#x27;</span>)</span><br><span class="line">x.__call__(<span class="string">&#x27;hello&#x27;</span>)</span><br><span class="line">x(<span class="string">&#x27;hello&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = Test()</span><br><span class="line"><span class="built_in">print</span>(x[<span class="string">&#x27;m_key&#x27;</span>])</span><br></pre></td></tr></table></figure>
 
 <p>输出</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">None</span><br><span class="line">None</span><br><span class="line">None</span><br><span class="line"></span><br><span class="line">hello</span><br><span class="line">hello</span><br><span class="line">hello</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">m_value</span><br></pre></td></tr></table></figure>
 
-<p>由此可以看出<code>__call__</code>方法主要用于调用某个类，通常在深度学习框架中，如keras，pytorch中常能见到该写法，如：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">y = tf.keras.layers.Dense(<span class="number">1</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>)(x)</span><br></pre></td></tr></table></figure>
-<p>等价于</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">tf.keras.layers.Dense(<span class="number">1</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>).__call__(x)</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Counter</title>
-    <url>/2022/01/13/python-Counter/</url>
-    <content><![CDATA[<p>本专栏的目的是通过算法题学习python技巧，并非实现算法题的最优解。</p>
-<span id="more"></span>
-
-
-<h1 id="剑指offer-03-数组中重复的数字"><a href="#剑指offer-03-数组中重复的数字" class="headerlink" title="剑指offer 03. 数组中重复的数字"></a>剑指offer 03. 数组中重复的数字</h1><p><a href="https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/">题目链接</a></p>
-<blockquote>
-<p>找出数组中重复的数字。</p>
-<p>在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。</p>
-<p>示例 1：</p>
-<p>输入：<br>[2, 3, 1, 0, 2, 5, 3]<br>输出：2 或 3 </p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findRepeatNumber</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;Counter会返回一个dict，key是字符，val是字符出现的次数</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line">        count = Counter(nums)</span><br><span class="line">        <span class="keyword">for</span> k, v <span class="keyword">in</span> count.items():</span><br><span class="line">            <span class="keyword">if</span> v &gt; <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> k</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br></pre></td></tr></table></figure>]]></content>
+<p>由此可以看出<code>__getitem__</code>方法主要用于获取类中的某些信息，当然你也可以定义其他数据结构，尝试写自己的<code>__getitem__</code>，通常在项目中的config文件中会使用。</p>
+]]></content>
       <categories>
         <category>python</category>
       </categories>
@@ -160,22 +158,96 @@
       </tags>
   </entry>
   <entry>
-    <title>in</title>
-    <url>/2022/01/13/python-in/</url>
+    <title>__len__</title>
+    <url>/2022/01/13/python-__len__%20/</url>
+    <content><![CDATA[<p><code>__len__</code>方法是一种常见的方法，顾名思义，主要用于判断某个类的长度。</p>
+<span id="more"></span>
+
+<p>定义<code>Test</code>类如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.num_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(self.num_list)</span><br></pre></td></tr></table></figure>
+
+<p>执行</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = Test()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面两行等价</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(x.num_list))</span><br><span class="line"><span class="built_in">print</span>(x.__len__())</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">3</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+
+<p>由此可以看出<code>__len__</code>方法主要用于判断类中某属性的长度，只是直接调用<code>len(x)</code>时预设了输出某种属性的长度。</p>
+<p>如果将代码改为：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.num_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(x))</span><br></pre></td></tr></table></figure>
+<p>则会输出</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;xxx&quot;, line 9, in &lt;module&gt;</span><br><span class="line">    print(x.__len__())</span><br><span class="line">AttributeError: &#x27;Test&#x27; object has no attribute &#x27;__len__&#x27;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>range</title>
+    <url>/2022/01/13/python-range/</url>
     <content><![CDATA[<p>本专栏的目的是通过算法题学习python技巧，并非实现算法题的最优解。</p>
 <span id="more"></span>
 
 
-<h1 id="剑指-Offer-04-二维数组中的查找"><a href="#剑指-Offer-04-二维数组中的查找" class="headerlink" title="剑指 Offer 04. 二维数组中的查找"></a>剑指 Offer 04. 二维数组中的查找</h1><p><a href="https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/">题目链接</a></p>
+<h1 id="剑指-Offer-17-打印从1到最大的n位数"><a href="#剑指-Offer-17-打印从1到最大的n位数" class="headerlink" title="剑指 Offer 17. 打印从1到最大的n位数"></a>剑指 Offer 17. 打印从1到最大的n位数</h1><p><a href="https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/">题目链接</a></p>
 <blockquote>
-<p>在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个高效的函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
-<p>示例:</p>
-<p>现有矩阵 matrix 如下：</p>
-<p>[[1,   4,  7, 11, 15],<br>  [2,   5,  8, 12, 19],<br>  [3,   6,  9, 16, 22],<br>  [10, 13, 14, 17, 24],<br>  [18, 21, 23, 26, 30]]<br>给定 target = 5，返回 true。</p>
-<p>给定 target = 20，返回 false。</p>
+<p>输入数字 n，按顺序打印出从 1 到最大的 n 位十进制数。比如输入 3，则打印出 1、2、3 一直到最大的 3 位数 999。</p>
+<p>示例 1:</p>
+<p>输入: n = 1<br>输出: [1,2,3,4,5,6,7,8,9]</p>
 </blockquote>
-<p>本题最优解是二维二分查找，或者将二维变成一维再用二分查找。但是在这里我们尝试一下用<code>in</code>来解决。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findNumberIn2DArray</span>(<span class="params">self, matrix: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]], target: <span class="built_in">int</span></span>) -&gt; <span class="built_in">bool</span>:</span></span><br><span class="line">        number_in_array = <span class="literal">False</span></span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> matrix:</span><br><span class="line">            number_in_array = number_in_array <span class="keyword">or</span> target <span class="keyword">in</span> line</span><br><span class="line">            <span class="keyword">if</span> number_in_array:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> number_in_array</span><br></pre></td></tr></table></figure>]]></content>
+<p>善用<code>range</code>。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">printNumbers</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">1</span>, <span class="number">10</span>**n))</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>re</title>
+    <url>/2022/01/13/python-re/</url>
+    <content><![CDATA[<p>本专栏的目的是通过算法题学习python技巧，并非实现算法题的最优解。</p>
+<span id="more"></span>
+
+
+<h1 id="剑指-Offer-19-正则表达式匹配"><a href="#剑指-Offer-19-正则表达式匹配" class="headerlink" title="剑指 Offer 19. 正则表达式匹配"></a>剑指 Offer 19. 正则表达式匹配</h1><p><a href="https://leetcode-cn.com/problems/zheng-ze-biao-da-shi-pi-pei-lcof/">题目链接</a></p>
+<blockquote>
+<p>请实现一个函数用来匹配包含’. ‘和’<em>‘的正则表达式。模式中的字符’.’表示任意一个字符，而’</em>‘表示它前面的字符可以出现任意次（含0次）。在本题中，匹配是指字符串的所有字符匹配整个模式。例如，字符串”aaa”与模式”a.a”和”ab<em>ac</em>a”匹配，但与”aa.a”和”ab*a”均不匹配。</p>
+<p>示例 1:</p>
+<p>输入:<br>s = “aa”<br>p = “a”<br>输出: false<br>解释: “a” 无法匹配 “aa” 整个字符串。<br>示例 2:</p>
+<p>输入:<br>s = “aa”<br>p = “a*”<br>输出: true<br>解释: 因为 ‘*’ 代表可以匹配零个或多个前面的那一个元素, 在这里前面的元素就是 ‘a’。因此，字符串 “aa” 可被视为 ‘a’ 重复了一次。</p>
+</blockquote>
+<p><code>re</code>库是最好的正则表达式库。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isMatch</span>(<span class="params">self, s: <span class="built_in">str</span>, p: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span></span><br><span class="line">        <span class="keyword">import</span> re</span><br><span class="line">        search_res = re.<span class="built_in">compile</span>(p).search(s)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> search_res:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> s == re.<span class="built_in">compile</span>(p).search(s).group()</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>__call__</title>
+    <url>/2022/01/13/python-__call__/</url>
+    <content><![CDATA[<p><code>__call__</code>方法是一种常见的方法，顾名思义，主要用于调用某个类。</p>
+<span id="more"></span>
+
+<p>定义<code>Test</code>类如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span>(<span class="params">self, <span class="built_in">any</span>=<span class="literal">None</span></span>):</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">any</span>)</span><br></pre></td></tr></table></figure>
+
+<p>执行</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = Test()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面三行等价</span></span><br><span class="line">Test()()</span><br><span class="line">x.__call__()</span><br><span class="line">x()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面三行等价</span></span><br><span class="line">Test()(<span class="string">&#x27;hello&#x27;</span>)</span><br><span class="line">x.__call__(<span class="string">&#x27;hello&#x27;</span>)</span><br><span class="line">x(<span class="string">&#x27;hello&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">None</span><br><span class="line">None</span><br><span class="line">None</span><br><span class="line"></span><br><span class="line">hello</span><br><span class="line">hello</span><br><span class="line">hello</span><br></pre></td></tr></table></figure>
+
+<p>由此可以看出<code>__call__</code>方法主要用于调用某个类，通常在深度学习框架中，如keras，pytorch中常能见到该写法，如：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">y = tf.keras.layers.Dense(<span class="number">1</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>)(x)</span><br></pre></td></tr></table></figure>
+<p>等价于</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">tf.keras.layers.Dense(<span class="number">1</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>).__call__(x)</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>python</category>
       </categories>
@@ -250,21 +322,20 @@
       </tags>
   </entry>
   <entry>
-    <title>re</title>
-    <url>/2022/01/13/python-re/</url>
+    <title>replace</title>
+    <url>/2022/01/13/python-replace/</url>
     <content><![CDATA[<p>本专栏的目的是通过算法题学习python技巧，并非实现算法题的最优解。</p>
 <span id="more"></span>
 
 
-<h1 id="剑指-Offer-19-正则表达式匹配"><a href="#剑指-Offer-19-正则表达式匹配" class="headerlink" title="剑指 Offer 19. 正则表达式匹配"></a>剑指 Offer 19. 正则表达式匹配</h1><p><a href="https://leetcode-cn.com/problems/zheng-ze-biao-da-shi-pi-pei-lcof/">题目链接</a></p>
+<h1 id="剑指-Offer-05-替换空格"><a href="#剑指-Offer-05-替换空格" class="headerlink" title="剑指 Offer 05. 替换空格"></a>剑指 Offer 05. 替换空格</h1><p><a href="https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/">题目链接</a></p>
 <blockquote>
-<p>请实现一个函数用来匹配包含’. ‘和’<em>‘的正则表达式。模式中的字符’.’表示任意一个字符，而’</em>‘表示它前面的字符可以出现任意次（含0次）。在本题中，匹配是指字符串的所有字符匹配整个模式。例如，字符串”aaa”与模式”a.a”和”ab<em>ac</em>a”匹配，但与”aa.a”和”ab*a”均不匹配。</p>
-<p>示例 1:</p>
-<p>输入:<br>s = “aa”<br>p = “a”<br>输出: false<br>解释: “a” 无法匹配 “aa” 整个字符串。<br>示例 2:</p>
-<p>输入:<br>s = “aa”<br>p = “a*”<br>输出: true<br>解释: 因为 ‘*’ 代表可以匹配零个或多个前面的那一个元素, 在这里前面的元素就是 ‘a’。因此，字符串 “aa” 可被视为 ‘a’ 重复了一次。</p>
+<p>请实现一个函数，把字符串 s 中的每个空格替换成”%20”。</p>
+<p> </p>
+<p>示例 1：</p>
+<p>输入：s = “We are happy.”<br>输出：”We%20are%20happy.”</p>
 </blockquote>
-<p><code>re</code>库是最好的正则表达式库。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isMatch</span>(<span class="params">self, s: <span class="built_in">str</span>, p: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span></span><br><span class="line">        <span class="keyword">import</span> re</span><br><span class="line">        search_res = re.<span class="built_in">compile</span>(p).search(s)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> search_res:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> s == re.<span class="built_in">compile</span>(p).search(s).group()</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">replaceSpace</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span></span><br><span class="line">        <span class="keyword">return</span> s.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;%20&#x27;</span>)</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>python</category>
       </categories>
@@ -273,47 +344,19 @@
       </tags>
   </entry>
   <entry>
-    <title>range</title>
-    <url>/2022/01/13/python-range/</url>
+    <title>reverse</title>
+    <url>/2022/01/13/python-reverse/</url>
     <content><![CDATA[<p>本专栏的目的是通过算法题学习python技巧，并非实现算法题的最优解。</p>
 <span id="more"></span>
 
 
-<h1 id="剑指-Offer-17-打印从1到最大的n位数"><a href="#剑指-Offer-17-打印从1到最大的n位数" class="headerlink" title="剑指 Offer 17. 打印从1到最大的n位数"></a>剑指 Offer 17. 打印从1到最大的n位数</h1><p><a href="https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/">题目链接</a></p>
+<h1 id="剑指-Offer-06-从尾到头打印链表"><a href="#剑指-Offer-06-从尾到头打印链表" class="headerlink" title="剑指 Offer 06. 从尾到头打印链表"></a>剑指 Offer 06. 从尾到头打印链表</h1><p><a href="https://leetcode-cn.com/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/">题目链接</a></p>
 <blockquote>
-<p>输入数字 n，按顺序打印出从 1 到最大的 n 位十进制数。比如输入 3，则打印出 1、2、3 一直到最大的 3 位数 999。</p>
-<p>示例 1:</p>
-<p>输入: n = 1<br>输出: [1,2,3,4,5,6,7,8,9]</p>
+<p>输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。</p>
+<p>示例 1：</p>
+<p>输入：head = [1,3,2]<br>输出：[2,3,1]</p>
 </blockquote>
-<p>善用<code>range</code>。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">printNumbers</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">1</span>, <span class="number">10</span>**n))</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>__len__</title>
-    <url>/2022/01/13/python-__len__%20/</url>
-    <content><![CDATA[<p><code>__len__</code>方法是一种常见的方法，顾名思义，主要用于判断某个类的长度。</p>
-<span id="more"></span>
-
-<p>定义<code>Test</code>类如下：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.num_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(self.num_list)</span><br></pre></td></tr></table></figure>
-
-<p>执行</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = Test()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面两行等价</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(x.num_list))</span><br><span class="line"><span class="built_in">print</span>(x.__len__())</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>输出</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">3</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
-
-<p>由此可以看出<code>__len__</code>方法主要用于判断类中某属性的长度，只是直接调用<code>len(x)</code>时预设了输出某种属性的长度。</p>
-<p>如果将代码改为：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.num_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(x))</span><br></pre></td></tr></table></figure>
-<p>则会输出</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;xxx&quot;, line 9, in &lt;module&gt;</span><br><span class="line">    print(x.__len__())</span><br><span class="line">AttributeError: &#x27;Test&#x27; object has no attribute &#x27;__len__&#x27;</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reversePrint</span>(<span class="params">self, head: ListNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span></span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">while</span> head:</span><br><span class="line">            res.append(head.val)</span><br><span class="line">            head = head.<span class="built_in">next</span></span><br><span class="line">        res.reverse()</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>python</category>
       </categories>
@@ -362,65 +405,28 @@
       </tags>
   </entry>
   <entry>
-    <title>__getitem__</title>
-    <url>/2022/01/13/python-__getitem__/</url>
-    <content><![CDATA[<p><code>__getitem__</code>方法是一种常见的方法，常用于获取类中的某些信息。</p>
-<span id="more"></span>
-
-<p>以<code>dict</code>的情况举例，定义<code>Test</code>类如下：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.<span class="built_in">dict</span> = <span class="built_in">dict</span>(</span><br><span class="line">            m_key=<span class="string">&#x27;m_value&#x27;</span></span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span>(<span class="params">self, key</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.<span class="built_in">dict</span>[key]</span><br></pre></td></tr></table></figure>
-
-<p>执行</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = Test()</span><br><span class="line"><span class="built_in">print</span>(x[<span class="string">&#x27;m_key&#x27;</span>])</span><br></pre></td></tr></table></figure>
-
-<p>输出</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">m_value</span><br></pre></td></tr></table></figure>
-
-<p>由此可以看出<code>__getitem__</code>方法主要用于获取类中的某些信息，当然你也可以定义其他数据结构，尝试写自己的<code>__getitem__</code>，通常在项目中的config文件中会使用。</p>
-]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>replace</title>
-    <url>/2022/01/13/python-replace/</url>
+    <title>数据格式转换</title>
+    <url>/2022/01/13/python-%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2/</url>
     <content><![CDATA[<p>本专栏的目的是通过算法题学习python技巧，并非实现算法题的最优解。</p>
 <span id="more"></span>
 
 
-<h1 id="剑指-Offer-05-替换空格"><a href="#剑指-Offer-05-替换空格" class="headerlink" title="剑指 Offer 05. 替换空格"></a>剑指 Offer 05. 替换空格</h1><p><a href="https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/">题目链接</a></p>
+<h1 id="剑指-Offer-20-表示数值的字符串"><a href="#剑指-Offer-20-表示数值的字符串" class="headerlink" title="剑指 Offer 20. 表示数值的字符串"></a>剑指 Offer 20. 表示数值的字符串</h1><p><a href="https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/">题目链接</a></p>
 <blockquote>
-<p>请实现一个函数，把字符串 s 中的每个空格替换成”%20”。</p>
-<p> </p>
+<p>请实现一个函数用来判断字符串是否表示数值（包括整数和小数）。</p>
+<p>数值（按顺序）可以分成以下几个部分：</p>
+<p>若干空格<br>一个 小数 或者 整数<br>（可选）一个 ‘e’ 或 ‘E’ ，后面跟着一个 整数<br>若干空格<br>小数（按顺序）可以分成以下几个部分：</p>
+<p>（可选）一个符号字符（’+’ 或 ‘-‘）<br>下述格式之一：<br>至少一位数字，后面跟着一个点 ‘.’<br>至少一位数字，后面跟着一个点 ‘.’ ，后面再跟着至少一位数字<br>一个点 ‘.’ ，后面跟着至少一位数字<br>整数（按顺序）可以分成以下几个部分：</p>
+<p>（可选）一个符号字符（’+’ 或 ‘-‘）<br>至少一位数字<br>部分数值列举如下：</p>
+<p>[“+100”, “5e2”, “-123”, “3.1416”, “-1E-16”, “0123”]<br>部分非数值列举如下：</p>
+<p>[“12e”, “1a3.14”, “1.2.3”, “+-5”, “12e+5.4”]
+ </p>
 <p>示例 1：</p>
-<p>输入：s = “We are happy.”<br>输出：”We%20are%20happy.”</p>
+<p>输入：s = “0”<br>输出：true<br>示例 2：</p>
+<p>输入：s = “e”<br>输出：false</p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">replaceSpace</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span></span><br><span class="line">        <span class="keyword">return</span> s.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;%20&#x27;</span>)</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>reverse</title>
-    <url>/2022/01/13/python-reverse/</url>
-    <content><![CDATA[<p>本专栏的目的是通过算法题学习python技巧，并非实现算法题的最优解。</p>
-<span id="more"></span>
-
-
-<h1 id="剑指-Offer-06-从尾到头打印链表"><a href="#剑指-Offer-06-从尾到头打印链表" class="headerlink" title="剑指 Offer 06. 从尾到头打印链表"></a>剑指 Offer 06. 从尾到头打印链表</h1><p><a href="https://leetcode-cn.com/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/">题目链接</a></p>
-<blockquote>
-<p>输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。</p>
-<p>示例 1：</p>
-<p>输入：head = [1,3,2]<br>输出：[2,3,1]</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reversePrint</span>(<span class="params">self, head: ListNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span></span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">while</span> head:</span><br><span class="line">            res.append(head.val)</span><br><span class="line">            head = head.<span class="built_in">next</span></span><br><span class="line">        res.reverse()</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>]]></content>
+<p>python可以直接实现字符串和数字的转换</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isNumber</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="built_in">float</span>(s)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>python</category>
       </categories>
@@ -444,6 +450,53 @@
 </blockquote>
 <p>列表递推表达式一行写完是不是很酷。</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">exchange</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span></span><br><span class="line">        <span class="keyword">return</span> [num <span class="keyword">for</span> num <span class="keyword">in</span> nums <span class="keyword">if</span> num % <span class="number">2</span> == <span class="number">1</span>] + [num <span class="keyword">for</span> num <span class="keyword">in</span> nums <span class="keyword">if</span> num % <span class="number">2</span> == <span class="number">0</span>]</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>in</title>
+    <url>/2022/01/13/python-in/</url>
+    <content><![CDATA[<p>本专栏的目的是通过算法题学习python技巧，并非实现算法题的最优解。</p>
+<span id="more"></span>
+
+
+<h1 id="剑指-Offer-04-二维数组中的查找"><a href="#剑指-Offer-04-二维数组中的查找" class="headerlink" title="剑指 Offer 04. 二维数组中的查找"></a>剑指 Offer 04. 二维数组中的查找</h1><p><a href="https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/">题目链接</a></p>
+<blockquote>
+<p>在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个高效的函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
+<p>示例:</p>
+<p>现有矩阵 matrix 如下：</p>
+<p>[[1,   4,  7, 11, 15],<br>  [2,   5,  8, 12, 19],<br>  [3,   6,  9, 16, 22],<br>  [10, 13, 14, 17, 24],<br>  [18, 21, 23, 26, 30]]<br>给定 target = 5，返回 true。</p>
+<p>给定 target = 20，返回 false。</p>
+</blockquote>
+<p>本题最优解是二维二分查找，或者将二维变成一维再用二分查找。但是在这里我们尝试一下用<code>in</code>来解决。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findNumberIn2DArray</span>(<span class="params">self, matrix: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]], target: <span class="built_in">int</span></span>) -&gt; <span class="built_in">bool</span>:</span></span><br><span class="line">        number_in_array = <span class="literal">False</span></span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> matrix:</span><br><span class="line">            number_in_array = number_in_array <span class="keyword">or</span> target <span class="keyword">in</span> line</span><br><span class="line">            <span class="keyword">if</span> number_in_array:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> number_in_array</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>深层拷贝与浅层拷贝</title>
+    <url>/2022/01/13/python-%E6%B7%B1%E5%B1%82%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E5%B1%82%E6%8B%B7%E8%B4%9D/</url>
+    <content><![CDATA[<p>python的深层拷贝和浅层拷贝是一个重要但容易忽视的基础知识，这可能会导致代码出现难以定位的错误。</p>
+<span id="more"></span>
+<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
+<li>浅层拷贝。可以理解为c语言中的引用，改变其中一个值，另一个也会跟着改变。</li>
+<li>深层拷贝。就是重新生成一个和该变量完全相同的变量，他们值的改变不会相互影响。</li>
+<li>在python中，数字、字符、元组等不可变对象类型都属于值传递，即深层拷贝。字典和列表等可变对象都属于引用传递，即浅层拷贝。<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1></li>
+<li>如果想要将当前列表赋值给一个新列表保存中间结果，采用深层拷贝。</li>
+<li>如果在dfs等算法中需要多层传递维护一个共用列表，那么可以直接采用浅层拷贝，即直接赋值。</li>
+<li>如果在函数中要修改输入的列表，且需要将修改后的结果传回去，那么浅层拷贝可以帮忙节省代码量。</li>
+<li>如果在函数中要修改输入的列表，而不想影响外部对应的列表，那么需要采用深层拷贝。<h1 id="深层拷贝和浅层拷贝的示例"><a href="#深层拷贝和浅层拷贝的示例" class="headerlink" title="深层拷贝和浅层拷贝的示例"></a>深层拷贝和浅层拷贝的示例</h1></li>
+<li>在这个示例中，直接用<code>=</code>赋值就是浅层拷贝，由于是引用传递，因此<code>a</code>的改变也会导致<code>b</code>的改变。而采用<code>.copy()</code>就是深层拷贝，因此<code>a</code>的改变不会传递给<code>c</code>。<br><img src="https://img-blog.csdnimg.cn/c87b0b418e3d4225bb27bab6f2a23687.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_Q1NETiBA6ZuB5a6HdXA=,size_26,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></li>
+</ul>
+]]></content>
       <categories>
         <category>python</category>
       </categories>
@@ -524,47 +577,6 @@
       </tags>
   </entry>
   <entry>
-    <title>深层拷贝与浅层拷贝</title>
-    <url>/2022/01/13/python-%E6%B7%B1%E5%B1%82%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E5%B1%82%E6%8B%B7%E8%B4%9D/</url>
-    <content><![CDATA[<p>python的深层拷贝和浅层拷贝是一个重要但容易忽视的基础知识，这可能会导致代码出现难以定位的错误。</p>
-<span id="more"></span>
-<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
-<li>浅层拷贝。可以理解为c语言中的引用，改变其中一个值，另一个也会跟着改变。</li>
-<li>深层拷贝。就是重新生成一个和该变量完全相同的变量，他们值的改变不会相互影响。</li>
-<li>在python中，数字、字符、元组等不可变对象类型都属于值传递，即深层拷贝。字典和列表等可变对象都属于引用传递，即浅层拷贝。<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1></li>
-<li>如果想要将当前列表赋值给一个新列表保存中间结果，采用深层拷贝。</li>
-<li>如果在dfs等算法中需要多层传递维护一个共用列表，那么可以直接采用浅层拷贝，即直接赋值。</li>
-<li>如果在函数中要修改输入的列表，且需要将修改后的结果传回去，那么浅层拷贝可以帮忙节省代码量。</li>
-<li>如果在函数中要修改输入的列表，而不想影响外部对应的列表，那么需要采用深层拷贝。<h1 id="深层拷贝和浅层拷贝的示例"><a href="#深层拷贝和浅层拷贝的示例" class="headerlink" title="深层拷贝和浅层拷贝的示例"></a>深层拷贝和浅层拷贝的示例</h1></li>
-<li>在这个示例中，直接用<code>=</code>赋值就是浅层拷贝，由于是引用传递，因此<code>a</code>的改变也会导致<code>b</code>的改变。而采用<code>.copy()</code>就是深层拷贝，因此<code>a</code>的改变不会传递给<code>c</code>。<br><img src="https://img-blog.csdnimg.cn/c87b0b418e3d4225bb27bab6f2a23687.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_Q1NETiBA6ZuB5a6HdXA=,size_26,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></li>
-</ul>
-]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>python生成器、迭代器、修饰器</title>
-    <url>/2022/01/13/python-%E7%94%9F%E6%88%90%E5%99%A8%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8%E3%80%81%E4%BF%AE%E9%A5%B0%E5%99%A8/</url>
-    <content><![CDATA[<p>python中的生成器、迭代器和修饰器是深度学习框架源码中常用的语法，本文简单介绍一下它们的概念。</p>
-<span id="more"></span>
-<h1 id="生成器"><a href="#生成器" class="headerlink" title="生成器"></a>生成器</h1><ul>
-<li>生成器就是定义一个算法或者函数，只不过它的返回值是yield，每次调用next()函数都能计算它下一个元素的值，直到抛出异常。可以理解为程序每次执行到yield的时候都会返回结果并且暂停，再次调用next()函数时就会从上次暂停的地方继续执行。<h1 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h1></li>
-<li>生成器就是迭代器的一种，迭代器首先是可以迭代的，也就是实现了iter方法的对象，而迭代器就是既实现了iter方法又实现了next方法。如列表就是python实现的一个迭代器。<h1 id="修饰器"><a href="#修饰器" class="headerlink" title="修饰器"></a>修饰器</h1></li>
-<li>修饰器的主要作用就是不改变原先代码的前提下增加额外的功能，也就是去包装另一个函数，更方便的在不对之前代码改动的前提下进行代码复用。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>生成器实践</title>
     <url>/2022/01/13/python-%E7%94%9F%E6%88%90%E5%99%A8%E5%AE%9E%E8%B7%B5/</url>
     <content><![CDATA[<p>本专栏的目的是通过算法题学习python技巧，并非实现算法题的最优解。</p>
@@ -588,6 +600,141 @@
       </categories>
       <tags>
         <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一个优质的软件开发流程必备要素</title>
+    <url>/2022/01/13/%E5%B7%A5%E4%BD%9C%E5%BF%83%E5%BE%97-%E4%B8%80%E4%B8%AA%E4%BC%98%E8%B4%A8%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B%E5%BF%85%E5%A4%87%E8%A6%81%E7%B4%A0/</url>
+    <content><![CDATA[<h1 id="codereview"><a href="#codereview" class="headerlink" title="codereview"></a>codereview</h1><ul>
+<li>在日常工作中想必大家都经历过codereview，这是一个艰苦卓绝、费心费时费力的工作，但确实如此的必要。有许多因素导致在各个企业中codereview的地位如此重要，其中最关键的就是防止破窗效应、保持项目组代码风格统一。这两者都是为了以后的协作开发提高工作效率而服务的。</li>
+<li>防止破窗效应可以让大家有主人翁意识，尽量避免因为一个人写的烂而导致大家一起写的烂。</li>
+<li>保持项目组代码风格统一可以提升新人和相互之间读代码的效率，让整个项目好像出自一个人之手。<span id="more"></span></li>
+</ul>
+<h1 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h1><ul>
+<li>相信从事软件开发工作的人们对单元测试都非常熟悉了，以单元测试驱动的编程过程有助于你将代码解耦，首先编写单元测试可以让你明确代码的接口、降低耦合程度、将它们变成一个个独立的模块，后续可以大幅降低工作量。</li>
+<li>相比之下，算法工程师的日常工作中可能对单元测试接触的比较少，但是也推荐大家去以单元测试的思路去编程，一样可以提高代码可读性，受益匪浅。</li>
+</ul>
+<h1 id="写文档、检查语法"><a href="#写文档、检查语法" class="headerlink" title="写文档、检查语法"></a>写文档、检查语法</h1><ul>
+<li>可以用pylint等工具检查语法。</li>
+<li>给每个函数写注释，然后用api自己生成代码文档。注释中可以包含输入、输出、示例等。这都有助于提高后期的工作效率。</li>
+<li>业务文档。</li>
+</ul>
+<h1 id="多人协作开发流程"><a href="#多人协作开发流程" class="headerlink" title="多人协作开发流程"></a>多人协作开发流程</h1><ol>
+<li>首先，想清楚需求。需求的提出者不一定明白自己想要什么，你们需要一遍遍的讨论去明确或者帮助需求方去明确他们想要的东西。</li>
+<li>设计单元测试，单元测试的作用是给实现这个需求进行模块的划分，想清楚自己的每个模块完成什么功能、提供什么接口。</li>
+<li>动手写代码，这是最简单的一步。不过要时刻谨记写出高可读的代码。可以参考我的<a href="https://blog.csdn.net/yanyuxiangtoday/article/details/119767148?spm=1001.2014.3001.5501">《编写可读代码的艺术》读书笔记</a>。</li>
+<li>写完之后要接入自动化测试流程，让别人的每次commit都会自动的进行单元测试，保证其他人的提交无害，保证多人协作代码的兼容。（如果你们还没有自动化测试流程，那为什么你不动手做呢？）</li>
+<li>自动集成自动发布（CICD）。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>工作心得</category>
+      </categories>
+      <tags>
+        <tag>CodeReview</tag>
+        <tag>CICD</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>root 手机</title>
+    <url>/2022/01/13/%E6%97%A5%E7%A7%AF%E7%A1%85%E6%AD%A5-root%E6%89%8B%E6%9C%BA/</url>
+    <content><![CDATA[<p>在Android开发的一个任务重需要root手机来检测手机的GPU使用情况，记录一下root手机方法，只需要两个命令。<br>首先，在命令行中启动adb shell，然后执行：</p>
+<span id="more"></span>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ adb root</span><br><span class="line">$ adb remount</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>日积硅步</category>
+      </categories>
+      <tags>
+        <tag>skill</tag>
+        <tag>adb</tag>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python生成器、迭代器、修饰器</title>
+    <url>/2022/01/13/python-%E7%94%9F%E6%88%90%E5%99%A8%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8%E3%80%81%E4%BF%AE%E9%A5%B0%E5%99%A8/</url>
+    <content><![CDATA[<p>python中的生成器、迭代器和修饰器是深度学习框架源码中常用的语法，本文简单介绍一下它们的概念。</p>
+<span id="more"></span>
+<h1 id="生成器"><a href="#生成器" class="headerlink" title="生成器"></a>生成器</h1><ul>
+<li>生成器就是定义一个算法或者函数，只不过它的返回值是yield，每次调用next()函数都能计算它下一个元素的值，直到抛出异常。可以理解为程序每次执行到yield的时候都会返回结果并且暂停，再次调用next()函数时就会从上次暂停的地方继续执行。<h1 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h1></li>
+<li>生成器就是迭代器的一种，迭代器首先是可以迭代的，也就是实现了iter方法的对象，而迭代器就是既实现了iter方法又实现了next方法。如列表就是python实现的一个迭代器。<h1 id="修饰器"><a href="#修饰器" class="headerlink" title="修饰器"></a>修饰器</h1></li>
+<li>修饰器的主要作用就是不改变原先代码的前提下增加额外的功能，也就是去包装另一个函数，更方便的在不对之前代码改动的前提下进行代码复用。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>cmakelists 写法</title>
+    <url>/2022/01/13/%E6%97%A5%E7%A7%AF%E7%A1%85%E6%AD%A5-cmakelists%20%E5%86%99%E6%B3%95/</url>
+    <content><![CDATA[<p>在某个项目的开发工作中需要用同事的代码，但是由于某些原因没有cmakelist，于是在学习过程中将一些内容记录下来。</p>
+<span id="more"></span>
+
+<p>对于一个包（要加入include，然后加入libpath）</p>
+<ul>
+<li>  首先要include_directories(/path/to/include)</li>
+<li>set(libXXX_path /path/to/lib)<ul>
+<li>  这一步的目的是将/path/to/lib赋值给libXXX_path，之后可以通过${libXXX_path}调用</li>
+</ul>
+</li>
+<li>  add_executable(project_name main.cpp)</li>
+<li>  target_link_libraries(${PROJECT_NAME} ${libXXX_path})</li>
+</ul>
+<p>file(GLOB opencvLibs /usr/local/Cellar/opencv/4.5.2/lib/libopencv_*.4.5.2.dylib)</p>
+<ul>
+<li>  含义是将 /usr/local/Cellar/opencv/4.5.2/lib/libopencv_*.4.5.2.dylib 赋值给opencvLibs，同时它是一个全局通配符，这样就不用一个个去查找包了</li>
+</ul>
+<p>设置执行文件输出路径</p>
+<ul>
+<li>  SET(EXECUTABLE_OUTPUT_PATH path/to/dump/）</li>
+</ul>
+<p>库的命名规则是</p>
+<ul>
+<li>  libXXX（也就是库xxx）</li>
+</ul>
+]]></content>
+      <categories>
+        <category>日积硅步</category>
+      </categories>
+      <tags>
+        <tag>skill</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>多cuda版本切换</title>
+    <url>/2022/01/13/%E6%97%A5%E7%A7%AF%E7%A1%85%E6%AD%A5-%E5%A4%9Acuda%E7%89%88%E6%9C%AC%E5%88%87%E6%8D%A2/</url>
+    <content><![CDATA[<p>日常开发中经常会需要多个cuda版本共存，本文介绍一下切换cuda版本的方法。</p>
+<span id="more"></span>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 删除之前的软连接</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> rm /usr/<span class="built_in">local</span>/cuda</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建新的软连接</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo ln -s /usr/<span class="built_in">local</span>/cuda-11.0 /usr/<span class="built_in">local</span>/cuda</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看当前cuda版本</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> nvcc --version</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>日积硅步</category>
+      </categories>
+      <tags>
+        <tag>cuda</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>yum update 与 upgrade 的区别</title>
+    <url>/2022/01/13/%E6%97%A5%E7%A7%AF%E7%A1%85%E6%AD%A5-yum%20update%E5%92%8Cupgrade%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<p>在日常开发工作中，根据不同的项目会需要配置环境和包，有时候会由于版本问题出现错误，这个时候通常就需要执行<code>update</code>或者<code>upgrade</code>命令，这里简要介绍一下区别。</p>
+<span id="more"></span>
+
+<p><code>yum -y update</code>命令升级所有包的同时也会升级软件和系统内核。<br><code>yum -y upgrade</code>命令只升级所有包，不升级软件和系统内核。</p>
+<p>通常我们采用<code>yum -y upgrade</code>命令即可。</p>
+]]></content>
+      <categories>
+        <category>日积硅步</category>
+      </categories>
+      <tags>
+        <tag>skill</tag>
+        <tag>yum</tag>
       </tags>
   </entry>
   <entry>
@@ -708,139 +855,6 @@
       </tags>
   </entry>
   <entry>
-    <title>数据格式转换</title>
-    <url>/2022/01/13/python-%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2/</url>
-    <content><![CDATA[<p>本专栏的目的是通过算法题学习python技巧，并非实现算法题的最优解。</p>
-<span id="more"></span>
-
-
-<h1 id="剑指-Offer-20-表示数值的字符串"><a href="#剑指-Offer-20-表示数值的字符串" class="headerlink" title="剑指 Offer 20. 表示数值的字符串"></a>剑指 Offer 20. 表示数值的字符串</h1><p><a href="https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/">题目链接</a></p>
-<blockquote>
-<p>请实现一个函数用来判断字符串是否表示数值（包括整数和小数）。</p>
-<p>数值（按顺序）可以分成以下几个部分：</p>
-<p>若干空格<br>一个 小数 或者 整数<br>（可选）一个 ‘e’ 或 ‘E’ ，后面跟着一个 整数<br>若干空格<br>小数（按顺序）可以分成以下几个部分：</p>
-<p>（可选）一个符号字符（’+’ 或 ‘-‘）<br>下述格式之一：<br>至少一位数字，后面跟着一个点 ‘.’<br>至少一位数字，后面跟着一个点 ‘.’ ，后面再跟着至少一位数字<br>一个点 ‘.’ ，后面跟着至少一位数字<br>整数（按顺序）可以分成以下几个部分：</p>
-<p>（可选）一个符号字符（’+’ 或 ‘-‘）<br>至少一位数字<br>部分数值列举如下：</p>
-<p>[“+100”, “5e2”, “-123”, “3.1416”, “-1E-16”, “0123”]<br>部分非数值列举如下：</p>
-<p>[“12e”, “1a3.14”, “1.2.3”, “+-5”, “12e+5.4”]
- </p>
-<p>示例 1：</p>
-<p>输入：s = “0”<br>输出：true<br>示例 2：</p>
-<p>输入：s = “e”<br>输出：false</p>
-</blockquote>
-<p>python可以直接实现字符串和数字的转换</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isNumber</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="built_in">float</span>(s)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>cmakelists 写法</title>
-    <url>/2022/01/13/%E6%97%A5%E7%A7%AF%E7%A1%85%E6%AD%A5-cmakelists%20%E5%86%99%E6%B3%95/</url>
-    <content><![CDATA[<p>在某个项目的开发工作中需要用同事的代码，但是由于某些原因没有cmakelist，于是在学习过程中将一些内容记录下来。</p>
-<span id="more"></span>
-
-<p>对于一个包（要加入include，然后加入libpath）</p>
-<ul>
-<li>  首先要include_directories(/path/to/include)</li>
-<li>set(libXXX_path /path/to/lib)<ul>
-<li>  这一步的目的是将/path/to/lib赋值给libXXX_path，之后可以通过${libXXX_path}调用</li>
-</ul>
-</li>
-<li>  add_executable(project_name main.cpp)</li>
-<li>  target_link_libraries(${PROJECT_NAME} ${libXXX_path})</li>
-</ul>
-<p>file(GLOB opencvLibs /usr/local/Cellar/opencv/4.5.2/lib/libopencv_*.4.5.2.dylib)</p>
-<ul>
-<li>  含义是将 /usr/local/Cellar/opencv/4.5.2/lib/libopencv_*.4.5.2.dylib 赋值给opencvLibs，同时它是一个全局通配符，这样就不用一个个去查找包了</li>
-</ul>
-<p>设置执行文件输出路径</p>
-<ul>
-<li>  SET(EXECUTABLE_OUTPUT_PATH path/to/dump/）</li>
-</ul>
-<p>库的命名规则是</p>
-<ul>
-<li>  libXXX（也就是库xxx）</li>
-</ul>
-]]></content>
-      <categories>
-        <category>日积硅步</category>
-      </categories>
-      <tags>
-        <tag>skill</tag>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>一个优质的软件开发流程必备要素</title>
-    <url>/2022/01/13/%E5%B7%A5%E4%BD%9C%E5%BF%83%E5%BE%97-%E4%B8%80%E4%B8%AA%E4%BC%98%E8%B4%A8%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B%E5%BF%85%E5%A4%87%E8%A6%81%E7%B4%A0/</url>
-    <content><![CDATA[<h1 id="codereview"><a href="#codereview" class="headerlink" title="codereview"></a>codereview</h1><ul>
-<li>在日常工作中想必大家都经历过codereview，这是一个艰苦卓绝、费心费时费力的工作，但确实如此的必要。有许多因素导致在各个企业中codereview的地位如此重要，其中最关键的就是防止破窗效应、保持项目组代码风格统一。这两者都是为了以后的协作开发提高工作效率而服务的。</li>
-<li>防止破窗效应可以让大家有主人翁意识，尽量避免因为一个人写的烂而导致大家一起写的烂。</li>
-<li>保持项目组代码风格统一可以提升新人和相互之间读代码的效率，让整个项目好像出自一个人之手。<span id="more"></span></li>
-</ul>
-<h1 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h1><ul>
-<li>相信从事软件开发工作的人们对单元测试都非常熟悉了，以单元测试驱动的编程过程有助于你将代码解耦，首先编写单元测试可以让你明确代码的接口、降低耦合程度、将它们变成一个个独立的模块，后续可以大幅降低工作量。</li>
-<li>相比之下，算法工程师的日常工作中可能对单元测试接触的比较少，但是也推荐大家去以单元测试的思路去编程，一样可以提高代码可读性，受益匪浅。</li>
-</ul>
-<h1 id="写文档、检查语法"><a href="#写文档、检查语法" class="headerlink" title="写文档、检查语法"></a>写文档、检查语法</h1><ul>
-<li>可以用pylint等工具检查语法。</li>
-<li>给每个函数写注释，然后用api自己生成代码文档。注释中可以包含输入、输出、示例等。这都有助于提高后期的工作效率。</li>
-<li>业务文档。</li>
-</ul>
-<h1 id="多人协作开发流程"><a href="#多人协作开发流程" class="headerlink" title="多人协作开发流程"></a>多人协作开发流程</h1><ol>
-<li>首先，想清楚需求。需求的提出者不一定明白自己想要什么，你们需要一遍遍的讨论去明确或者帮助需求方去明确他们想要的东西。</li>
-<li>设计单元测试，单元测试的作用是给实现这个需求进行模块的划分，想清楚自己的每个模块完成什么功能、提供什么接口。</li>
-<li>动手写代码，这是最简单的一步。不过要时刻谨记写出高可读的代码。可以参考我的<a href="https://blog.csdn.net/yanyuxiangtoday/article/details/119767148?spm=1001.2014.3001.5501">《编写可读代码的艺术》读书笔记</a>。</li>
-<li>写完之后要接入自动化测试流程，让别人的每次commit都会自动的进行单元测试，保证其他人的提交无害，保证多人协作代码的兼容。（如果你们还没有自动化测试流程，那为什么你不动手做呢？）</li>
-<li>自动集成自动发布（CICD）。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>工作心得</category>
-      </categories>
-      <tags>
-        <tag>CodeReview</tag>
-        <tag>CICD</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>yum update 与 upgrade 的区别</title>
-    <url>/2022/01/13/%E6%97%A5%E7%A7%AF%E7%A1%85%E6%AD%A5-yum%20update%E5%92%8Cupgrade%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<p>在日常开发工作中，根据不同的项目会需要配置环境和包，有时候会由于版本问题出现错误，这个时候通常就需要执行<code>update</code>或者<code>upgrade</code>命令，这里简要介绍一下区别。</p>
-<span id="more"></span>
-
-<p><code>yum -y update</code>命令升级所有包的同时也会升级软件和系统内核。<br><code>yum -y upgrade</code>命令只升级所有包，不升级软件和系统内核。</p>
-<p>通常我们采用<code>yum -y upgrade</code>命令即可。</p>
-]]></content>
-      <categories>
-        <category>日积硅步</category>
-      </categories>
-      <tags>
-        <tag>skill</tag>
-        <tag>yum</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>root 手机</title>
-    <url>/2022/01/13/%E6%97%A5%E7%A7%AF%E7%A1%85%E6%AD%A5-root%E6%89%8B%E6%9C%BA/</url>
-    <content><![CDATA[<p>在Android开发的一个任务重需要root手机来检测手机的GPU使用情况，记录一下root手机方法，只需要两个命令。<br>首先，在命令行中启动adb shell，然后执行：</p>
-<span id="more"></span>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ adb root</span><br><span class="line">$ adb remount</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>日积硅步</category>
-      </categories>
-      <tags>
-        <tag>skill</tag>
-        <tag>adb</tag>
-        <tag>Android</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>1x1卷积核的作用和使用场景</title>
     <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-1x1%E5%8D%B7%E7%A7%AF%E6%A0%B8%E7%9A%84%E4%BD%9C%E7%94%A8%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/</url>
     <content><![CDATA[<p>1x1卷积核虽然不能增加特征的感受野，但仍然常被采用，本文简单介绍它的几点作用。</p>
@@ -849,39 +863,6 @@
 <li>降低通道数。模型的计算计算量和复杂度与每一层的通道数息息相关，如果想要降低某一层的通道数同时又想对特征进行一次组合，那么就可以采用1x1的卷积核。</li>
 <li>多通道整合。降低通道数的同事又可以进行一次通道整合，通常见于网络或者块的输出增，特征通过concat之后通常需要一次信息的整合，这个时候就可以采用1x1的卷积核。</li>
 <li>实现通道数的改变。在某些层中，可能希望实现通道数的增加而不是减少，这个时候又不想增加太多的计算量，就可以采用1x1的卷积核来完成。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CNN为什么比DNN在图像领域更具优势</title>
-    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-CNN%E4%B8%BA%E4%BB%80%E4%B9%88%E6%AF%94DNN%E5%9C%A8%E5%9B%BE%E5%83%8F%E9%A2%86%E5%9F%9F%E6%9B%B4%E5%85%B7%E4%BC%98%E5%8A%BF/</url>
-    <content><![CDATA[<h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><ul>
-<li>CNN模型输入的一般都是图像矩阵，然后通过卷积操作进行特征提取，每次卷积都会考虑特征的上下文信息，并且随着模型的加深，从浅层提取的局部特征不断地处理、整合得到深层的高维特征。在这个过程中，特征的整合是缓慢有序发生的。同时，卷及操作还具有平移不变形特性，只管来解释就是：一个物体在图像中的任何区域都能被正确识别。因此，CNN在处理图像特征时候更具优势。</li>
-<li>DNN的输入时向量形式，并未考虑到图像的结构信息，每一层都会做一个全局的特征提取，但是由于这个过程并非递进的，因此最终的特征质量并不好，因此难以在图像领域发挥出优势。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>BN、LN、WN的比较</title>
-    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-BN%E3%80%81LN%E3%80%81WN%E7%9A%84%E6%AF%94%E8%BE%83/</url>
-    <content><![CDATA[<h1 id="BN"><a href="#BN" class="headerlink" title="BN"></a>BN</h1><ul>
-<li>batch normalization，使之在激活函数接收输入之前将数据的分布规范到标准正态分布中，使得激活函数的输入值落在对输入比较敏感的区域，也就是梯度较大的区域。从而避免梯度消失、减少训练时间。</li>
-<li>BN比较适合batch较大的场景，并且数据分布要相对比较接近。<span id="more"></span>
-<h1 id="WN"><a href="#WN" class="headerlink" title="WN"></a>WN</h1></li>
-<li>weigit normalization，主要就是对网络的权重进行正则化，使得网络不要过于复杂，权重不要过大，可以防止过拟合。<h1 id="LN"><a href="#LN" class="headerlink" title="LN"></a>LN</h1></li>
-<li>layer normalization，它相对于BN，不依赖于整个batch，而是针对某一层的输入进行规范化处理，比较适用于小batch、RNN、MLP场景中。</li>
 </ul>
 ]]></content>
       <categories>
@@ -933,62 +914,14 @@
       </tags>
   </entry>
   <entry>
-    <title>Kmeans</title>
-    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-Kmeans/</url>
-    <content><![CDATA[<p>Kmeans是一个原理较为简单的聚类模型，它的操作步骤是</p>
-<ol>
-<li>随机选择k个点作为初始类心。</li>
-<li>计算每个元素和k个类心之间的距离并归类到最近的类里面。</li>
-<li>以每个类的均值作为新的类心。</li>
-<li>重复2和3知道所有的类心不再变化。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>多cuda版本切换</title>
-    <url>/2022/01/13/%E6%97%A5%E7%A7%AF%E7%A1%85%E6%AD%A5-%E5%A4%9Acuda%E7%89%88%E6%9C%AC%E5%88%87%E6%8D%A2/</url>
-    <content><![CDATA[<p>日常开发中经常会需要多个cuda版本共存，本文介绍一下切换cuda版本的方法。</p>
-<span id="more"></span>
-
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 删除之前的软连接</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> rm /usr/<span class="built_in">local</span>/cuda</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建新的软连接</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo ln -s /usr/<span class="built_in">local</span>/cuda-11.0 /usr/<span class="built_in">local</span>/cuda</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看当前cuda版本</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> nvcc --version</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>日积硅步</category>
-      </categories>
-      <tags>
-        <tag>cuda</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>查看cuda和cudnn版本</title>
-    <url>/2022/01/13/%E6%97%A5%E7%A7%AF%E7%A1%85%E6%AD%A5-%E6%9F%A5%E7%9C%8Bcuda%E5%92%8Ccudnn%E7%89%88%E6%9C%AC/</url>
-    <content><![CDATA[<p>cuda版本</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat /usr/<span class="built_in">local</span>/cuda/version.txt</span></span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-
-<p>cudnn版本</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat /usr/<span class="built_in">local</span>/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>日积硅步</category>
-      </categories>
-      <tags>
-        <tag>cuda</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>L1正则化和L2正则化的区别</title>
-    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-L1%E6%AD%A3%E5%88%99%E5%8C%96%E5%92%8CL2%E6%AD%A3%E5%88%99%E5%8C%96%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
-<li>L1正则化就是在损失函数中加的正则化项为模型参数的L1范数。</li>
-<li>L2正则化就是在损失函数中加的正则化项为模型参数的L2范数。<span id="more"></span>
-<h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1></li>
-<li>通过在损失函数中增加权重正则化项，可以避免模型变得过于复杂或者说防止模型的参数过大，从而提升模型的泛化性能。<h1 id="L1正则化和L2正则化的差异"><a href="#L1正则化和L2正则化的差异" class="headerlink" title="L1正则化和L2正则化的差异"></a>L1正则化和L2正则化的差异</h1></li>
-<li>加上L1范数容易得到特征的系数解，也就是很多参数为0，加上L2范数得到的特征解比较平滑，但是同样能保证解中接近于0的比较多。从倒数的角度来看，L1范数在零点处有个突变，也就是极小值点，因此很容易优化到这个极值点上。</li>
+    <title>BN、LN、WN的比较</title>
+    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-BN%E3%80%81LN%E3%80%81WN%E7%9A%84%E6%AF%94%E8%BE%83/</url>
+    <content><![CDATA[<h1 id="BN"><a href="#BN" class="headerlink" title="BN"></a>BN</h1><ul>
+<li>batch normalization，使之在激活函数接收输入之前将数据的分布规范到标准正态分布中，使得激活函数的输入值落在对输入比较敏感的区域，也就是梯度较大的区域。从而避免梯度消失、减少训练时间。</li>
+<li>BN比较适合batch较大的场景，并且数据分布要相对比较接近。<span id="more"></span>
+<h1 id="WN"><a href="#WN" class="headerlink" title="WN"></a>WN</h1></li>
+<li>weigit normalization，主要就是对网络的权重进行正则化，使得网络不要过于复杂，权重不要过大，可以防止过拟合。<h1 id="LN"><a href="#LN" class="headerlink" title="LN"></a>LN</h1></li>
+<li>layer normalization，它相对于BN，不依赖于整个batch，而是针对某一层的输入进行规范化处理，比较适用于小batch、RNN、MLP场景中。</li>
 </ul>
 ]]></content>
       <categories>
@@ -1021,16 +954,64 @@
       </tags>
   </entry>
   <entry>
-    <title>ReLU的特点和使用场景</title>
-    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-ReLU%E7%9A%84%E7%89%B9%E7%82%B9%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/</url>
-    <content><![CDATA[<p>ReLU是深度学习任务中常见的激活函数，这里简单介绍它的特点和使用场景。</p>
+    <title>查看cuda和cudnn版本</title>
+    <url>/2022/01/13/%E6%97%A5%E7%A7%AF%E7%A1%85%E6%AD%A5-%E6%9F%A5%E7%9C%8Bcuda%E5%92%8Ccudnn%E7%89%88%E6%9C%AC/</url>
+    <content><![CDATA[<p>cuda版本</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat /usr/<span class="built_in">local</span>/cuda/version.txt</span></span><br></pre></td></tr></table></figure>
 <span id="more"></span>
-<h1 id="ReLU的特点"><a href="#ReLU的特点" class="headerlink" title="ReLU的特点"></a>ReLU的特点</h1><ul>
-<li>ReLU是一个分段函数，当输入小于零的时候，输出为零，当输入大于零的时候，将输入值作为输出。<h1 id="ReLU的使用场景"><a href="#ReLU的使用场景" class="headerlink" title="ReLU的使用场景"></a>ReLU的使用场景</h1></li>
-<li>主要用于避免梯度消失和梯度爆炸。对于梯度消失，因为sigmoid的梯度最大值只有0.25，在链式求导过程中可能就会导致梯度消失，而ReLU在激活函数大于零的时候梯度恒为1，因此可以有效避免梯度消失和梯度爆炸的现象。<a href="https://blog.csdn.net/yanyuxiangtoday/article/details/119789602?spm=1001.2014.3001.5501">点我看梯度消失和梯度爆炸的概念和解决方案</a></li>
-<li>另一方面，采用ReLU激活函数能够使得网络的收敛速度加快。</li>
-<li>但是如果说希望网络最后输出一张图片，那么肯定是希望这张图像的像素在0到1之间，这个时候仍然可以在输出层采用sigmoid激活函数，将网络的输出限制到0到1之间。</li>
+
+<p>cudnn版本</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat /usr/<span class="built_in">local</span>/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>日积硅步</category>
+      </categories>
+      <tags>
+        <tag>cuda</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CNN为什么比DNN在图像领域更具优势</title>
+    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-CNN%E4%B8%BA%E4%BB%80%E4%B9%88%E6%AF%94DNN%E5%9C%A8%E5%9B%BE%E5%83%8F%E9%A2%86%E5%9F%9F%E6%9B%B4%E5%85%B7%E4%BC%98%E5%8A%BF/</url>
+    <content><![CDATA[<h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><ul>
+<li>CNN模型输入的一般都是图像矩阵，然后通过卷积操作进行特征提取，每次卷积都会考虑特征的上下文信息，并且随着模型的加深，从浅层提取的局部特征不断地处理、整合得到深层的高维特征。在这个过程中，特征的整合是缓慢有序发生的。同时，卷及操作还具有平移不变形特性，只管来解释就是：一个物体在图像中的任何区域都能被正确识别。因此，CNN在处理图像特征时候更具优势。</li>
+<li>DNN的输入时向量形式，并未考虑到图像的结构信息，每一层都会做一个全局的特征提取，但是由于这个过程并非递进的，因此最终的特征质量并不好，因此难以在图像领域发挥出优势。</li>
 </ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>L1正则化和L2正则化的区别</title>
+    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-L1%E6%AD%A3%E5%88%99%E5%8C%96%E5%92%8CL2%E6%AD%A3%E5%88%99%E5%8C%96%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
+<li>L1正则化就是在损失函数中加的正则化项为模型参数的L1范数。</li>
+<li>L2正则化就是在损失函数中加的正则化项为模型参数的L2范数。<span id="more"></span>
+<h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1></li>
+<li>通过在损失函数中增加权重正则化项，可以避免模型变得过于复杂或者说防止模型的参数过大，从而提升模型的泛化性能。<h1 id="L1正则化和L2正则化的差异"><a href="#L1正则化和L2正则化的差异" class="headerlink" title="L1正则化和L2正则化的差异"></a>L1正则化和L2正则化的差异</h1></li>
+<li>加上L1范数容易得到特征的系数解，也就是很多参数为0，加上L2范数得到的特征解比较平滑，但是同样能保证解中接近于0的比较多。从倒数的角度来看，L1范数在零点处有个突变，也就是极小值点，因此很容易优化到这个极值点上。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Kmeans</title>
+    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-Kmeans/</url>
+    <content><![CDATA[<p>Kmeans是一个原理较为简单的聚类模型，它的操作步骤是</p>
+<ol>
+<li>随机选择k个点作为初始类心。</li>
+<li>计算每个元素和k个类心之间的距离并归类到最近的类里面。</li>
+<li>以每个类的均值作为新的类心。</li>
+<li>重复2和3知道所有的类心不再变化。</li>
+</ol>
 ]]></content>
       <categories>
         <category>深度学习</category>
@@ -1046,6 +1027,41 @@
 <span id="more"></span>
 <ul>
 <li>因为通过串联两个3x3的卷积核可以达到5x5卷积核的感受野，同时降低了模型的参数量。并且多个3x3卷积核的串联有更多的激活函数，有更强的非线性表达能力。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>smooth loss</title>
+    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-smooth%20loss/</url>
+    <content><![CDATA[<p>smooth loss通常用在各种图像重建任务中主要解决平滑问题，如图像分割、深度估计、视频插帧等。</p>
+<span id="more"></span>
+<h1 id="常见的计算方法"><a href="#常见的计算方法" class="headerlink" title="常见的计算方法"></a>常见的计算方法</h1><ul>
+<li>通常smooth loss都是先计算目标图像在x方向和y方向上的梯度，然后用目标图像的梯度乘以原始图像梯度的对数，再对结果进行reduce_mean就得到了smooth loss，用于保证目标图像的梯度不能过大，进而保证看起来更加平滑。在如医学图像重建的任务重是非常必要的一项。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>dropout的原理、特点以及作用</title>
+    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-dropout%E7%9A%84%E5%8E%9F%E7%90%86%E3%80%81%E7%89%B9%E7%82%B9%E4%BB%A5%E5%8F%8A%E4%BD%9C%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="dropout的原理"><a href="#dropout的原理" class="headerlink" title="dropout的原理"></a>dropout的原理</h1><ul>
+<li>dropout就是对于每个神经元，都有一定的概率被舍弃，也就是让其输出置零，进而不更新权重。<span id="more"></span>
+<h1 id="dropout的特点"><a href="#dropout的特点" class="headerlink" title="dropout的特点"></a>dropout的特点</h1></li>
+<li>只在训练的时候开启，验证的时候不开启。</li>
+<li>值得注意的是，dropout的舍弃概率是作用到每个神经元上的，并非总共有效的神经元占当前layer的50%（或其他概率），而是当前layer的当前参数有50%（或其他概率）的可能被舍弃。</li>
+<li>最早dropout是在全连接层使用的，后来在卷积层中也增加了dropout功能，当前的一些常见框架都有提供相关API。<h1 id="dropout的作用"><a href="#dropout的作用" class="headerlink" title="dropout的作用"></a>dropout的作用</h1></li>
+<li>主要用于防止模型过拟合。</li>
 </ul>
 ]]></content>
       <categories>
@@ -1090,15 +1106,31 @@
       </tags>
   </entry>
   <entry>
-    <title>dropout的原理、特点以及作用</title>
-    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-dropout%E7%9A%84%E5%8E%9F%E7%90%86%E3%80%81%E7%89%B9%E7%82%B9%E4%BB%A5%E5%8F%8A%E4%BD%9C%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="dropout的原理"><a href="#dropout的原理" class="headerlink" title="dropout的原理"></a>dropout的原理</h1><ul>
-<li>dropout就是对于每个神经元，都有一定的概率被舍弃，也就是让其输出置零，进而不更新权重。<span id="more"></span>
-<h1 id="dropout的特点"><a href="#dropout的特点" class="headerlink" title="dropout的特点"></a>dropout的特点</h1></li>
-<li>只在训练的时候开启，验证的时候不开启。</li>
-<li>值得注意的是，dropout的舍弃概率是作用到每个神经元上的，并非总共有效的神经元占当前layer的50%（或其他概率），而是当前layer的当前参数有50%（或其他概率）的可能被舍弃。</li>
-<li>最早dropout是在全连接层使用的，后来在卷积层中也增加了dropout功能，当前的一些常见框架都有提供相关API。<h1 id="dropout的作用"><a href="#dropout的作用" class="headerlink" title="dropout的作用"></a>dropout的作用</h1></li>
-<li>主要用于防止模型过拟合。</li>
+    <title>sigmoid、tanh、relu激活函数</title>
+    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-sigmoid%E3%80%81tanh%E3%80%81relu%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<p>sigmod、tanh、relu都是深度学习任务中常见的激活函数，主要作用是让模型获得非线性表达能力，这篇文章简单对它们做一个介绍。</p>
+<span id="more"></span>
+<h1 id="sigmoid"><a href="#sigmoid" class="headerlink" title="sigmoid"></a>sigmoid</h1><ul>
+<li>sigmoid激活函数的取值分布在0到1之间，在深度学习再度被人们关注的初期是最常被采用的激活函数，但是由于网络层数的加深，采用sigmoid激活函数常常会导致梯度消失。另外，它的均值是0.5，并不是以0为中心的，因此也不便于计算。</li>
+<li>但是如果在输出层想将输出规范到0到1之间，那么就可以直接采用sigmoid激活函数。相应的，想得到其他输出只需要在乘以缩放系数并加上偏置即可。<h1 id="tanh"><a href="#tanh" class="headerlink" title="tanh"></a>tanh</h1></li>
+<li>tanh激活函数取值在-1到1，它的均值为0，弥补了sigmoid均值非0的缺点，但是和sigmoid激活函数一样可能在深层网络中导致梯度消失。<h1 id="relu"><a href="#relu" class="headerlink" title="relu"></a>relu</h1></li>
+<li>relu主要是为了解决梯度消失和梯度爆炸问题产生的，它是一个分段函数，当小于0的时候梯度恒为0，大于0的时候梯度恒为1，因此不会出现产生梯度消失或梯度爆炸问题。并且由于将负数全部置零了也会因为降低了乘加器的调用从而加快模型推理的速度，只是受益并不大。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>inception的提出背景和主要特点</title>
+    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-inception%E7%9A%84%E6%8F%90%E5%87%BA%E8%83%8C%E6%99%AF%E5%92%8C%E4%B8%BB%E8%A6%81%E7%89%B9%E7%82%B9/</url>
+    <content><![CDATA[<h1 id="inception的提出背景"><a href="#inception的提出背景" class="headerlink" title="inception的提出背景"></a>inception的提出背景</h1><ul>
+<li>inception最早是Google在2014年在GoogLeNet中提出的，在2014年业界的共识是增加模型的参数量可以提高模型精度，那时业界远没触碰到模型复杂度的瓶颈，学者都是通过增加网络深度来堆叠参数的，而google则是通过增加网络的宽度来堆叠参数。<span id="more"></span>
+<h1 id="inception的主要特点"><a href="#inception的主要特点" class="headerlink" title="inception的主要特点"></a>inception的主要特点</h1></li>
+<li>它的主要特征就是将常用的卷积核：1x1、3x3、5x5和池化操作堆叠在一起，这样让模型自适应的去选择合适的感受野，同时增加了网络的宽度和参数量，在那一年的ImageNet中取得了极好的成绩。</li>
 </ul>
 ]]></content>
       <categories>
@@ -1126,12 +1158,17 @@
       </tags>
   </entry>
   <entry>
-    <title>inception的提出背景和主要特点</title>
-    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-inception%E7%9A%84%E6%8F%90%E5%87%BA%E8%83%8C%E6%99%AF%E5%92%8C%E4%B8%BB%E8%A6%81%E7%89%B9%E7%82%B9/</url>
-    <content><![CDATA[<h1 id="inception的提出背景"><a href="#inception的提出背景" class="headerlink" title="inception的提出背景"></a>inception的提出背景</h1><ul>
-<li>inception最早是Google在2014年在GoogLeNet中提出的，在2014年业界的共识是增加模型的参数量可以提高模型精度，那时业界远没触碰到模型复杂度的瓶颈，学者都是通过增加网络深度来堆叠参数的，而google则是通过增加网络的宽度来堆叠参数。<span id="more"></span>
-<h1 id="inception的主要特点"><a href="#inception的主要特点" class="headerlink" title="inception的主要特点"></a>inception的主要特点</h1></li>
-<li>它的主要特征就是将常用的卷积核：1x1、3x3、5x5和池化操作堆叠在一起，这样让模型自适应的去选择合适的感受野，同时增加了网络的宽度和参数量，在那一年的ImageNet中取得了极好的成绩。</li>
+    <title>tensorflow和pytorch的相同点和区别</title>
+    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-tensorflow%E5%92%8Cpytorch%E7%9A%84%E7%9B%B8%E5%90%8C%E7%82%B9%E5%92%8C%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<h1 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h1><ul>
+<li>tensorflow和pytorch都是为深度学习提供的开源框架。</li>
+<li>都有专门的团队在维护和更新。</li>
+<li>社区环境都很好，开源项目、模型很多。<span id="more"></span>
+<h1 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h1></li>
+<li>两者最主要的区别在于tensorflow是基于静态图构图的，pytorch是基于动态图构图的，这两者的差异主要是框架设计时的思路导致的。</li>
+<li>直观来说，tensorflow在搭建框架的时候是没有真正的数据传递的，可以理解为设计模型和运行模型、传递数据是分开的，在调试时无法读取对应op的具体输入输出。</li>
+<li>pytorch是基于动态图构图的，可以理解为设计模型和运行模型、传递数据是同步进行的，在调试时断点打在哪里，就能看到具体的对应数据。</li>
+<li>通常，tensorflow提供的API更加底层，而pytorch提供的API封装的更为完善，如果想深入进行算子、op的设计，更建议使用tensorflow。如果想快速的搭建模型，比如打比赛时做model fusion等常见操作，则pytroch会让你的速度更快。</li>
 </ul>
 ]]></content>
       <categories>
@@ -1142,31 +1179,12 @@
       </tags>
   </entry>
   <entry>
-    <title>smooth loss</title>
-    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-smooth%20loss/</url>
-    <content><![CDATA[<p>smooth loss通常用在各种图像重建任务中主要解决平滑问题，如图像分割、深度估计、视频插帧等。</p>
+    <title>景深</title>
+    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E4%BB%80%E4%B9%88%E6%98%AF%E6%99%AF%E6%B7%B1/</url>
+    <content><![CDATA[<p>在计算机视觉中的一些任务中可能会出现景深的概念，如深度估计、SLAM、视觉里程计等，这篇文章简单介绍一下景深概念。</p>
 <span id="more"></span>
-<h1 id="常见的计算方法"><a href="#常见的计算方法" class="headerlink" title="常见的计算方法"></a>常见的计算方法</h1><ul>
-<li>通常smooth loss都是先计算目标图像在x方向和y方向上的梯度，然后用目标图像的梯度乘以原始图像梯度的对数，再对结果进行reduce_mean就得到了smooth loss，用于保证目标图像的梯度不能过大，进而保证看起来更加平滑。在如医学图像重建的任务重是非常必要的一项。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sigmoid、tanh、relu激活函数</title>
-    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-sigmoid%E3%80%81tanh%E3%80%81relu%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<p>sigmod、tanh、relu都是深度学习任务中常见的激活函数，主要作用是让模型获得非线性表达能力，这篇文章简单对它们做一个介绍。</p>
-<span id="more"></span>
-<h1 id="sigmoid"><a href="#sigmoid" class="headerlink" title="sigmoid"></a>sigmoid</h1><ul>
-<li>sigmoid激活函数的取值分布在0到1之间，在深度学习再度被人们关注的初期是最常被采用的激活函数，但是由于网络层数的加深，采用sigmoid激活函数常常会导致梯度消失。另外，它的均值是0.5，并不是以0为中心的，因此也不便于计算。</li>
-<li>但是如果在输出层想将输出规范到0到1之间，那么就可以直接采用sigmoid激活函数。相应的，想得到其他输出只需要在乘以缩放系数并加上偏置即可。<h1 id="tanh"><a href="#tanh" class="headerlink" title="tanh"></a>tanh</h1></li>
-<li>tanh激活函数取值在-1到1，它的均值为0，弥补了sigmoid均值非0的缺点，但是和sigmoid激活函数一样可能在深层网络中导致梯度消失。<h1 id="relu"><a href="#relu" class="headerlink" title="relu"></a>relu</h1></li>
-<li>relu主要是为了解决梯度消失和梯度爆炸问题产生的，它是一个分段函数，当小于0的时候梯度恒为0，大于0的时候梯度恒为1，因此不会出现产生梯度消失或梯度爆炸问题。并且由于将负数全部置零了也会因为降低了乘加器的调用从而加快模型推理的速度，只是受益并不大。</li>
+<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
+<li>我们拍照的时候都知道，对焦在相机成像平面上的物体才是清晰的，而物体的对焦平面可以通过相机镜头来控制，同时也与物体和拍摄点之间的距离有关，当我们对焦到距离拍摄点稍远的物体时，近距离的物体就会变得模糊，反之亦然。但是，我们对焦到一个物体之后，可以看到对焦点附近的物体成像也都是清晰的，而它们处于不同的焦平面上，这是为什么呢？因为在焦平面的前后会出现一个弥散斑，这个弥散斑的直观影响就是对焦平面附近的几个焦平面也会有清晰的成像，而能够清晰成像的这一段距离范围，就是景深。</li>
 </ul>
 ]]></content>
       <categories>
@@ -1228,20 +1246,6 @@
       </tags>
   </entry>
   <entry>
-    <title>优势比的概念</title>
-    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E4%BC%98%E5%8A%BF%E6%AF%94%E7%9A%84%E6%A6%82%E5%BF%B5/</url>
-    <content><![CDATA[<h1 id="优势比"><a href="#优势比" class="headerlink" title="优势比"></a>优势比</h1><ul>
-<li>假设在m个独立自变量，x1、x2…xm的作用下，记事件y取1的概率为：<img src="https://img-blog.csdnimg.cn/e8019f9b4fd64ecc90380e1ff634bd98.png" alt="在这里插入图片描述"><br>则事件y取0的概率为p = 1 - p，则取1和取0的概率之比为：<br><img src="https://img-blog.csdnimg.cn/f194b8ce950b4c9cb9fe790d3f84bcdb.png" alt="在这里插入图片描述"><br>上式就称为事件的优势比。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>三维重建中的点云、体素、mesh</title>
     <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E4%B8%89%E7%BB%B4%E9%87%8D%E5%BB%BA%E4%B8%AD%E7%9A%84%E7%82%B9%E4%BA%91%E3%80%81%E4%BD%93%E7%B4%A0%E3%80%81mesh/</url>
     <content><![CDATA[<p>点云、体素和mesh都是三维重建中常用的三维物体的表示方法，这篇博客简单做个介绍。</p>
@@ -1263,51 +1267,10 @@
       </tags>
   </entry>
   <entry>
-    <title>景深</title>
-    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E4%BB%80%E4%B9%88%E6%98%AF%E6%99%AF%E6%B7%B1/</url>
-    <content><![CDATA[<p>在计算机视觉中的一些任务中可能会出现景深的概念，如深度估计、SLAM、视觉里程计等，这篇文章简单介绍一下景深概念。</p>
-<span id="more"></span>
-<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
-<li>我们拍照的时候都知道，对焦在相机成像平面上的物体才是清晰的，而物体的对焦平面可以通过相机镜头来控制，同时也与物体和拍摄点之间的距离有关，当我们对焦到距离拍摄点稍远的物体时，近距离的物体就会变得模糊，反之亦然。但是，我们对焦到一个物体之后，可以看到对焦点附近的物体成像也都是清晰的，而它们处于不同的焦平面上，这是为什么呢？因为在焦平面的前后会出现一个弥散斑，这个弥散斑的直观影响就是对焦平面附近的几个焦平面也会有清晰的成像，而能够清晰成像的这一段距离范围，就是景深。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>出现nan值的处理</title>
-    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%87%BA%E7%8E%B0nan%E5%80%BC%E7%9A%84%E5%A4%84%E7%90%86/</url>
-    <content><![CDATA[<p>在深度学习模型训练的时候loss可能会出现nan，本文简要介绍几个可能导致nan出现的原因。</p>
-<span id="more"></span>
-<ol>
-<li>最可能的原因就是除0，可以找一下模型进行数学计算时的除数是否为0，一些函数出现下溢时也会输出0，定位问题之后可以给除数加一个极小值。</li>
-<li>log(0)，对数函数的输入如果为0也会导致输出nan，也是可以给输入加一个极小值。</li>
-<li>检查数据集。输入数据损坏的时候可能也会出现nan，这个时候现象就是nan偶尔会出现，或者说模型训练着训练着在某一次迭代之后突然就nan了，这都可能是数据问题导致的。</li>
-<li>重新进行权重初始化。有时候权重随机初始化时一连串的数据初始化都过大，就会导致最终计算结果nan，因此可以重新随机初始化一次权重尝试。</li>
-<li>梯度截断。可能是因为梯度过大，导致更新之后权重过大，一连串的累积之后就会导致最终结果nan，因此可以从梯度截断的角度尝试。</li>
-<li>减少学习率。和梯度截断的考虑角度相同，不赘述。</li>
-</ol>
-<p>模型训练出现nan是一个很令人头疼的问题，以上6个解决思路需要逐一尝试，最终定位当前任务中出现nan的原因并解决。</p>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>反卷积的概念以及使用场景</title>
-    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%8F%8D%E5%8D%B7%E7%A7%AF%E7%9A%84%E6%A6%82%E5%BF%B5%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/</url>
-    <content><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
-<li>反卷积（deconv）是输入一张小的特征图，输出一张大的特征图。首先会对特征图进行padding，然后就可以像正常卷积操作一样进行计算。</li>
-<li>反卷积比正常卷积增加了一个参数，叫做output_shape，这是由于不同的特征图，如5x5和6x6的特征图在进行3x3的卷积之后都会得到3x3的特征图，因此反卷积的时候就需要输入一个参数用于指定输出的特征图尺寸。<span id="more"></span>
-<h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1></li>
-<li>通常在一些图像重建任务中，主要目的是对特征图进行放大，如一些分割任务、图像重建任务等，当通过一个backbone进行特征提取之后需要恢复到原始的分辨率，这个时候就可以采用deconv来计算。另一种常见的方法就是直接进行upsample对图像进行插值，然后进行正常的卷积，具体使用哪一种还要结合任务目标来设计和实验。</li>
+    <title>优势比的概念</title>
+    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E4%BC%98%E5%8A%BF%E6%AF%94%E7%9A%84%E6%A6%82%E5%BF%B5/</url>
+    <content><![CDATA[<h1 id="优势比"><a href="#优势比" class="headerlink" title="优势比"></a>优势比</h1><ul>
+<li>假设在m个独立自变量，x1、x2…xm的作用下，记事件y取1的概率为：<img src="https://img-blog.csdnimg.cn/e8019f9b4fd64ecc90380e1ff634bd98.png" alt="在这里插入图片描述"><br>则事件y取0的概率为p = 1 - p，则取1和取0的概率之比为：<br><img src="https://img-blog.csdnimg.cn/f194b8ce950b4c9cb9fe790d3f84bcdb.png" alt="在这里插入图片描述"><br>上式就称为事件的优势比。</li>
 </ul>
 ]]></content>
       <categories>
@@ -1343,13 +1306,37 @@
       </tags>
   </entry>
   <entry>
-    <title>图像的梯度</title>
-    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E7%9A%84%E6%A2%AF%E5%BA%A6/</url>
-    <content><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
-<li>对于图像的梯度，如果理解数学中离散点的梯度求导方法就会发现一点也不神秘。梯度表示的是某一函数在该点处的方向导数沿着这个方向取得最大值，简单来说就是它总指向函数增长最快的方向。<span id="more"></span></li>
-<li>一句话概括图像梯度，图像x方向上的梯度就是x方向上两个相邻像素值相减，y方向上的梯度就是y方向上两个相邻像素值相减。<h1 id="特点及含义"><a href="#特点及含义" class="headerlink" title="特点及含义"></a>特点及含义</h1></li>
-<li>梯度是一个矢量，也就是既有大小也有方向，因此会加以区分x方向、y方向的正向梯度、反向梯度。</li>
-<li>图像的梯度通常反映了图像的纹理信息，纹理发生突变的区域通常会有更高的响应。</li>
+    <title>出现nan值的处理</title>
+    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%87%BA%E7%8E%B0nan%E5%80%BC%E7%9A%84%E5%A4%84%E7%90%86/</url>
+    <content><![CDATA[<p>在深度学习模型训练的时候loss可能会出现nan，本文简要介绍几个可能导致nan出现的原因。</p>
+<span id="more"></span>
+<ol>
+<li>最可能的原因就是除0，可以找一下模型进行数学计算时的除数是否为0，一些函数出现下溢时也会输出0，定位问题之后可以给除数加一个极小值。</li>
+<li>log(0)，对数函数的输入如果为0也会导致输出nan，也是可以给输入加一个极小值。</li>
+<li>检查数据集。输入数据损坏的时候可能也会出现nan，这个时候现象就是nan偶尔会出现，或者说模型训练着训练着在某一次迭代之后突然就nan了，这都可能是数据问题导致的。</li>
+<li>重新进行权重初始化。有时候权重随机初始化时一连串的数据初始化都过大，就会导致最终计算结果nan，因此可以重新随机初始化一次权重尝试。</li>
+<li>梯度截断。可能是因为梯度过大，导致更新之后权重过大，一连串的累积之后就会导致最终结果nan，因此可以从梯度截断的角度尝试。</li>
+<li>减少学习率。和梯度截断的考虑角度相同，不赘述。</li>
+</ol>
+<p>模型训练出现nan是一个很令人头疼的问题，以上6个解决思路需要逐一尝试，最终定位当前任务中出现nan的原因并解决。</p>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ReLU的特点和使用场景</title>
+    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-ReLU%E7%9A%84%E7%89%B9%E7%82%B9%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/</url>
+    <content><![CDATA[<p>ReLU是深度学习任务中常见的激活函数，这里简单介绍它的特点和使用场景。</p>
+<span id="more"></span>
+<h1 id="ReLU的特点"><a href="#ReLU的特点" class="headerlink" title="ReLU的特点"></a>ReLU的特点</h1><ul>
+<li>ReLU是一个分段函数，当输入小于零的时候，输出为零，当输入大于零的时候，将输入值作为输出。<h1 id="ReLU的使用场景"><a href="#ReLU的使用场景" class="headerlink" title="ReLU的使用场景"></a>ReLU的使用场景</h1></li>
+<li>主要用于避免梯度消失和梯度爆炸。对于梯度消失，因为sigmoid的梯度最大值只有0.25，在链式求导过程中可能就会导致梯度消失，而ReLU在激活函数大于零的时候梯度恒为1，因此可以有效避免梯度消失和梯度爆炸的现象。<a href="https://blog.csdn.net/yanyuxiangtoday/article/details/119789602?spm=1001.2014.3001.5501">点我看梯度消失和梯度爆炸的概念和解决方案</a></li>
+<li>另一方面，采用ReLU激活函数能够使得网络的收敛速度加快。</li>
+<li>但是如果说希望网络最后输出一张图片，那么肯定是希望这张图像的像素在0到1之间，这个时候仍然可以在输出层采用sigmoid激活函数，将网络的输出限制到0到1之间。</li>
 </ul>
 ]]></content>
       <categories>
@@ -1379,17 +1366,32 @@
       </tags>
   </entry>
   <entry>
-    <title>tensorflow和pytorch的相同点和区别</title>
-    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-tensorflow%E5%92%8Cpytorch%E7%9A%84%E7%9B%B8%E5%90%8C%E7%82%B9%E5%92%8C%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<h1 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h1><ul>
-<li>tensorflow和pytorch都是为深度学习提供的开源框架。</li>
-<li>都有专门的团队在维护和更新。</li>
-<li>社区环境都很好，开源项目、模型很多。<span id="more"></span>
-<h1 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h1></li>
-<li>两者最主要的区别在于tensorflow是基于静态图构图的，pytorch是基于动态图构图的，这两者的差异主要是框架设计时的思路导致的。</li>
-<li>直观来说，tensorflow在搭建框架的时候是没有真正的数据传递的，可以理解为设计模型和运行模型、传递数据是分开的，在调试时无法读取对应op的具体输入输出。</li>
-<li>pytorch是基于动态图构图的，可以理解为设计模型和运行模型、传递数据是同步进行的，在调试时断点打在哪里，就能看到具体的对应数据。</li>
-<li>通常，tensorflow提供的API更加底层，而pytorch提供的API封装的更为完善，如果想深入进行算子、op的设计，更建议使用tensorflow。如果想快速的搭建模型，比如打比赛时做model fusion等常见操作，则pytroch会让你的速度更快。</li>
+    <title>图像的梯度</title>
+    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E7%9A%84%E6%A2%AF%E5%BA%A6/</url>
+    <content><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
+<li>对于图像的梯度，如果理解数学中离散点的梯度求导方法就会发现一点也不神秘。梯度表示的是某一函数在该点处的方向导数沿着这个方向取得最大值，简单来说就是它总指向函数增长最快的方向。<span id="more"></span></li>
+<li>一句话概括图像梯度，图像x方向上的梯度就是x方向上两个相邻像素值相减，y方向上的梯度就是y方向上两个相邻像素值相减。<h1 id="特点及含义"><a href="#特点及含义" class="headerlink" title="特点及含义"></a>特点及含义</h1></li>
+<li>梯度是一个矢量，也就是既有大小也有方向，因此会加以区分x方向、y方向的正向梯度、反向梯度。</li>
+<li>图像的梯度通常反映了图像的纹理信息，纹理发生突变的区域通常会有更高的响应。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>提升模型泛化能力的方法</title>
+    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E6%8F%90%E5%8D%87%E6%A8%A1%E5%9E%8B%E6%B3%9B%E5%8C%96%E8%83%BD%E5%8A%9B%E7%9A%84%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="提升模型泛化能力的方法"><a href="#提升模型泛化能力的方法" class="headerlink" title="提升模型泛化能力的方法"></a>提升模型泛化能力的方法</h1><span id="more"></span>
+<ul>
+<li>从数据角度上来说。可以通过数据增强、扩充训练集等方法提高泛化能力。</li>
+<li>在训练策略上，可以增加每个batch size的大小，进而让模型每次迭代时见到更多数据，防止过拟合。</li>
+<li>调整数据分布，做训练数据集的类别均衡。</li>
+<li>调整网络结构。如果数据集较小，可以降低模型复杂度防止过拟合。如果数据集较大，可以尝试更加复杂的模型。</li>
+<li>减少过拟合的方法也可以提升模型的泛化能力。<a href="https://blog.csdn.net/yanyuxiangtoday/article/details/119790029?spm=1001.2014.3001.5502">点我看过拟合和欠拟合的概念及解决方案</a></li>
 </ul>
 ]]></content>
       <categories>
@@ -1455,15 +1457,13 @@
       </tags>
   </entry>
   <entry>
-    <title>提升模型泛化能力的方法</title>
-    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E6%8F%90%E5%8D%87%E6%A8%A1%E5%9E%8B%E6%B3%9B%E5%8C%96%E8%83%BD%E5%8A%9B%E7%9A%84%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="提升模型泛化能力的方法"><a href="#提升模型泛化能力的方法" class="headerlink" title="提升模型泛化能力的方法"></a>提升模型泛化能力的方法</h1><span id="more"></span>
-<ul>
-<li>从数据角度上来说。可以通过数据增强、扩充训练集等方法提高泛化能力。</li>
-<li>在训练策略上，可以增加每个batch size的大小，进而让模型每次迭代时见到更多数据，防止过拟合。</li>
-<li>调整数据分布，做训练数据集的类别均衡。</li>
-<li>调整网络结构。如果数据集较小，可以降低模型复杂度防止过拟合。如果数据集较大，可以尝试更加复杂的模型。</li>
-<li>减少过拟合的方法也可以提升模型的泛化能力。<a href="https://blog.csdn.net/yanyuxiangtoday/article/details/119790029?spm=1001.2014.3001.5502">点我看过拟合和欠拟合的概念及解决方案</a></li>
+    <title>图像锐化和平滑的概念以及使用场景</title>
+    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91%E7%9A%84%E6%A6%82%E5%BF%B5%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/</url>
+    <content><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
+<li>锐化就是通过增强图像的高频信息，也就是纹理边缘来减少图像中的模糊细节，但是在增强纹理的时候也引入了图像噪声。<span id="more"></span></li>
+<li>平滑与锐化相反，它是为了过滤掉高频分量，可以减少图像的噪声，但是可能会使得图像变得模糊。<h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1></li>
+<li>在计算机视觉的一些任务中，涉及到图像重建的、如高精度的深度估计、医学图像分割、三维重建等任务，最终需要得到原始图像分辨率大小的输出，同时对图像的边缘清晰度也有较高的要求，这时候可以通过增强特征图中的高频分量，在计算损失函数的时候放大这些区域的损失，进而放大对应参数的梯度，使得网络往更突出边缘的方向上优化。</li>
+<li>与上相反，如果是一些希望输出更加平滑的任务，则可以考虑对特征图进行平滑操作，进而减小高频区域的损失，减小对应参数的梯度，使得网络往更平滑的方向上优化，通常这种技术都会用在smooth loss中。</li>
 </ul>
 ]]></content>
       <categories>
@@ -1474,13 +1474,33 @@
       </tags>
   </entry>
   <entry>
-    <title>图像锐化和平滑的概念以及使用场景</title>
-    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E9%94%90%E5%8C%96%E5%92%8C%E5%B9%B3%E6%BB%91%E7%9A%84%E6%A6%82%E5%BF%B5%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/</url>
-    <content><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
-<li>锐化就是通过增强图像的高频信息，也就是纹理边缘来减少图像中的模糊细节，但是在增强纹理的时候也引入了图像噪声。<span id="more"></span></li>
-<li>平滑与锐化相反，它是为了过滤掉高频分量，可以减少图像的噪声，但是可能会使得图像变得模糊。<h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1></li>
-<li>在计算机视觉的一些任务中，涉及到图像重建的、如高精度的深度估计、医学图像分割、三维重建等任务，最终需要得到原始图像分辨率大小的输出，同时对图像的边缘清晰度也有较高的要求，这时候可以通过增强特征图中的高频分量，在计算损失函数的时候放大这些区域的损失，进而放大对应参数的梯度，使得网络往更突出边缘的方向上优化。</li>
-<li>与上相反，如果是一些希望输出更加平滑的任务，则可以考虑对特征图进行平滑操作，进而减小高频区域的损失，减小对应参数的梯度，使得网络往更平滑的方向上优化，通常这种技术都会用在smooth loss中。</li>
+    <title>机器学习中常用的距离计算方法</title>
+    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E8%B7%9D%E7%A6%BB%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>假设有两个点(x1, y1) (x2, y2)</p>
+<span id="more"></span>
+<p>欧氏距离<br><img src="https://img-blog.csdnimg.cn/f580363c526247a1b6b8de7cb9f5b70d.png" alt="在这里插入图片描述"></p>
+<p>曼哈顿距离<br><img src="https://img-blog.csdnimg.cn/51f6e836c47f4b81af8c781122a3275d.png" alt="在这里插入图片描述"><br>余弦距离<br><img src="https://img-blog.csdnimg.cn/514aa3122e0e4d7da9713245d968ad4a.png" alt="在这里插入图片描述"></p>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>模型涨点的技巧</title>
+    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E6%A8%A1%E5%9E%8B%E6%B6%A8%E7%82%B9%E7%9A%84%E6%8A%80%E5%B7%A7/</url>
+    <content><![CDATA[<p>大家都希望模型精度越高越好，除了尝试各种不同的模型之外，还可以通过一些训练策略来实现模型的涨点，这里分享一些博主常用的方法。</p>
+<span id="more"></span>
+<h1 id="1-warm-up"><a href="#1-warm-up" class="headerlink" title="1. warm up"></a>1. warm up</h1><ul>
+<li>warm up就是说一开始采用较低的学习率，等训练一段时间之后再采用较高的学习率并且随着学习率衰减策略衰减。能够有效的防止模型在较大学习率的时候由于步长过大很快陷入一个局部最小值区域的问题。<h1 id="2-合适的学习率衰减策略"><a href="#2-合适的学习率衰减策略" class="headerlink" title="2. 合适的学习率衰减策略"></a>2. 合适的学习率衰减策略</h1></li>
+<li>学习率衰减策略比较常见，但很多时候大家都是用优化器自带的学习率衰减策略，该策略不一定适合自己的任务。可以自己将学习率、迭代次数、loss、精度曲线画出来，是否在某些学习率下精度仍然有上升趋势，但该趋势还没结束学习率已经进行了衰减，如果有的话那么可以继续增加该段的迭代次数，进而获得更高的模型精度。<h1 id="3-finetuning"><a href="#3-finetuning" class="headerlink" title="3. finetuning"></a>3. finetuning</h1></li>
+<li>模型训练结束之后，可以freeze部分layer进行最终的微调，也使得最终模型获得一定程度的涨点。<h1 id="4-单GPU训练"><a href="#4-单GPU训练" class="headerlink" title="4. 单GPU训练"></a>4. 单GPU训练</h1></li>
+<li>多卡训练时候由于数据同步问题，比如sync BN就会多多少少带来性能损伤，因此可以尝试单卡训练策略。<h1 id="5-增加数据集"><a href="#5-增加数据集" class="headerlink" title="5. 增加数据集"></a>5. 增加数据集</h1></li>
+<li>使用更多更大的数据集也有助于模型涨点 。<h1 id="6-平衡每个batch的数据比例"><a href="#6-平衡每个batch的数据比例" class="headerlink" title="6. 平衡每个batch的数据比例"></a>6. 平衡每个batch的数据比例</h1></li>
+<li>如果随机读取数据，那么每个batch并不一定能保证每个类别的数据都包含，因此需要做每个batch的数据均衡。<h1 id="7-采用在公开数据集上训练好的模型作为初始化"><a href="#7-采用在公开数据集上训练好的模型作为初始化" class="headerlink" title="7. 采用在公开数据集上训练好的模型作为初始化"></a>7. 采用在公开数据集上训练好的模型作为初始化</h1></li>
+<li>tensorflow、pytorch、paddle等框架都提供了在imagenet等大数据集上训练好的模型，这些模型作为特征提取的backbone通常有更好的模型表征能力，因此采用它们作为初始化效果通常会很好。</li>
 </ul>
 ]]></content>
       <categories>
@@ -1536,21 +1556,6 @@
       </tags>
   </entry>
   <entry>
-    <title>机器学习中常用的距离计算方法</title>
-    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E8%B7%9D%E7%A6%BB%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>假设有两个点(x1, y1) (x2, y2)</p>
-<span id="more"></span>
-<p>欧氏距离<br><img src="https://img-blog.csdnimg.cn/f580363c526247a1b6b8de7cb9f5b70d.png" alt="在这里插入图片描述"></p>
-<p>曼哈顿距离<br><img src="https://img-blog.csdnimg.cn/51f6e836c47f4b81af8c781122a3275d.png" alt="在这里插入图片描述"><br>余弦距离<br><img src="https://img-blog.csdnimg.cn/514aa3122e0e4d7da9713245d968ad4a.png" alt="在这里插入图片描述"></p>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>模型不收敛的原因以及处理方法</title>
     <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E6%A8%A1%E5%9E%8B%E4%B8%8D%E6%94%B6%E6%95%9B%E7%9A%84%E5%8E%9F%E5%9B%A0%E4%BB%A5%E5%8F%8A%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<p>模型不收敛通常指模型在训练过程中无法收敛，这并不能说明模型无效，可以从以下几个方面分析。</p>
@@ -1561,28 +1566,6 @@
 <li>数据分布较为复杂，没有进行归一化设置，导致每次迭代模型都往不同的方向上优化。</li>
 <li>可能出现了梯度爆炸或者梯度消失，可以看<a href="https://blog.csdn.net/yanyuxiangtoday/article/details/119789602?spm=1001.2014.3001.5502">梯度消失和梯度爆炸的解决方法</a>.</li>
 <li>代码是不是有bug，导致迭代的时候优化器没有进行参数的更新。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>模型涨点的技巧</title>
-    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E6%A8%A1%E5%9E%8B%E6%B6%A8%E7%82%B9%E7%9A%84%E6%8A%80%E5%B7%A7/</url>
-    <content><![CDATA[<p>大家都希望模型精度越高越好，除了尝试各种不同的模型之外，还可以通过一些训练策略来实现模型的涨点，这里分享一些博主常用的方法。</p>
-<span id="more"></span>
-<h1 id="1-warm-up"><a href="#1-warm-up" class="headerlink" title="1. warm up"></a>1. warm up</h1><ul>
-<li>warm up就是说一开始采用较低的学习率，等训练一段时间之后再采用较高的学习率并且随着学习率衰减策略衰减。能够有效的防止模型在较大学习率的时候由于步长过大很快陷入一个局部最小值区域的问题。<h1 id="2-合适的学习率衰减策略"><a href="#2-合适的学习率衰减策略" class="headerlink" title="2. 合适的学习率衰减策略"></a>2. 合适的学习率衰减策略</h1></li>
-<li>学习率衰减策略比较常见，但很多时候大家都是用优化器自带的学习率衰减策略，该策略不一定适合自己的任务。可以自己将学习率、迭代次数、loss、精度曲线画出来，是否在某些学习率下精度仍然有上升趋势，但该趋势还没结束学习率已经进行了衰减，如果有的话那么可以继续增加该段的迭代次数，进而获得更高的模型精度。<h1 id="3-finetuning"><a href="#3-finetuning" class="headerlink" title="3. finetuning"></a>3. finetuning</h1></li>
-<li>模型训练结束之后，可以freeze部分layer进行最终的微调，也使得最终模型获得一定程度的涨点。<h1 id="4-单GPU训练"><a href="#4-单GPU训练" class="headerlink" title="4. 单GPU训练"></a>4. 单GPU训练</h1></li>
-<li>多卡训练时候由于数据同步问题，比如sync BN就会多多少少带来性能损伤，因此可以尝试单卡训练策略。<h1 id="5-增加数据集"><a href="#5-增加数据集" class="headerlink" title="5. 增加数据集"></a>5. 增加数据集</h1></li>
-<li>使用更多更大的数据集也有助于模型涨点 。<h1 id="6-平衡每个batch的数据比例"><a href="#6-平衡每个batch的数据比例" class="headerlink" title="6. 平衡每个batch的数据比例"></a>6. 平衡每个batch的数据比例</h1></li>
-<li>如果随机读取数据，那么每个batch并不一定能保证每个类别的数据都包含，因此需要做每个batch的数据均衡。<h1 id="7-采用在公开数据集上训练好的模型作为初始化"><a href="#7-采用在公开数据集上训练好的模型作为初始化" class="headerlink" title="7. 采用在公开数据集上训练好的模型作为初始化"></a>7. 采用在公开数据集上训练好的模型作为初始化</h1></li>
-<li>tensorflow、pytorch、paddle等框架都提供了在imagenet等大数据集上训练好的模型，这些模型作为特征提取的backbone通常有更好的模型表征能力，因此采用它们作为初始化效果通常会很好。</li>
 </ul>
 ]]></content>
       <categories>
@@ -1623,28 +1606,6 @@
       </tags>
   </entry>
   <entry>
-    <title>目标检测是什么</title>
-    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%98%AF%E4%BB%80%E4%B9%88/</url>
-    <content><![CDATA[<p>目标检测(Object Detection)一直以来都是深度学习领域的热门话题，这个系列的文章会对其进行详细的梳理。</p>
-<span id="more"></span>
-<h1 id="1-目标检测是什么"><a href="#1-目标检测是什么" class="headerlink" title="1. 目标检测是什么"></a>1. 目标检测是什么</h1><ul>
-<li>图像分类任务回答的是”图像中的物体是什么”。而目标检测任务回答的是”图像中的物体是什么，它处于图像的什么位置”。</li>
-<li>即，不但要输出目标所属的类别，还要输出物体的位置信息。位置信息通常采用bounding box表示，也就是给定一个矩形框的中心坐标以及宽高信息来定位框在图像中所属的位置。</li>
-</ul>
-<h1 id="2-如何进行目标检测"><a href="#2-如何进行目标检测" class="headerlink" title="2. 如何进行目标检测"></a>2. 如何进行目标检测</h1><ul>
-<li>从流程上进行分类一般有两种，即two-stage的方法和ont-shot的方法。</li>
-<li>two-stage的方法，也就是先产生候选区域，然后对每个候选区域进行分类，再通过回归来修正bounding box，最后通过非极大值抑制来确定最终的检测结果。</li>
-<li>one-shot方法的主要代表就是YOLO系列，它的思想是先将图片划分成一个个的单元格，然后对每个单元格进行处理，直接预测出当前位置是否存在物体、bounding box的位置以及分类的概率。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>深度学习中常用的优化器</title>
     <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E4%BC%98%E5%8C%96%E5%99%A8/</url>
     <content><![CDATA[<p>深度学习任务中一般都采用优化器来决定模型的梯度更新算法，本文简单对常用的优化器做个简单介绍。</p>
@@ -1667,134 +1628,13 @@
       </tags>
   </entry>
   <entry>
-    <title>目标检测的常见算法</title>
-    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%9A%84%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<p>目标检测(Object Detection)一直以来都是深度学习领域的热门话题，这个系列的文章会对其进行详细的梳理。</p>
-<span id="more"></span>
-<h1 id="1-传统的检测算法"><a href="#1-传统的检测算法" class="headerlink" title="1. 传统的检测算法"></a>1. 传统的检测算法</h1><ul>
-<li>Cascade + HOG/DPM + Haar/SVM以及上述方法的诸多改进、优化</li>
-</ul>
-<h1 id="2-候选区域-深度学习分类："><a href="#2-候选区域-深度学习分类：" class="headerlink" title="2. 候选区域+深度学习分类："></a>2. 候选区域+深度学习分类：</h1><p>提取候选区域，对相应的区域进行以深度学习方法为主的分类。</p>
-<ul>
-<li>R-CNN</li>
-<li>SPP-NET</li>
-<li>Fast R-CNN</li>
-<li>Faster R-CNN</li>
-</ul>
-<h1 id="3-基于深度学习的回归方法，YOLO-SSD-DenseBox"><a href="#3-基于深度学习的回归方法，YOLO-SSD-DenseBox" class="headerlink" title="3. 基于深度学习的回归方法，YOLO/SSD/DenseBox"></a>3. 基于深度学习的回归方法，YOLO/SSD/DenseBox</h1><p>看下图</p>
-<p>![[目标检测的常见算法.jpg]]</p>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>相机的内参、外参以及像素坐标和世界坐标的转换</title>
-    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%9B%B8%E6%9C%BA%E7%9A%84%E5%86%85%E5%8F%82%E3%80%81%E5%A4%96%E5%8F%82%E4%BB%A5%E5%8F%8A%E5%83%8F%E7%B4%A0%E5%9D%90%E6%A0%87%E5%92%8C%E4%B8%96%E7%95%8C%E5%9D%90%E6%A0%87%E7%9A%84%E8%BD%AC%E6%8D%A2/</url>
-    <content><![CDATA[<p>计算机视觉中的深度估计、SLAM、三维重建任务通常会用到相机参数作为输入，本文将对其进行简单介绍。</p>
-<span id="more"></span>
-<h1 id="相机的内参"><a href="#相机的内参" class="headerlink" title="相机的内参"></a>相机的内参</h1><ul>
-<li>相机的内参矩阵包含x方向的焦距fx和y方向的焦距fy。以及相机光轴在x方向和y方向上的偏移量cx,cy。<br><img src="https://img-blog.csdnimg.cn/2a1647c9b9cf4dbaa3b16e9c12de955a.png" alt="在这里插入图片描述"></li>
-<li>内参为什么有两个焦距<ul>
-<li>一般来说，一个物体的宽度和高度会随着各个物体与相机之间的距离增加按照比例变小。而对于一张矩形的图片，物体的高宽变小的比例是不同的，这个比例就是根据焦距得到的，因此会有x方向和y方向各自的焦距。如下图公式：<br><img src="https://img-blog.csdnimg.cn/5d18dde8e5d147ac94405e4894d45d53.png" alt="在这里插入图片描述"><h1 id="相机的外参"><a href="#相机的外参" class="headerlink" title="相机的外参"></a>相机的外参</h1></li>
-</ul>
-</li>
-<li>相机的外参也被称为旋转平移矩阵，包括xyz三个轴的旋转参数，即旋转矩阵（R矩阵）。还有三个轴的平移参数，也就是平移矩阵（T矩阵）。<h1 id="像素坐标和世界坐标的转换"><a href="#像素坐标和世界坐标的转换" class="headerlink" title="像素坐标和世界坐标的转换"></a>像素坐标和世界坐标的转换</h1></li>
-<li>相机的外参通常用于像素空间到世界坐标的转换。公式如下图，其中（u, v）是像素坐标，(x, y, z）是世界坐标。<br><img src="https://img-blog.csdnimg.cn/0c542181557e473899cad3acca0527b4.png" alt="在这里插入图片描述"><br>简化后得到：<br><img src="https://img-blog.csdnimg.cn/c79432ece09c45b2b086c1d477c5fd85.png" alt="在这里插入图片描述"></li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>空洞卷积的概念以及使用场景</title>
-    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%A9%BA%E6%B4%9E%E5%8D%B7%E7%A7%AF%E7%9A%84%E6%A6%82%E5%BF%B5%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/</url>
-    <content><![CDATA[<p>空洞卷积（dilated convolution）也是一种常见的卷积方式，主要目标是在不提升计算量和降低特征图分辨率的情况下获得更大的感受野。</p>
-<span id="more"></span>
-<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
-<li>空洞卷积就是在卷积的时候不是对连续的值进行计算，而是会中间隔开几个值，其他与普通的卷积并无差异。可以理解为一个稀疏的大卷积核，只有个别值有效，其余值为零。<h1 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h1></li>
-<li>在不增加计算量和降低特征图分辨率的情况下增大感受野。<h1 id="问题和解决方法"><a href="#问题和解决方法" class="headerlink" title="问题和解决方法"></a>问题和解决方法</h1></li>
-<li>空洞卷积的主要问题也是它的主要特点，就是卷积核不连续，最终可能会导致并非特征图中的所有点都能参与计算，这也会丢失信息的连续性，尤其是对于像素级的任务（如图像分割）来说非常不适用。并且这种设计主要针对在原始图像中占有更多像素点的较大物体，而对于较小的物体可能会失效，因为小物体并不需要较大的感受野。</li>
-<li>对于上述问题的一种解决方法就是将一组空洞卷积的dilation rate设计成一个没有大于1的公约数的数值，也就是锯齿状的空洞卷积，如[1,2,5,1,2,5]这样的循环结构，这样就可以保证在每一个循环中所有的像素点都能参与计算。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决样本不均衡的方法</title>
-    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E8%A7%A3%E5%86%B3%E6%A0%B7%E6%9C%AC%E4%B8%8D%E5%9D%87%E8%A1%A1%E7%9A%84%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>公开数据集在上线前通常都经过了样本均衡处理，因此基于这些数据训练出来的模型表现通常都比较好。但如果是自己在解决实际问题，则经常会遇到样本不均衡，这会导致模型出现过拟合、泛化能力较差的问题，本文就介绍解决样本不均衡的几种方法。</p>
-<span id="more"></span>
-<h1 id="解决样本不均衡的方法"><a href="#解决样本不均衡的方法" class="headerlink" title="解决样本不均衡的方法"></a>解决样本不均衡的方法</h1><ul>
-<li>以多种数据组合形式训练模型并做模型融合。顾名思义，这种方法就是将全部的小样本数据和等量的大样本数据分别组合成几批训练数据集，并以此训练出几个不同的模型并做模型融合，这种方法能够有效的解决样本不均衡问题。</li>
-<li>在计算损失函数时改变数据的权重，增加小样本数据的权重，减少大样本的权重。这种方法实际上参考了focal loss的思想，只不过解决的不是难易样本不均衡，而是样本数据量不均衡，同样能保证模型的泛化性能。</li>
-<li>过采样小样本，欠采样大样本。也就是对于训练数据，把那些样本量较小的数据多在load数据时重复几遍，对于那些样本量较大的数据，则尽量减少load它们，以此来达到样本均衡的目的。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>贝叶斯定理与条件概率公式</title>
-    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%AE%9A%E7%90%86%E4%B8%8E%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87%E5%85%AC%E5%BC%8F/</url>
-    <content><![CDATA[<h1 id="基本定理"><a href="#基本定理" class="headerlink" title="基本定理"></a>基本定理</h1><ul>
-<li>贝叶斯基于概率论中的贝叶斯定理，贝叶斯定理就是用先验概率和条件概率求出最终的事件概率。</li>
-<li>贝叶斯网络可以理解为将模型看作是一个概率密度函数，它可以表示数据的分布，训练过程就是概率分布的参数估计过程，预测过程就是求解条件概率的过程。<span id="more"></span>
-<h1 id="通过条件概率求得后验概率"><a href="#通过条件概率求得后验概率" class="headerlink" title="通过条件概率求得后验概率"></a>通过条件概率求得后验概率</h1></li>
-<li>后验概率可以用条件概率表示，公式为：<br><img src="https://img-blog.csdnimg.cn/e9e8742f5ea1430798d39c111237d3ae.png" alt="在这里插入图片描述"><br>由此可推导：<br><img src="https://img-blog.csdnimg.cn/05f1b3f02cdf483097afeb3095434dd7.png" alt="在这里插入图片描述"><h1 id="从条件概率推导贝叶斯定理"><a href="#从条件概率推导贝叶斯定理" class="headerlink" title="从条件概率推导贝叶斯定理"></a>从条件概率推导贝叶斯定理</h1>见公式<br><img src="https://img-blog.csdnimg.cn/39d894b69661488cbf42c49646c3a84a.png" alt="在这里插入图片描述"></li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决正负样本不均衡 Focal Loss</title>
-    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E8%A7%A3%E5%86%B3%E6%AD%A3%E8%B4%9F%E6%A0%B7%E6%9C%AC%E4%B8%8D%E5%9D%87%E8%A1%A1%20Focal%20Loss/</url>
-    <content><![CDATA[<p>正负样本不均衡是检测任务中常见的问题，在目标检测中，大量样本都是不包含目标的负样本，只有少量是包含目标的正样本，而Focal Loss就是为了解决这个问题而提出的。</p>
-<span id="more"></span>
-<h1 id="Focal-Loss的目的"><a href="#Focal-Loss的目的" class="headerlink" title="Focal Loss的目的"></a>Focal Loss的目的</h1><ul>
-<li>focal loss的主要目的是降低易分类样本的权重，使得模型更加关注困难样本，防止大量的简单样本主导模型的优化方向。<h1 id="Focal-Loss的计算方式"><a href="#Focal-Loss的计算方式" class="headerlink" title="Focal Loss的计算方式"></a>Focal Loss的计算方式</h1></li>
-<li>解决样本数量不均衡，在交叉熵中给交叉熵一个权重，也就是相反类的比重。这样一来，对于少量的样本，权重就比较大，对于大量的样本，权重就比较小。</li>
-<li>解决难易样本不均衡，直观来说，就是对于较难的样本，给一个大权重，对于容易的样本，加一个小权重。具体计算公式如下：<br><img src="https://img-blog.csdnimg.cn/3176959dcf034e8e91dca17caad6ff6f.png" alt="在这里插入图片描述"></li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>逻辑回归实现多分类的方法</title>
-    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E5%AE%9E%E7%8E%B0%E5%A4%9A%E5%88%86%E7%B1%BB%E7%9A%84%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>方式1</p>
-<ul>
-<li>在二分类问题上逻辑回归用的激活函数是sigmoid，在多分类的时候可以改为softmax函数。<span id="more"></span></li>
-</ul>
-<p>方式2</p>
-<ul>
-<li>根据每一类别都建立一个二分类器，有多少类别就有多少个逻辑回归分类器。</li>
+    <title>反卷积的概念以及使用场景</title>
+    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%8F%8D%E5%8D%B7%E7%A7%AF%E7%9A%84%E6%A6%82%E5%BF%B5%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/</url>
+    <content><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
+<li>反卷积（deconv）是输入一张小的特征图，输出一张大的特征图。首先会对特征图进行padding，然后就可以像正常卷积操作一样进行计算。</li>
+<li>反卷积比正常卷积增加了一个参数，叫做output_shape，这是由于不同的特征图，如5x5和6x6的特征图在进行3x3的卷积之后都会得到3x3的特征图，因此反卷积的时候就需要输入一个参数用于指定输出的特征图尺寸。<span id="more"></span>
+<h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1></li>
+<li>通常在一些图像重建任务中，主要目的是对特征图进行放大，如一些分割任务、图像重建任务等，当通过一个backbone进行特征提取之后需要恢复到原始的分辨率，这个时候就可以采用deconv来计算。另一种常见的方法就是直接进行upsample对图像进行插值，然后进行正常的卷积，具体使用哪一种还要结合任务目标来设计和实验。</li>
 </ul>
 ]]></content>
       <categories>
@@ -1841,6 +1681,108 @@
       </tags>
   </entry>
   <entry>
+    <title>解决样本不均衡的方法</title>
+    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E8%A7%A3%E5%86%B3%E6%A0%B7%E6%9C%AC%E4%B8%8D%E5%9D%87%E8%A1%A1%E7%9A%84%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>公开数据集在上线前通常都经过了样本均衡处理，因此基于这些数据训练出来的模型表现通常都比较好。但如果是自己在解决实际问题，则经常会遇到样本不均衡，这会导致模型出现过拟合、泛化能力较差的问题，本文就介绍解决样本不均衡的几种方法。</p>
+<span id="more"></span>
+<h1 id="解决样本不均衡的方法"><a href="#解决样本不均衡的方法" class="headerlink" title="解决样本不均衡的方法"></a>解决样本不均衡的方法</h1><ul>
+<li>以多种数据组合形式训练模型并做模型融合。顾名思义，这种方法就是将全部的小样本数据和等量的大样本数据分别组合成几批训练数据集，并以此训练出几个不同的模型并做模型融合，这种方法能够有效的解决样本不均衡问题。</li>
+<li>在计算损失函数时改变数据的权重，增加小样本数据的权重，减少大样本的权重。这种方法实际上参考了focal loss的思想，只不过解决的不是难易样本不均衡，而是样本数据量不均衡，同样能保证模型的泛化性能。</li>
+<li>过采样小样本，欠采样大样本。也就是对于训练数据，把那些样本量较小的数据多在load数据时重复几遍，对于那些样本量较大的数据，则尽量减少load它们，以此来达到样本均衡的目的。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>目标检测的常见算法</title>
+    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%9A%84%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<p>目标检测(Object Detection)一直以来都是深度学习领域的热门话题，这个系列的文章会对其进行详细的梳理。</p>
+<span id="more"></span>
+<h1 id="1-传统的检测算法"><a href="#1-传统的检测算法" class="headerlink" title="1. 传统的检测算法"></a>1. 传统的检测算法</h1><ul>
+<li>Cascade + HOG/DPM + Haar/SVM以及上述方法的诸多改进、优化</li>
+</ul>
+<h1 id="2-候选区域-深度学习分类："><a href="#2-候选区域-深度学习分类：" class="headerlink" title="2. 候选区域+深度学习分类："></a>2. 候选区域+深度学习分类：</h1><p>提取候选区域，对相应的区域进行以深度学习方法为主的分类。</p>
+<ul>
+<li>R-CNN</li>
+<li>SPP-NET</li>
+<li>Fast R-CNN</li>
+<li>Faster R-CNN</li>
+</ul>
+<h1 id="3-基于深度学习的回归方法，YOLO-SSD-DenseBox"><a href="#3-基于深度学习的回归方法，YOLO-SSD-DenseBox" class="headerlink" title="3. 基于深度学习的回归方法，YOLO/SSD/DenseBox"></a>3. 基于深度学习的回归方法，YOLO/SSD/DenseBox</h1><p>看下图</p>
+<p>![[目标检测的常见算法.jpg]]</p>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决正负样本不均衡 Focal Loss</title>
+    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E8%A7%A3%E5%86%B3%E6%AD%A3%E8%B4%9F%E6%A0%B7%E6%9C%AC%E4%B8%8D%E5%9D%87%E8%A1%A1%20Focal%20Loss/</url>
+    <content><![CDATA[<p>正负样本不均衡是检测任务中常见的问题，在目标检测中，大量样本都是不包含目标的负样本，只有少量是包含目标的正样本，而Focal Loss就是为了解决这个问题而提出的。</p>
+<span id="more"></span>
+<h1 id="Focal-Loss的目的"><a href="#Focal-Loss的目的" class="headerlink" title="Focal Loss的目的"></a>Focal Loss的目的</h1><ul>
+<li>focal loss的主要目的是降低易分类样本的权重，使得模型更加关注困难样本，防止大量的简单样本主导模型的优化方向。<h1 id="Focal-Loss的计算方式"><a href="#Focal-Loss的计算方式" class="headerlink" title="Focal Loss的计算方式"></a>Focal Loss的计算方式</h1></li>
+<li>解决样本数量不均衡，在交叉熵中给交叉熵一个权重，也就是相反类的比重。这样一来，对于少量的样本，权重就比较大，对于大量的样本，权重就比较小。</li>
+<li>解决难易样本不均衡，直观来说，就是对于较难的样本，给一个大权重，对于容易的样本，加一个小权重。具体计算公式如下：<br><img src="https://img-blog.csdnimg.cn/3176959dcf034e8e91dca17caad6ff6f.png" alt="在这里插入图片描述"></li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>目标检测是什么</title>
+    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%98%AF%E4%BB%80%E4%B9%88/</url>
+    <content><![CDATA[<p>目标检测(Object Detection)一直以来都是深度学习领域的热门话题，这个系列的文章会对其进行详细的梳理。</p>
+<span id="more"></span>
+<h1 id="1-目标检测是什么"><a href="#1-目标检测是什么" class="headerlink" title="1. 目标检测是什么"></a>1. 目标检测是什么</h1><ul>
+<li>图像分类任务回答的是”图像中的物体是什么”。而目标检测任务回答的是”图像中的物体是什么，它处于图像的什么位置”。</li>
+<li>即，不但要输出目标所属的类别，还要输出物体的位置信息。位置信息通常采用bounding box表示，也就是给定一个矩形框的中心坐标以及宽高信息来定位框在图像中所属的位置。</li>
+</ul>
+<h1 id="2-如何进行目标检测"><a href="#2-如何进行目标检测" class="headerlink" title="2. 如何进行目标检测"></a>2. 如何进行目标检测</h1><ul>
+<li>从流程上进行分类一般有两种，即two-stage的方法和ont-shot的方法。</li>
+<li>two-stage的方法，也就是先产生候选区域，然后对每个候选区域进行分类，再通过回归来修正bounding box，最后通过非极大值抑制来确定最终的检测结果。</li>
+<li>one-shot方法的主要代表就是YOLO系列，它的思想是先将图片划分成一个个的单元格，然后对每个单元格进行处理，直接预测出当前位置是否存在物体、bounding box的位置以及分类的概率。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>空洞卷积的概念以及使用场景</title>
+    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%A9%BA%E6%B4%9E%E5%8D%B7%E7%A7%AF%E7%9A%84%E6%A6%82%E5%BF%B5%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/</url>
+    <content><![CDATA[<p>空洞卷积（dilated convolution）也是一种常见的卷积方式，主要目标是在不提升计算量和降低特征图分辨率的情况下获得更大的感受野。</p>
+<span id="more"></span>
+<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
+<li>空洞卷积就是在卷积的时候不是对连续的值进行计算，而是会中间隔开几个值，其他与普通的卷积并无差异。可以理解为一个稀疏的大卷积核，只有个别值有效，其余值为零。<h1 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h1></li>
+<li>在不增加计算量和降低特征图分辨率的情况下增大感受野。<h1 id="问题和解决方法"><a href="#问题和解决方法" class="headerlink" title="问题和解决方法"></a>问题和解决方法</h1></li>
+<li>空洞卷积的主要问题也是它的主要特点，就是卷积核不连续，最终可能会导致并非特征图中的所有点都能参与计算，这也会丢失信息的连续性，尤其是对于像素级的任务（如图像分割）来说非常不适用。并且这种设计主要针对在原始图像中占有更多像素点的较大物体，而对于较小的物体可能会失效，因为小物体并不需要较大的感受野。</li>
+<li>对于上述问题的一种解决方法就是将一组空洞卷积的dilation rate设计成一个没有大于1的公约数的数值，也就是锯齿状的空洞卷积，如[1,2,5,1,2,5]这样的循环结构，这样就可以保证在每一个循环中所有的像素点都能参与计算。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>贝叶斯网络的特点</title>
     <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%BD%91%E7%BB%9C%E7%9A%84%E7%89%B9%E7%82%B9/</url>
     <content><![CDATA[<h1 id="贝叶斯网络的特点"><a href="#贝叶斯网络的特点" class="headerlink" title="贝叶斯网络的特点"></a>贝叶斯网络的特点</h1><ul>
@@ -1858,19 +1800,110 @@
       </tags>
   </entry>
   <entry>
-    <title>标准-codec之间的关系</title>
-    <url>/2022/01/15/%E8%A7%86%E9%A2%91%E7%BC%96%E8%A7%A3%E7%A0%81-%E6%A0%87%E5%87%86%E4%B8%8Ecodec%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/</url>
-    <content><![CDATA[<p>一开始接触视频编解码的时候一直没有搞明白常说的AVC/H.264、HEVC/H.265等视频编码标准和常说的x264之间有什么联系，后来请教了组内大佬搞明白了，在这里记录下。</p>
+    <title>相机的内参、外参以及像素坐标和世界坐标的转换</title>
+    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%9B%B8%E6%9C%BA%E7%9A%84%E5%86%85%E5%8F%82%E3%80%81%E5%A4%96%E5%8F%82%E4%BB%A5%E5%8F%8A%E5%83%8F%E7%B4%A0%E5%9D%90%E6%A0%87%E5%92%8C%E4%B8%96%E7%95%8C%E5%9D%90%E6%A0%87%E7%9A%84%E8%BD%AC%E6%8D%A2/</url>
+    <content><![CDATA[<p>计算机视觉中的深度估计、SLAM、三维重建任务通常会用到相机参数作为输入，本文将对其进行简单介绍。</p>
 <span id="more"></span>
-
-<h1 id="视频编码标准"><a href="#视频编码标准" class="headerlink" title="视频编码标准"></a>视频编码标准</h1><p>视频编码标准一般是标准指定组织收到各种各样的提案之后，经过开会讨论、审计之后决定上线的一系列工具的总和。当这些标准出现之后，离真正落地使用还是有一段距离的，因此就出现了各种编解码器（codec）。</p>
-<h1 id="codec"><a href="#codec" class="headerlink" title="codec"></a>codec</h1><p>有了标准之后，需要根据这些标准实现一些可用的编解码器，这些编解码器又称codec。各个企业的工作中，通常会根据一些开源的codec方法去依据自己任务中的编码复杂度、时间消耗以及效果的trad-off来具体去进行优化和配置。这也是视频算法工程师的主要工作内容。</p>
+<h1 id="相机的内参"><a href="#相机的内参" class="headerlink" title="相机的内参"></a>相机的内参</h1><ul>
+<li>相机的内参矩阵包含x方向的焦距fx和y方向的焦距fy。以及相机光轴在x方向和y方向上的偏移量cx,cy。<br><img src="https://img-blog.csdnimg.cn/2a1647c9b9cf4dbaa3b16e9c12de955a.png" alt="在这里插入图片描述"></li>
+<li>内参为什么有两个焦距<ul>
+<li>一般来说，一个物体的宽度和高度会随着各个物体与相机之间的距离增加按照比例变小。而对于一张矩形的图片，物体的高宽变小的比例是不同的，这个比例就是根据焦距得到的，因此会有x方向和y方向各自的焦距。如下图公式：<br><img src="https://img-blog.csdnimg.cn/5d18dde8e5d147ac94405e4894d45d53.png" alt="在这里插入图片描述"><h1 id="相机的外参"><a href="#相机的外参" class="headerlink" title="相机的外参"></a>相机的外参</h1></li>
+</ul>
+</li>
+<li>相机的外参也被称为旋转平移矩阵，包括xyz三个轴的旋转参数，即旋转矩阵（R矩阵）。还有三个轴的平移参数，也就是平移矩阵（T矩阵）。<h1 id="像素坐标和世界坐标的转换"><a href="#像素坐标和世界坐标的转换" class="headerlink" title="像素坐标和世界坐标的转换"></a>像素坐标和世界坐标的转换</h1></li>
+<li>相机的外参通常用于像素空间到世界坐标的转换。公式如下图，其中（u, v）是像素坐标，(x, y, z）是世界坐标。<br><img src="https://img-blog.csdnimg.cn/0c542181557e473899cad3acca0527b4.png" alt="在这里插入图片描述"><br>简化后得到：<br><img src="https://img-blog.csdnimg.cn/c79432ece09c45b2b086c1d477c5fd85.png" alt="在这里插入图片描述"></li>
+</ul>
 ]]></content>
       <categories>
-        <category>视频编码</category>
+        <category>深度学习</category>
       </categories>
       <tags>
-        <tag>视频编码</tag>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>贝叶斯定理与条件概率公式</title>
+    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%AE%9A%E7%90%86%E4%B8%8E%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87%E5%85%AC%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="基本定理"><a href="#基本定理" class="headerlink" title="基本定理"></a>基本定理</h1><ul>
+<li>贝叶斯基于概率论中的贝叶斯定理，贝叶斯定理就是用先验概率和条件概率求出最终的事件概率。</li>
+<li>贝叶斯网络可以理解为将模型看作是一个概率密度函数，它可以表示数据的分布，训练过程就是概率分布的参数估计过程，预测过程就是求解条件概率的过程。<span id="more"></span>
+<h1 id="通过条件概率求得后验概率"><a href="#通过条件概率求得后验概率" class="headerlink" title="通过条件概率求得后验概率"></a>通过条件概率求得后验概率</h1></li>
+<li>后验概率可以用条件概率表示，公式为：<br><img src="https://img-blog.csdnimg.cn/e9e8742f5ea1430798d39c111237d3ae.png" alt="在这里插入图片描述"><br>由此可推导：<br><img src="https://img-blog.csdnimg.cn/05f1b3f02cdf483097afeb3095434dd7.png" alt="在这里插入图片描述"><h1 id="从条件概率推导贝叶斯定理"><a href="#从条件概率推导贝叶斯定理" class="headerlink" title="从条件概率推导贝叶斯定理"></a>从条件概率推导贝叶斯定理</h1>见公式<br><img src="https://img-blog.csdnimg.cn/39d894b69661488cbf42c49646c3a84a.png" alt="在这里插入图片描述"></li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>逻辑回归详解</title>
+    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E8%AF%A6%E8%A7%A3/</url>
+    <content><![CDATA[<h1 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h1><ul>
+<li>逻辑（logistic）回归是一个二分类器，函数是sigmoid形式，输出落在0~1之间，输出有概率意义。<span id="more"></span>
+<h1 id="2-优点"><a href="#2-优点" class="headerlink" title="2. 优点"></a>2. 优点</h1></li>
+<li>输出值自然落在0~1之间，有概率意义。（不能直接当做概率使用，只是一个置信度）</li>
+<li>参数代表每个特征对输出的影响，可解释强。<h1 id="3-缺点"><a href="#3-缺点" class="headerlink" title="3. 缺点"></a>3. 缺点</h1></li>
+<li>逻辑回归本质上还是线性回归，只是特征到结果的映射过程中增加了一层函数映射，即先把特征线性求和，然后使用sigmoid约束至0~1，结果值可以用于二分类或者回国预测，不可用于多分类问题。</li>
+<li>特征空间大时效果不好。</li>
+</ul>
+<h1 id="4-逻辑回归函数"><a href="#4-逻辑回归函数" class="headerlink" title="4. 逻辑回归函数"></a>4. 逻辑回归函数</h1><p>在说逻辑回归之前要了解优势比的概念：</p>
+<h2 id="4-1-优势比"><a href="#4-1-优势比" class="headerlink" title="4.1 优势比"></a>4.1 优势比</h2><ul>
+<li>假设在m个独立自变量，x1、x2…xm的作用下，记事件y取1的概率为：<br><img src="https://img-blog.csdnimg.cn/e8019f9b4fd64ecc90380e1ff634bd98.png" alt="在这里插入图片描述"><br>则事件y取0的概率为p = 1 - p，则取1和取0的概率之比为：<br><img src="https://img-blog.csdnimg.cn/f194b8ce950b4c9cb9fe790d3f84bcdb.png" alt="在这里插入图片描述"><br>上式就称为事件的优势比。<h2 id="4-2-logistic函数"><a href="#4-2-logistic函数" class="headerlink" title="4.2 logistic函数"></a>4.2 logistic函数</h2></li>
+<li>对优势比期自然对数得到logistic变换：<br><img src="https://img-blog.csdnimg.cn/50c9f561b0ff4398868e9380bec0ff01.png" alt="在这里插入图片描述"><br>令：<br><img src="https://img-blog.csdnimg.cn/1f1653a3b4664e90890a38350b0880dd.png" alt="在这里插入图片描述"><br>则有：<br><img src="https://img-blog.csdnimg.cn/d02c0ed7c1fa4d099b6c8939486de9bd.png" alt="在这里插入图片描述"><br>上式即为logistic函数，也是sigmoid函数，p就是P(y|X)的概率，其中X代表了一系列特征。函数图像如下：<br><img src="https://img-blog.csdnimg.cn/d5e620cd257844b0b8991c0894678341.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ZuB5a6HdXA=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><h1 id="5-逻辑回归模型"><a href="#5-逻辑回归模型" class="headerlink" title="5. 逻辑回归模型"></a>5. 逻辑回归模型</h1></li>
+<li>令上式中的<br><img src="https://img-blog.csdnimg.cn/391c3a4eb4eb4cbf8e64d6894f77af2c.png" alt="在这里插入图片描述"><br>则有：<br><img src="https://img-blog.csdnimg.cn/5a900ae1f06240e4b9a20e9ce65feb5e.png" alt="在这里插入图片描述"><br>实际上计算的就是p(y=1)和1-p(y=0)的优势比，当优势比接近于正无穷时，逻辑回归函数越接近于1，反之当这个优势比越接近于负无穷，那么逻辑回归函数越接近于0。<h1 id="6-总结"><a href="#6-总结" class="headerlink" title="6. 总结"></a>6. 总结</h1></li>
+<li>逻辑回归本质上还是线性回归，只是特征到结果中加了一层函数映射，即sigmoid函数，先把特征线性求和，然后使用sigmoid函数将线性和约束至（0，1）之间，结果值用于二分类或者回归预测。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>过拟合和欠拟合的概念及解决方案</title>
+    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E8%BF%87%E6%8B%9F%E5%90%88%E5%92%8C%E6%AC%A0%E6%8B%9F%E5%90%88%E7%9A%84%E6%A6%82%E5%BF%B5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
+<li>过拟合就是随着模型的训练，模型在训练集上的表现越来越好，但是在验证集上的表现却越来越差，也就是说对训练集的拟合程度过高，导致模型的泛化能力降低。<span id="more"></span></li>
+<li>欠拟合就是模型在训练集上也无法达到满意的精度。<h1 id="过拟合的解决方案"><a href="#过拟合的解决方案" class="headerlink" title="过拟合的解决方案"></a>过拟合的解决方案</h1>过拟合通常是由于训练数据过少、模型复杂度过大等问题导致的，因此相应的解决方案也是从这两个角度考虑。</li>
+<li>使用更多的数据进行训练，并且数据集尽量均匀，做一些数据增强。</li>
+<li>降低模型复杂度。并不是说模型越复杂越好，如果模型过于复杂，而训练集又较少，那么参数就很容易拟合到一个过于适配训练集的参数空间中，自然就会导致过拟合的出现。</li>
+<li>Early Stop，简单来说就是减少迭代次数。随着训练次数的增加，模型对训练数据的拟合程度也会随之增高，所以也可以通过减少训练时间的方法避免过拟合，提高模型泛化能力。</li>
+<li>L1、L2正则化方法，限制模型权重。</li>
+<li>在数据中增加一些噪声，从而通过影响损失函数的优化方向避免过拟合。</li>
+<li>Dropout，目的也是降低模型的复杂度。</li>
+<li>ResNet。是的，ResNet也可以解决过拟合问题，因为ResNet的跳线结构可以让部分参数权重归零，进而达到类似于Dropout的效果。<h1 id="欠拟合的解决方案"><a href="#欠拟合的解决方案" class="headerlink" title="欠拟合的解决方案"></a>欠拟合的解决方案</h1>欠拟合通常是由于模型表征能力不足、数据量过大导致的，刚好和过拟合相反。</li>
+<li>使用更复杂的模型。</li>
+<li>增加迭代次数。</li>
+<li>减少数据中的噪声。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>采用奇数卷积核的原因</title>
+    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%87%87%E7%94%A8%E5%A5%87%E6%95%B0%E5%8D%B7%E7%A7%AF%E6%A0%B8%E7%9A%84%E5%8E%9F%E5%9B%A0/</url>
+    <content><![CDATA[<p>在计算机视觉任务中，常见的卷积核选择都是3x3、5x5、7x7的，为什么很少见到偶数的卷积核呢？</p>
+<span id="more"></span>
+<ul>
+<li>其主要原因是为了保护位置信息，使用奇数的卷积核，保证了中心点刚好在中间，避免了位置信息发生偏移。在需要使用位置信息的任务，如目标检测、目标识别、三维重建、图像重建等任务中非常有价值。</li>
+<li>另一个就是因为padding时候能够保证左右对称，实际上也是为了位置信息。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
       </tags>
   </entry>
   <entry>
@@ -1917,64 +1950,15 @@
       </tags>
   </entry>
   <entry>
-    <title>过拟合和欠拟合的概念及解决方案</title>
-    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E8%BF%87%E6%8B%9F%E5%90%88%E5%92%8C%E6%AC%A0%E6%8B%9F%E5%90%88%E7%9A%84%E6%A6%82%E5%BF%B5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
-<li>过拟合就是随着模型的训练，模型在训练集上的表现越来越好，但是在验证集上的表现却越来越差，也就是说对训练集的拟合程度过高，导致模型的泛化能力降低。<span id="more"></span></li>
-<li>欠拟合就是模型在训练集上也无法达到满意的精度。<h1 id="过拟合的解决方案"><a href="#过拟合的解决方案" class="headerlink" title="过拟合的解决方案"></a>过拟合的解决方案</h1>过拟合通常是由于训练数据过少、模型复杂度过大等问题导致的，因此相应的解决方案也是从这两个角度考虑。</li>
-<li>使用更多的数据进行训练，并且数据集尽量均匀，做一些数据增强。</li>
-<li>降低模型复杂度。并不是说模型越复杂越好，如果模型过于复杂，而训练集又较少，那么参数就很容易拟合到一个过于适配训练集的参数空间中，自然就会导致过拟合的出现。</li>
-<li>Early Stop，简单来说就是减少迭代次数。随着训练次数的增加，模型对训练数据的拟合程度也会随之增高，所以也可以通过减少训练时间的方法避免过拟合，提高模型泛化能力。</li>
-<li>L1、L2正则化方法，限制模型权重。</li>
-<li>在数据中增加一些噪声，从而通过影响损失函数的优化方向避免过拟合。</li>
-<li>Dropout，目的也是降低模型的复杂度。</li>
-<li>ResNet。是的，ResNet也可以解决过拟合问题，因为ResNet的跳线结构可以让部分参数权重归零，进而达到类似于Dropout的效果。<h1 id="欠拟合的解决方案"><a href="#欠拟合的解决方案" class="headerlink" title="欠拟合的解决方案"></a>欠拟合的解决方案</h1>欠拟合通常是由于模型表征能力不足、数据量过大导致的，刚好和过拟合相反。</li>
-<li>使用更复杂的模型。</li>
-<li>增加迭代次数。</li>
-<li>减少数据中的噪声。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>逻辑回归详解</title>
-    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E8%AF%A6%E8%A7%A3/</url>
-    <content><![CDATA[<h1 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h1><ul>
-<li>逻辑（logistic）回归是一个二分类器，函数是sigmoid形式，输出落在0~1之间，输出有概率意义。<span id="more"></span>
-<h1 id="2-优点"><a href="#2-优点" class="headerlink" title="2. 优点"></a>2. 优点</h1></li>
-<li>输出值自然落在0~1之间，有概率意义。（不能直接当做概率使用，只是一个置信度）</li>
-<li>参数代表每个特征对输出的影响，可解释强。<h1 id="3-缺点"><a href="#3-缺点" class="headerlink" title="3. 缺点"></a>3. 缺点</h1></li>
-<li>逻辑回归本质上还是线性回归，只是特征到结果的映射过程中增加了一层函数映射，即先把特征线性求和，然后使用sigmoid约束至0~1，结果值可以用于二分类或者回国预测，不可用于多分类问题。</li>
-<li>特征空间大时效果不好。</li>
-</ul>
-<h1 id="4-逻辑回归函数"><a href="#4-逻辑回归函数" class="headerlink" title="4. 逻辑回归函数"></a>4. 逻辑回归函数</h1><p>在说逻辑回归之前要了解优势比的概念：</p>
-<h2 id="4-1-优势比"><a href="#4-1-优势比" class="headerlink" title="4.1 优势比"></a>4.1 优势比</h2><ul>
-<li>假设在m个独立自变量，x1、x2…xm的作用下，记事件y取1的概率为：<br><img src="https://img-blog.csdnimg.cn/e8019f9b4fd64ecc90380e1ff634bd98.png" alt="在这里插入图片描述"><br>则事件y取0的概率为p = 1 - p，则取1和取0的概率之比为：<br><img src="https://img-blog.csdnimg.cn/f194b8ce950b4c9cb9fe790d3f84bcdb.png" alt="在这里插入图片描述"><br>上式就称为事件的优势比。<h2 id="4-2-logistic函数"><a href="#4-2-logistic函数" class="headerlink" title="4.2 logistic函数"></a>4.2 logistic函数</h2></li>
-<li>对优势比期自然对数得到logistic变换：<br><img src="https://img-blog.csdnimg.cn/50c9f561b0ff4398868e9380bec0ff01.png" alt="在这里插入图片描述"><br>令：<br><img src="https://img-blog.csdnimg.cn/1f1653a3b4664e90890a38350b0880dd.png" alt="在这里插入图片描述"><br>则有：<br><img src="https://img-blog.csdnimg.cn/d02c0ed7c1fa4d099b6c8939486de9bd.png" alt="在这里插入图片描述"><br>上式即为logistic函数，也是sigmoid函数，p就是P(y|X)的概率，其中X代表了一系列特征。函数图像如下：<br><img src="https://img-blog.csdnimg.cn/d5e620cd257844b0b8991c0894678341.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA6ZuB5a6HdXA=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><h1 id="5-逻辑回归模型"><a href="#5-逻辑回归模型" class="headerlink" title="5. 逻辑回归模型"></a>5. 逻辑回归模型</h1></li>
-<li>令上式中的<br><img src="https://img-blog.csdnimg.cn/391c3a4eb4eb4cbf8e64d6894f77af2c.png" alt="在这里插入图片描述"><br>则有：<br><img src="https://img-blog.csdnimg.cn/5a900ae1f06240e4b9a20e9ce65feb5e.png" alt="在这里插入图片描述"><br>实际上计算的就是p(y=1)和1-p(y=0)的优势比，当优势比接近于正无穷时，逻辑回归函数越接近于1，反之当这个优势比越接近于负无穷，那么逻辑回归函数越接近于0。<h1 id="6-总结"><a href="#6-总结" class="headerlink" title="6. 总结"></a>6. 总结</h1></li>
-<li>逻辑回归本质上还是线性回归，只是特征到结果中加了一层函数映射，即sigmoid函数，先把特征线性求和，然后使用sigmoid函数将线性和约束至（0，1）之间，结果值用于二分类或者回归预测。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>采用奇数卷积核的原因</title>
-    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%87%87%E7%94%A8%E5%A5%87%E6%95%B0%E5%8D%B7%E7%A7%AF%E6%A0%B8%E7%9A%84%E5%8E%9F%E5%9B%A0/</url>
-    <content><![CDATA[<p>在计算机视觉任务中，常见的卷积核选择都是3x3、5x5、7x7的，为什么很少见到偶数的卷积核呢？</p>
-<span id="more"></span>
+    <title>逻辑回归实现多分类的方法</title>
+    <url>/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E5%AE%9E%E7%8E%B0%E5%A4%9A%E5%88%86%E7%B1%BB%E7%9A%84%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>方式1</p>
 <ul>
-<li>其主要原因是为了保护位置信息，使用奇数的卷积核，保证了中心点刚好在中间，避免了位置信息发生偏移。在需要使用位置信息的任务，如目标检测、目标识别、三维重建、图像重建等任务中非常有价值。</li>
-<li>另一个就是因为padding时候能够保证左右对称，实际上也是为了位置信息。</li>
+<li>在二分类问题上逻辑回归用的激活函数是sigmoid，在多分类的时候可以改为softmax函数。<span id="more"></span></li>
+</ul>
+<p>方式2</p>
+<ul>
+<li>根据每一类别都建立一个二分类器，有多少类别就有多少个逻辑回归分类器。</li>
 </ul>
 ]]></content>
       <categories>
@@ -1982,6 +1966,214 @@
       </categories>
       <tags>
         <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>视频编码名词解释</title>
+    <url>/2022/01/15/%E8%A7%86%E9%A2%91%E7%BC%96%E8%A7%A3%E7%A0%81-%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A/</url>
+    <content><![CDATA[<p>这篇文章一起学习一下视频编码中的常见名词。</p>
+<span id="more"></span>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>术语</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>基础术语</td>
+<td>编码和视频编码</td>
+<td>编码就是按指定的方法，将信息从一种形式(格式)，转换成另一种形式(格式)的技术。视频编码是指运用数据压缩技术将数字视频信号中的冗余信息去除，将原始视频格式的文件转换成另一种视频格式文件，以降低表示原始视频所需的码率，方便视频数据的传输与存储的一种技术。</td>
+</tr>
+<tr>
+<td>基础术语</td>
+<td>视频编解码器</td>
+<td>是指一个能够对数字视频进行压缩或者解压缩的程序或者设备。通常这种压缩属于有损数据压缩，即压缩前和压缩后的视频数据并不完全一致，但是一般人眼觉察不到这种差别。</td>
+</tr>
+<tr>
+<td>基础术语</td>
+<td>视频预处理</td>
+<td>为了去除视频采集过程中可能存在一些瑕疵或者出于利于视频编码的目的在编码前进行的处理， 通常的视频处理包含视频去噪，视频锐化，色彩/亮度/对比度增强等。</td>
+</tr>
+<tr>
+<td>基础术语</td>
+<td>混合视频编码框架</td>
+<td>混合编码（Hybrid Coding）框架是目前广泛使用的视频编码框架，混合编码框架是指将预测编码，变换编码等多个类型的编码方法应用在同一个框架内的编码方法，流程主要分为预测、变换、量化、熵编码四个步骤，其中预测主要分为帧内预测和帧间预测。</td>
+</tr>
+<tr>
+<td>标准与实现</td>
+<td>标准与实现的关系</td>
+<td>标准：视频编码标准是指定组织收到各种各样的提案之后，经过开会讨论、审计之后决定上线的一系列工具的总和。但是这些标准离真正使用还有一定距离，因此就出现了各种各样的实现方式。实现：有了标准之后，要根据这些标准实现一些具体可用的编解码器，如x264/x265。在企业的具体工作中，通常会在些开源实现的基础上进一步针对自己的业务进行优化。</td>
+</tr>
+<tr>
+<td>标准与实现</td>
+<td>AVC/H.264</td>
+<td>H.264，同时也是MPEG-4第十部分，是由ITU-T视频编码专家组（VCEG）和ISO/IEC动态图像专家组（MPEG）联合组成的联合视频组（JVT，Joint Video Team）提出的一种面向块的基于运动补偿的高度压缩数字视频的编解码器标准。这个标准通常被称之为H.264/AVC（或者AVC/H.264或者H.264/MPEG-4 AVC或MPEG-4/H.264 AVC）而明确的说明它两方面的开发者。</td>
+</tr>
+<tr>
+<td>标准与实现</td>
+<td>HEVC/H.265</td>
+<td>高效率视频编码（High Efficiency Video Coding，简称HEVC），又称为H.265和MPEG-H第2部分，是一种视频压缩标准，被视为是ITU-T H.264/MPEG-4 AVC标准的继任者。2004年开始由ISO/IEC Moving Picture Experts Group（MPEG）和ITU-T Video Coding Experts Group（VCEG）作为ISO/IEC 23008-2 MPEG-H Part 2或称作ITU-T H.265开始制定。第一版的HEVC/H.265视频压缩标准在2013年4月13日被接受为国际电信联盟（ITU-T）的正式标准。HEVC被认为不仅提升影像质量，同时也能达到H.264/MPEG-4 AVC两倍之压缩率（等同于同样画面质量下比特率减少到了50%），可支持4K清晰度甚至到超高清电视（UHDTV），最高清晰度可达到8192×4320（8K清晰度）。</td>
+</tr>
+<tr>
+<td>标准与实现</td>
+<td>VVC/H.266</td>
+<td>多功能视频编码（Versatile Video Coding，简称VVC），也称为H.266、MPEG-I第3部分或未来视频编码（FVC），是由联合视频专家组（JVET），于2020年7月6日最终确定的视频压缩标准。它是高效视频编码 （HEVC，也称为ITU-T H.265和MPEG-H第2部分）的后继标准。</td>
+</tr>
+<tr>
+<td>标准与实现</td>
+<td>JM/x264</td>
+<td>JM和x264都是AVC/H.264视频编码标准的一种具体实现。JM：JM通常被认为是H.264标准制定团队所认可的官方参考软件，基本实现了AVC/H.264标准的全部特征。JM在运行时的运算过程较为复杂，而且没有采用汇编优化等加速方法，因此运行速度较慢，很难达到实时编解码。通常主要用于编解码技术的科学研究领域。x264：x264是著名的H.264开源视频编码器，由开源组织VideoLan开发制定。X264是目前企业界应用最为广泛的开源编码器，主要因为X264相对于JM进行了大量的优化与简化，使其运行效率大幅提高，主要有对编码代价计算方法的简化以及添加了MMX、SSE汇编优化等部分。虽然编码的质量在某些情况下相对于JM略有下降，但是已无法掩盖其在可应用性，尤其是实时编码方面无可比拟的优势。</td>
+</tr>
+<tr>
+<td>标准与实现</td>
+<td>HM/x265</td>
+<td>HM和x265都是HEVC/H.265视频编码标准的一种具体实现。HM：HM是HEVC/H.265标准制定团队JCT-VC小组维护的参考软件，基本实现了HEVC的全部特征。HM主要以实现HEVC/H.266标准为目的，相关的速度优化比较少，运行速度比较慢，通常用于给相关研究者提供一个统一的研究和评测平台。x265：x265是一个用于编码符合高效率视频编码（HEVC/H.265）标准的视频的开源自由软件及函数库。与x264项目类似，x265使用GNU通用公共许可证（GPL）2授权或商业许可证授权提供。x265相较于HM也进行的大量的优化，增加汇编优化和多种快速算法，虽然编码的质量在某些情况下相较于HM有些下降，但是运行效率大幅度的提高，在实时编码方面展现了巨大的优势。</td>
+</tr>
+<tr>
+<td>标准与实现</td>
+<td>VTM/VVenC</td>
+<td>VTM和VVenC都是VVC/H.266视频编码标准的一种具体实现。VTM：VTM是由MPEG和VCEG联合建立的JVET小组在JVET第10次圣地亚哥会议上，第一次并发布的VVC/H.266测试模型。VTM主要以实现VVC/H.266标准为目的，相关的速度优化比较少，编码速度比较慢，主要是为研究者提供一个统一的研究和评测平台。VVenC：VVenC主要是为了解决VTM运行速度慢而在VTM的基础上，重新设计软件以减轻性能瓶颈，实现了广泛的SIMD优化，改进的编码器搜索算法以及基本的多线程支持等产生的一个很好地兼顾编码性能与编码速度的VVC/H.266标准实现。</td>
+</tr>
+<tr>
+<td>码率控制</td>
+<td>编码帧类型</td>
+<td>在视频编码序列中，主要有三种编码帧：I帧、P帧、B帧; I 帧（Intra Coded Picture）：又称帧内编码帧，为关键帧，是一种自带全部信息的独立帧，无需参考其他图像便可独立进行解码，可以简单理解为一张静态画面。视频序列中的第一个帧始终都是I 帧，每个 GOP 由I 帧开始。P 帧（Predictive Coded Picture）：又称帧间预测编码帧，需要参考前面的I帧才能进行编码。表示的是当前帧画面与前一帧（前一帧可能是I帧也可能是P帧）的差别。解码时需要用之前缓存的画面叠加上本帧定义的差别，生成最终画面。与I帧相比，P帧通常占用更少的数据位，但不足是，由于P帧对前面的P和I参考帧有着复杂的依赖性，因此对传输错误非常敏感。B 帧（Bidirectionally Predictive Coded Pictures）：又称双向预测编码帧，也就是B帧记录的是本帧与前后帧的差别。也就是说要解码B帧，不仅要取得之前的缓存画面，还要解码之后的画面，通过前后画面的与本帧数据的叠加取得最终的画面。B帧压缩率高，但是对解码性能要求较高。</td>
+</tr>
+<tr>
+<td>码率控制</td>
+<td>GOP</td>
+<td>GOP值表示关键帧的间隔（即两个关键帧之间的帧数），也就是两个IDR帧之间的距离，一个帧组的最大帧数。一般包括由一个 I-帧和若干个 P-帧和 B-帧组成的连续帧序列</td>
+</tr>
+<tr>
+<td>码率控制</td>
+<td>宏块</td>
+<td>宏块是编码处理的基本单元，通常宏块大小为16x16个像素。一个编码图像首先要划分成多个块（4x4 像素）才能进行处理，显然宏块应该由整数个块组成。宏块分为I、P、B宏块：I宏块（帧内预测宏块）只能利用当前片中已解码的像素作为参考进行帧内预测；P宏块（帧间预测宏块）可以利用前面已解码的图像作为参考图像进行帧内预测；B宏块（帧间双向预测宏块）则是利用前后向的参考图像进行帧内预测。</td>
+</tr>
+<tr>
+<td>码率控制</td>
+<td>码率控制</td>
+<td>视频编码是一个有损编码的过程，其目的是在尽量保持视频质量的的同时尽可能多的节省比特（码率）。码率控制就是平衡码率和质量的重要工具。根据不同的应用场景，需要选择不同的码率控制算法，包括”1-pass”,”2-pass”,”CBR”,”VBR”,”VBV Encoding”和”CRF”。</td>
+</tr>
+<tr>
+<td>码率控制</td>
+<td><strong>固定量化参数</strong>(Constant QP, CQP)</td>
+<td>最简单的码率控制方式，每帧图像都按照一个特定的QP来编码，每帧编码后的数据量有多大是未知的，既不是码率优先模型也不是质量优先模型，不过是实现最简单的模型。一般不建议使用这种方式，因为这种方式不考虑编码内容的复杂性，用相同的压缩比处理每一帧。出来的视频质量和码率都不固定。具有编码速度快，调控最简单,每帧的QP值相同，但是瞬时码率会随场景复杂度波动的特点。</td>
+</tr>
+<tr>
+<td>码率控制</td>
+<td><strong>恒定码率系数</strong>(Constant Rate Factor, CRF）</td>
+<td>把某一个”视觉质量”作为输出目标。通过降低那些耗费码率但是又难以用肉眼察觉的帧（高速运动或者纹理丰富）的质量提升那些静态帧的码率来达到此目的。由于帧间QP变化，帧内宏块的QP变化，输出码率未知，但是各帧输出的视觉质量基本恒定，适用于对视频质量有一定要求的场合</td>
+</tr>
+<tr>
+<td>码率控制</td>
+<td><strong>恒定码率</strong> <strong>(Constant Bit Rate, CBR)</strong></td>
+<td>一定时间范围内比特率基本保持的恒定，属于码率优先模型。具有码率稳定，但是质量不稳定，带宽有效利用率不高，但是输出视频码率基本稳定，便于计算视频体积大小的特点。但是特别当该值设置不合理，在复杂运动场景下，画面非常模糊，非常影响观看体验。</td>
+</tr>
+<tr>
+<td>码率控制</td>
+<td>可变码率(Variable Bit Rate, <strong>VBR)</strong></td>
+<td>简单场景分配比较大的QP，压缩率小，质量高。复杂场景分配较小QP。得到基本稳定的视觉质量，因为人眼人眼本来就对复杂场景不敏感，缺点在于输出码率大小不可控。</td>
+</tr>
+<tr>
+<td>码率控制</td>
+<td>二次编码方式(2PASS)</td>
+<td>第一次编码检测视频内容的简单和复杂部分，同时确定简单和复杂的比例。第二遍编码会让视频的平均码率不变，复杂的地方分配多bit,简单地方分配少bit。具有码率不稳定，质量基本稳定且非常高；编码速度一般比较慢的特点。在点播、下载和存储系统可以优先使用，不适合低延时、直播系统。</td>
+</tr>
+<tr>
+<td>码率控制</td>
+<td>平均比特率(Average Bitrate, ABR)</td>
+<td>简单场景分配较低bit,复杂场景分配足够bit，使得有限的bit数能够在不同场景下合理分配，这类似VBR。同时一定时间内，平均码率又接近设置的目标码率，这样可以控制输出文件的大小，这又类似CBR。可以认为是CBR和VBR的折中方案，这是大多人的选择。特别在对质量和视频带宽都有要求的情况下，可以优先选择该模式，一般速度是VBR的两倍到三倍，相同体积的视频文件质量却比CBR好很多。具有视频质量整体可控，同时兼顾了视频码率和速度的优点，是一个折中方案，在直播和低延时系统中用的比较多。在使用过程一般要配合最低码率、最高码率和平均码率综合使用。</td>
+</tr>
+<tr>
+<td>量化</td>
+<td>量化</td>
+<td>量化是指将信号的连续取值(或大量可能的离散取值)映射为有限多个离散值的过程，实现信号取值多对一的映射。在视频/图像编码中，残差信号经过DCT后，变换系数往往具有较大的动态范围，因此对变换系数进行量化可以有效地减小信号取值空间，获得更好的压缩效果。量化分为两类，如下：标量量化：无需分析数据统计特性，复杂度低，但平均量化误差大。被主流的图像、视频编码标准所采用；矢量量化：基于数据统计属性的量化器，平均量化误差低，但不容易实现。</td>
+</tr>
+<tr>
+<td>量化</td>
+<td>量化参数</td>
+<td>量化参数（QP）是量化过程中选取的将连续的取值离散化的阈值，它反映了空间细节压缩情况，如QP小，大部分的细节都会被保留；QP增大，一些细节丢失，码率降低，但图像失真加强和质量下降。也就是说，QP和比特率成反比的关系，而且随着视频源复杂度的提高，这种反比关系会更明显。码率控制的核心就是确定宏块的QP。码率控制是一级一级进行控制的，先分配图像组级（GOP）的比特数，然后分配图像级的比特数，再分配CTU级别的比特数。利用已经分配的比特数来确定量化参数。通过对比已经分配的比特数和时间编码产生的比特数差异对码控参数进行更新。</td>
+</tr>
+<tr>
+<td>量化</td>
+<td>自适应量化</td>
+<td>自适应量化就是根据宏块的复杂度来调整每个宏块量化时的量化参数。x264中有3中自适应量化模式可供选择：1）基于方差的自适应量化，2）基于自协方差的自适应量化，3）基于带偏置的自协方差自适应量化</td>
+</tr>
+<tr>
+<td>量化</td>
+<td>MBTree</td>
+<td>在x264中，mb-tree是默认开启的，和自适应量化一起控制MB级的QP。mb-tree的具体作用原理是根据该MB在帧间预测中贡献给未来帧（在编码顺序里位于当前帧之后的帧）的信息，即被参考的情况，来调整该宏块的QP值。简言之，如果该MB贡献给后续帧的信息越多，则其重要性越高，应当提高该区域的编码质量，减少QP，反之，则增大该区域的QP。</td>
+</tr>
+<tr>
+<td>深度学习</td>
+<td>注意力机制</td>
+<td>人类对信息的感知和理解的过程并非遵循严格的解码规范，而是会根据注意力对信息进行筛选，机器的注意力机制就是对这一过程的仿生，即处理信息时根据每段信息的重要性对其进行筛选。</td>
+</tr>
+<tr>
+<td>深度学习</td>
+<td>自注意力机制</td>
+<td>通过让信息进行自我关联，找出信息内部的关系权重，进而指导深度学习模型对信息价值的判断和选择。</td>
+</tr>
+<tr>
+<td>深度学习</td>
+<td>视觉全自注意力网络</td>
+<td>视觉全自注意力网络（Vision Transformer）是一种基于自注意力机制，通过深度神经网络进行训练的深度学习模型。</td>
+</tr>
+<tr>
+<td>深度学习</td>
+<td>残差网络</td>
+<td>残差网络（ResNet）是一种基于深度学习的卷积神经网络，在本文档中主要用于图像内容复杂度的计算。</td>
+</tr>
+<tr>
+<td>深度学习</td>
+<td>图像序列化</td>
+<td>序列化（Embedding）是将离散的变量转换为对应连续向量的过程。图像的序列化是将二维图像映射为一维向量的过程。</td>
+</tr>
+<tr>
+<td>深度学习</td>
+<td>感知机</td>
+<td>是一个基于神经网络的判别模型，主要用于二分类任务。</td>
+</tr>
+<tr>
+<td>评价指标</td>
+<td>SSIM</td>
+<td>图像结构相似性（Structural Similarity）是一种计算两张图像之间结构相似性的方法，在视频编码中主要用于评估视频编码中每一张图像压缩之后的质量。</td>
+</tr>
+<tr>
+<td>评价指标</td>
+<td>PSNR</td>
+<td>峰值信噪比（Peak Signal to Noise Ratio）即峰值信号的能量与噪声之间的平均能量之比，是视频编码中用于评估每一张图像编码质量的常用的客观指标。</td>
+</tr>
+<tr>
+<td>评价指标</td>
+<td>VMAF</td>
+<td>VMAF (Video Multimethod Assessment Fusion) 由 Netflix 开发并开源，利用大量的主观数据作为训练集，通过机器学习的手段将不同评估维度的算法进行“融合”，得到一个能准确反映主观意志的画质评价标准。VMAF 主要包括3种指标：visual quality fidelity（VIF）、detail loss measure（DLM）、temporal information（TI）。其中 VIF 和 DLM 是空间域的也即一帧画面之内的特征，TI 是时间域的也即多帧画面之间相关性的特征。这些特性之间融合计算总分的过程使用了训练好的 SVM 来预测。</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>视频编码</category>
+      </categories>
+      <tags>
+        <tag>视频编码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>标准-codec之间的关系</title>
+    <url>/2022/01/15/%E8%A7%86%E9%A2%91%E7%BC%96%E8%A7%A3%E7%A0%81-%E6%A0%87%E5%87%86%E4%B8%8Ecodec%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/</url>
+    <content><![CDATA[<p>一开始接触视频编解码的时候一直没有搞明白常说的AVC/H.264、HEVC/H.265等视频编码标准和常说的x264之间有什么联系，后来请教了组内大佬搞明白了，在这里记录下。</p>
+<span id="more"></span>
+
+<h1 id="视频编码标准"><a href="#视频编码标准" class="headerlink" title="视频编码标准"></a>视频编码标准</h1><p>视频编码标准一般是标准指定组织收到各种各样的提案之后，经过开会讨论、审计之后决定上线的一系列工具的总和。当这些标准出现之后，离真正落地使用还是有一段距离的，因此就出现了各种编解码器（codec）。</p>
+<h1 id="codec"><a href="#codec" class="headerlink" title="codec"></a>codec</h1><p>有了标准之后，需要根据这些标准实现一些可用的编解码器，这些编解码器又称codec。各个企业的工作中，通常会根据一些开源的codec方法去依据自己任务中的编码复杂度、时间消耗以及效果的trad-off来具体去进行优化和配置。这也是视频算法工程师的主要工作内容。</p>
+]]></content>
+      <categories>
+        <category>视频编码</category>
+      </categories>
+      <tags>
+        <tag>视频编码</tag>
       </tags>
   </entry>
   <entry>
@@ -2245,198 +2437,6 @@
       <tags>
         <tag>python</tag>
         <tag>coding</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>视频编码名词解释</title>
-    <url>/2022/01/15/%E8%A7%86%E9%A2%91%E7%BC%96%E8%A7%A3%E7%A0%81-%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A/</url>
-    <content><![CDATA[<p>这篇文章一起学习一下视频编码中的常见名词。</p>
-<span id="more"></span>
-<table>
-<thead>
-<tr>
-<th>分类</th>
-<th>术语</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>基础术语</td>
-<td>编码和视频编码</td>
-<td>编码就是按指定的方法，将信息从一种形式(格式)，转换成另一种形式(格式)的技术。视频编码是指运用数据压缩技术将数字视频信号中的冗余信息去除，将原始视频格式的文件转换成另一种视频格式文件，以降低表示原始视频所需的码率，方便视频数据的传输与存储的一种技术。</td>
-</tr>
-<tr>
-<td>基础术语</td>
-<td>视频编解码器</td>
-<td>是指一个能够对数字视频进行压缩或者解压缩的程序或者设备。通常这种压缩属于有损数据压缩，即压缩前和压缩后的视频数据并不完全一致，但是一般人眼觉察不到这种差别。</td>
-</tr>
-<tr>
-<td>基础术语</td>
-<td>视频预处理</td>
-<td>为了去除视频采集过程中可能存在一些瑕疵或者出于利于视频编码的目的在编码前进行的处理， 通常的视频处理包含视频去噪，视频锐化，色彩/亮度/对比度增强等。</td>
-</tr>
-<tr>
-<td>基础术语</td>
-<td>混合视频编码框架</td>
-<td>混合编码（Hybrid Coding）框架是目前广泛使用的视频编码框架，混合编码框架是指将预测编码，变换编码等多个类型的编码方法应用在同一个框架内的编码方法，流程主要分为预测、变换、量化、熵编码四个步骤，其中预测主要分为帧内预测和帧间预测。</td>
-</tr>
-<tr>
-<td>标准与实现</td>
-<td>标准与实现的关系</td>
-<td>标准：视频编码标准是指定组织收到各种各样的提案之后，经过开会讨论、审计之后决定上线的一系列工具的总和。但是这些标准离真正使用还有一定距离，因此就出现了各种各样的实现方式。实现：有了标准之后，要根据这些标准实现一些具体可用的编解码器，如x264/x265。在企业的具体工作中，通常会在些开源实现的基础上进一步针对自己的业务进行优化。</td>
-</tr>
-<tr>
-<td>标准与实现</td>
-<td>AVC/H.264</td>
-<td>H.264，同时也是MPEG-4第十部分，是由ITU-T视频编码专家组（VCEG）和ISO/IEC动态图像专家组（MPEG）联合组成的联合视频组（JVT，Joint Video Team）提出的一种面向块的基于运动补偿的高度压缩数字视频的编解码器标准。这个标准通常被称之为H.264/AVC（或者AVC/H.264或者H.264/MPEG-4 AVC或MPEG-4/H.264 AVC）而明确的说明它两方面的开发者。</td>
-</tr>
-<tr>
-<td>标准与实现</td>
-<td>HEVC/H.265</td>
-<td>高效率视频编码（High Efficiency Video Coding，简称HEVC），又称为H.265和MPEG-H第2部分，是一种视频压缩标准，被视为是ITU-T H.264/MPEG-4 AVC标准的继任者。2004年开始由ISO/IEC Moving Picture Experts Group（MPEG）和ITU-T Video Coding Experts Group（VCEG）作为ISO/IEC 23008-2 MPEG-H Part 2或称作ITU-T H.265开始制定。第一版的HEVC/H.265视频压缩标准在2013年4月13日被接受为国际电信联盟（ITU-T）的正式标准。HEVC被认为不仅提升影像质量，同时也能达到H.264/MPEG-4 AVC两倍之压缩率（等同于同样画面质量下比特率减少到了50%），可支持4K清晰度甚至到超高清电视（UHDTV），最高清晰度可达到8192×4320（8K清晰度）。</td>
-</tr>
-<tr>
-<td>标准与实现</td>
-<td>VVC/H.266</td>
-<td>多功能视频编码（Versatile Video Coding，简称VVC），也称为H.266、MPEG-I第3部分或未来视频编码（FVC），是由联合视频专家组（JVET），于2020年7月6日最终确定的视频压缩标准。它是高效视频编码 （HEVC，也称为ITU-T H.265和MPEG-H第2部分）的后继标准。</td>
-</tr>
-<tr>
-<td>标准与实现</td>
-<td>JM/x264</td>
-<td>JM和x264都是AVC/H.264视频编码标准的一种具体实现。JM：JM通常被认为是H.264标准制定团队所认可的官方参考软件，基本实现了AVC/H.264标准的全部特征。JM在运行时的运算过程较为复杂，而且没有采用汇编优化等加速方法，因此运行速度较慢，很难达到实时编解码。通常主要用于编解码技术的科学研究领域。x264：x264是著名的H.264开源视频编码器，由开源组织VideoLan开发制定。X264是目前企业界应用最为广泛的开源编码器，主要因为X264相对于JM进行了大量的优化与简化，使其运行效率大幅提高，主要有对编码代价计算方法的简化以及添加了MMX、SSE汇编优化等部分。虽然编码的质量在某些情况下相对于JM略有下降，但是已无法掩盖其在可应用性，尤其是实时编码方面无可比拟的优势。</td>
-</tr>
-<tr>
-<td>标准与实现</td>
-<td>HM/x265</td>
-<td>HM和x265都是HEVC/H.265视频编码标准的一种具体实现。HM：HM是HEVC/H.265标准制定团队JCT-VC小组维护的参考软件，基本实现了HEVC的全部特征。HM主要以实现HEVC/H.266标准为目的，相关的速度优化比较少，运行速度比较慢，通常用于给相关研究者提供一个统一的研究和评测平台。x265：x265是一个用于编码符合高效率视频编码（HEVC/H.265）标准的视频的开源自由软件及函数库。与x264项目类似，x265使用GNU通用公共许可证（GPL）2授权或商业许可证授权提供。x265相较于HM也进行的大量的优化，增加汇编优化和多种快速算法，虽然编码的质量在某些情况下相较于HM有些下降，但是运行效率大幅度的提高，在实时编码方面展现了巨大的优势。</td>
-</tr>
-<tr>
-<td>标准与实现</td>
-<td>VTM/VVenC</td>
-<td>VTM和VVenC都是VVC/H.266视频编码标准的一种具体实现。VTM：VTM是由MPEG和VCEG联合建立的JVET小组在JVET第10次圣地亚哥会议上，第一次并发布的VVC/H.266测试模型。VTM主要以实现VVC/H.266标准为目的，相关的速度优化比较少，编码速度比较慢，主要是为研究者提供一个统一的研究和评测平台。VVenC：VVenC主要是为了解决VTM运行速度慢而在VTM的基础上，重新设计软件以减轻性能瓶颈，实现了广泛的SIMD优化，改进的编码器搜索算法以及基本的多线程支持等产生的一个很好地兼顾编码性能与编码速度的VVC/H.266标准实现。</td>
-</tr>
-<tr>
-<td>码率控制</td>
-<td>编码帧类型</td>
-<td>在视频编码序列中，主要有三种编码帧：I帧、P帧、B帧; I 帧（Intra Coded Picture）：又称帧内编码帧，为关键帧，是一种自带全部信息的独立帧，无需参考其他图像便可独立进行解码，可以简单理解为一张静态画面。视频序列中的第一个帧始终都是I 帧，每个 GOP 由I 帧开始。P 帧（Predictive Coded Picture）：又称帧间预测编码帧，需要参考前面的I帧才能进行编码。表示的是当前帧画面与前一帧（前一帧可能是I帧也可能是P帧）的差别。解码时需要用之前缓存的画面叠加上本帧定义的差别，生成最终画面。与I帧相比，P帧通常占用更少的数据位，但不足是，由于P帧对前面的P和I参考帧有着复杂的依赖性，因此对传输错误非常敏感。B 帧（Bidirectionally Predictive Coded Pictures）：又称双向预测编码帧，也就是B帧记录的是本帧与前后帧的差别。也就是说要解码B帧，不仅要取得之前的缓存画面，还要解码之后的画面，通过前后画面的与本帧数据的叠加取得最终的画面。B帧压缩率高，但是对解码性能要求较高。</td>
-</tr>
-<tr>
-<td>码率控制</td>
-<td>GOP</td>
-<td>GOP值表示关键帧的间隔（即两个关键帧之间的帧数），也就是两个IDR帧之间的距离，一个帧组的最大帧数。一般包括由一个 I-帧和若干个 P-帧和 B-帧组成的连续帧序列</td>
-</tr>
-<tr>
-<td>码率控制</td>
-<td>宏块</td>
-<td>宏块是编码处理的基本单元，通常宏块大小为16x16个像素。一个编码图像首先要划分成多个块（4x4 像素）才能进行处理，显然宏块应该由整数个块组成。宏块分为I、P、B宏块：I宏块（帧内预测宏块）只能利用当前片中已解码的像素作为参考进行帧内预测；P宏块（帧间预测宏块）可以利用前面已解码的图像作为参考图像进行帧内预测；B宏块（帧间双向预测宏块）则是利用前后向的参考图像进行帧内预测。</td>
-</tr>
-<tr>
-<td>码率控制</td>
-<td>码率控制</td>
-<td>视频编码是一个有损编码的过程，其目的是在尽量保持视频质量的的同时尽可能多的节省比特（码率）。码率控制就是平衡码率和质量的重要工具。根据不同的应用场景，需要选择不同的码率控制算法，包括”1-pass”,”2-pass”,”CBR”,”VBR”,”VBV Encoding”和”CRF”。</td>
-</tr>
-<tr>
-<td>码率控制</td>
-<td><strong>固定量化参数</strong>(Constant QP, CQP)</td>
-<td>最简单的码率控制方式，每帧图像都按照一个特定的QP来编码，每帧编码后的数据量有多大是未知的，既不是码率优先模型也不是质量优先模型，不过是实现最简单的模型。一般不建议使用这种方式，因为这种方式不考虑编码内容的复杂性，用相同的压缩比处理每一帧。出来的视频质量和码率都不固定。具有编码速度快，调控最简单,每帧的QP值相同，但是瞬时码率会随场景复杂度波动的特点。</td>
-</tr>
-<tr>
-<td>码率控制</td>
-<td><strong>恒定码率系数</strong>(Constant Rate Factor, CRF）</td>
-<td>把某一个”视觉质量”作为输出目标。通过降低那些耗费码率但是又难以用肉眼察觉的帧（高速运动或者纹理丰富）的质量提升那些静态帧的码率来达到此目的。由于帧间QP变化，帧内宏块的QP变化，输出码率未知，但是各帧输出的视觉质量基本恒定，适用于对视频质量有一定要求的场合</td>
-</tr>
-<tr>
-<td>码率控制</td>
-<td><strong>恒定码率</strong> <strong>(Constant Bit Rate, CBR)</strong></td>
-<td>一定时间范围内比特率基本保持的恒定，属于码率优先模型。具有码率稳定，但是质量不稳定，带宽有效利用率不高，但是输出视频码率基本稳定，便于计算视频体积大小的特点。但是特别当该值设置不合理，在复杂运动场景下，画面非常模糊，非常影响观看体验。</td>
-</tr>
-<tr>
-<td>码率控制</td>
-<td>可变码率(Variable Bit Rate, <strong>VBR)</strong></td>
-<td>简单场景分配比较大的QP，压缩率小，质量高。复杂场景分配较小QP。得到基本稳定的视觉质量，因为人眼人眼本来就对复杂场景不敏感，缺点在于输出码率大小不可控。</td>
-</tr>
-<tr>
-<td>码率控制</td>
-<td>二次编码方式(2PASS)</td>
-<td>第一次编码检测视频内容的简单和复杂部分，同时确定简单和复杂的比例。第二遍编码会让视频的平均码率不变，复杂的地方分配多bit,简单地方分配少bit。具有码率不稳定，质量基本稳定且非常高；编码速度一般比较慢的特点。在点播、下载和存储系统可以优先使用，不适合低延时、直播系统。</td>
-</tr>
-<tr>
-<td>码率控制</td>
-<td>平均比特率(Average Bitrate, ABR)</td>
-<td>简单场景分配较低bit,复杂场景分配足够bit，使得有限的bit数能够在不同场景下合理分配，这类似VBR。同时一定时间内，平均码率又接近设置的目标码率，这样可以控制输出文件的大小，这又类似CBR。可以认为是CBR和VBR的折中方案，这是大多人的选择。特别在对质量和视频带宽都有要求的情况下，可以优先选择该模式，一般速度是VBR的两倍到三倍，相同体积的视频文件质量却比CBR好很多。具有视频质量整体可控，同时兼顾了视频码率和速度的优点，是一个折中方案，在直播和低延时系统中用的比较多。在使用过程一般要配合最低码率、最高码率和平均码率综合使用。</td>
-</tr>
-<tr>
-<td>量化</td>
-<td>量化</td>
-<td>量化是指将信号的连续取值(或大量可能的离散取值)映射为有限多个离散值的过程，实现信号取值多对一的映射。在视频/图像编码中，残差信号经过DCT后，变换系数往往具有较大的动态范围，因此对变换系数进行量化可以有效地减小信号取值空间，获得更好的压缩效果。量化分为两类，如下：标量量化：无需分析数据统计特性，复杂度低，但平均量化误差大。被主流的图像、视频编码标准所采用；矢量量化：基于数据统计属性的量化器，平均量化误差低，但不容易实现。</td>
-</tr>
-<tr>
-<td>量化</td>
-<td>量化参数</td>
-<td>量化参数（QP）是量化过程中选取的将连续的取值离散化的阈值，它反映了空间细节压缩情况，如QP小，大部分的细节都会被保留；QP增大，一些细节丢失，码率降低，但图像失真加强和质量下降。也就是说，QP和比特率成反比的关系，而且随着视频源复杂度的提高，这种反比关系会更明显。码率控制的核心就是确定宏块的QP。码率控制是一级一级进行控制的，先分配图像组级（GOP）的比特数，然后分配图像级的比特数，再分配CTU级别的比特数。利用已经分配的比特数来确定量化参数。通过对比已经分配的比特数和时间编码产生的比特数差异对码控参数进行更新。</td>
-</tr>
-<tr>
-<td>量化</td>
-<td>自适应量化</td>
-<td>自适应量化就是根据宏块的复杂度来调整每个宏块量化时的量化参数。x264中有3中自适应量化模式可供选择：1）基于方差的自适应量化，2）基于自协方差的自适应量化，3）基于带偏置的自协方差自适应量化</td>
-</tr>
-<tr>
-<td>量化</td>
-<td>MBTree</td>
-<td>在x264中，mb-tree是默认开启的，和自适应量化一起控制MB级的QP。mb-tree的具体作用原理是根据该MB在帧间预测中贡献给未来帧（在编码顺序里位于当前帧之后的帧）的信息，即被参考的情况，来调整该宏块的QP值。简言之，如果该MB贡献给后续帧的信息越多，则其重要性越高，应当提高该区域的编码质量，减少QP，反之，则增大该区域的QP。</td>
-</tr>
-<tr>
-<td>深度学习</td>
-<td>注意力机制</td>
-<td>人类对信息的感知和理解的过程并非遵循严格的解码规范，而是会根据注意力对信息进行筛选，机器的注意力机制就是对这一过程的仿生，即处理信息时根据每段信息的重要性对其进行筛选。</td>
-</tr>
-<tr>
-<td>深度学习</td>
-<td>自注意力机制</td>
-<td>通过让信息进行自我关联，找出信息内部的关系权重，进而指导深度学习模型对信息价值的判断和选择。</td>
-</tr>
-<tr>
-<td>深度学习</td>
-<td>视觉全自注意力网络</td>
-<td>视觉全自注意力网络（Vision Transformer）是一种基于自注意力机制，通过深度神经网络进行训练的深度学习模型。</td>
-</tr>
-<tr>
-<td>深度学习</td>
-<td>残差网络</td>
-<td>残差网络（ResNet）是一种基于深度学习的卷积神经网络，在本文档中主要用于图像内容复杂度的计算。</td>
-</tr>
-<tr>
-<td>深度学习</td>
-<td>图像序列化</td>
-<td>序列化（Embedding）是将离散的变量转换为对应连续向量的过程。图像的序列化是将二维图像映射为一维向量的过程。</td>
-</tr>
-<tr>
-<td>深度学习</td>
-<td>感知机</td>
-<td>是一个基于神经网络的判别模型，主要用于二分类任务。</td>
-</tr>
-<tr>
-<td>评价指标</td>
-<td>SSIM</td>
-<td>图像结构相似性（Structural Similarity）是一种计算两张图像之间结构相似性的方法，在视频编码中主要用于评估视频编码中每一张图像压缩之后的质量。</td>
-</tr>
-<tr>
-<td>评价指标</td>
-<td>PSNR</td>
-<td>峰值信噪比（Peak Signal to Noise Ratio）即峰值信号的能量与噪声之间的平均能量之比，是视频编码中用于评估每一张图像编码质量的常用的客观指标。</td>
-</tr>
-<tr>
-<td>评价指标</td>
-<td>VMAF</td>
-<td>VMAF (Video Multimethod Assessment Fusion) 由 Netflix 开发并开源，利用大量的主观数据作为训练集，通过机器学习的手段将不同评估维度的算法进行“融合”，得到一个能准确反映主观意志的画质评价标准。VMAF 主要包括3种指标：visual quality fidelity（VIF）、detail loss measure（DLM）、temporal information（TI）。其中 VIF 和 DLM 是空间域的也即一帧画面之内的特征，TI 是时间域的也即多帧画面之间相关性的特征。这些特性之间融合计算总分的过程使用了训练好的 SVM 来预测。</td>
-</tr>
-</tbody></table>
-]]></content>
-      <categories>
-        <category>视频编码</category>
-      </categories>
-      <tags>
-        <tag>视频编码</tag>
       </tags>
   </entry>
 </search>
