@@ -20,10 +20,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
+  <meta name="description" content="yuxiangdaily@163.com">
+<meta property="og:type" content="website">
 <meta property="og:title" content="Yuxiang.Yan Daily">
 <meta property="og:url" content="http://example.com/page/6/index.html">
 <meta property="og:site_name" content="Yuxiang.Yan Daily">
+<meta property="og:description" content="yuxiangdaily@163.com">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="yuxiang.yan">
 <meta name="twitter:card" content="summary">
@@ -184,12 +186,12 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/15/%E8%A7%86%E9%A2%91%E7%BC%96%E8%A7%A3%E7%A0%81-%E6%A0%87%E5%87%86%E4%B8%8Ecodec%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E8%BF%87%E6%8B%9F%E5%90%88%E5%92%8C%E6%AC%A0%E6%8B%9F%E5%90%88%E7%9A%84%E6%A6%82%E5%BF%B5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="yuxiang.yan">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="yuxiangdaily@163.com">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -198,7 +200,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/01/15/%E8%A7%86%E9%A2%91%E7%BC%96%E8%A7%A3%E7%A0%81-%E6%A0%87%E5%87%86%E4%B8%8Ecodec%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/" class="post-title-link" itemprop="url">标准-codec之间的关系</a>
+            <a href="/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E8%BF%87%E6%8B%9F%E5%90%88%E5%92%8C%E6%AC%A0%E6%8B%9F%E5%90%88%E7%9A%84%E6%A6%82%E5%BF%B5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="post-title-link" itemprop="url">过拟合和欠拟合的概念及解决方案</a>
         </h2>
 
         <div class="post-meta">
@@ -209,82 +211,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-01-15 10:00:00 / 修改时间：09:57:10" itemprop="dateCreated datePublished" datetime="2022-01-15T10:00:00+08:00">2022-01-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81/" itemprop="url" rel="index"><span itemprop="name">视频编码</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>一开始接触视频编解码的时候一直没有搞明白常说的AVC/H.264、HEVC/H.265等视频编码标准和常说的x264之间有什么联系，后来请教了组内大佬搞明白了，在这里记录下。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/01/15/%E8%A7%86%E9%A2%91%E7%BC%96%E8%A7%A3%E7%A0%81-%E6%A0%87%E5%87%86%E4%B8%8Ecodec%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E5%AE%9E%E7%8E%B0%E5%A4%9A%E5%88%86%E7%B1%BB%E7%9A%84%E6%96%B9%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="yuxiang.yan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yuxiang.Yan Daily">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E5%AE%9E%E7%8E%B0%E5%A4%9A%E5%88%86%E7%B1%BB%E7%9A%84%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">逻辑回归实现多分类的方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-01-15 10:00:00 / 修改时间：09:55:56" itemprop="dateCreated datePublished" datetime="2022-01-15T10:00:00+08:00">2022-01-15</time>
+              <time title="创建时间：2022-01-15 10:00:00 / 修改时间：09:55:27" itemprop="dateCreated datePublished" datetime="2022-01-15T10:00:00+08:00">2022-01-15</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -307,12 +234,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>方式1</p>
-<ul>
-<li>在二分类问题上逻辑回归用的激活函数是sigmoid，在多分类的时候可以改为softmax函数。
+          <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
+<li>过拟合就是随着模型的训练，模型在训练集上的表现越来越好，但是在验证集上的表现却越来越差，也就是说对训练集的拟合程度过高，导致模型的泛化能力降低。
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E5%AE%9E%E7%8E%B0%E5%A4%9A%E5%88%86%E7%B1%BB%E7%9A%84%E6%96%B9%E6%B3%95/#more" rel="contents">
+              <a class="btn" href="/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E8%BF%87%E6%8B%9F%E5%90%88%E5%92%8C%E6%AC%A0%E6%8B%9F%E5%90%88%E7%9A%84%E6%A6%82%E5%BF%B5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -336,12 +262,12 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/15/%E8%A7%86%E9%A2%91%E7%BC%96%E8%A7%A3%E7%A0%81-%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E8%AF%A6%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="yuxiang.yan">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="yuxiangdaily@163.com">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -350,7 +276,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/01/15/%E8%A7%86%E9%A2%91%E7%BC%96%E8%A7%A3%E7%A0%81-%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A/" class="post-title-link" itemprop="url">视频编码名词解释</a>
+            <a href="/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E8%AF%A6%E8%A7%A3/" class="post-title-link" itemprop="url">逻辑回归详解</a>
         </h2>
 
         <div class="post-meta">
@@ -361,7 +287,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-01-15 10:00:00 / 修改时间：09:57:12" itemprop="dateCreated datePublished" datetime="2022-01-15T10:00:00+08:00">2022-01-15</time>
+              <time title="创建时间：2022-01-15 10:00:00 / 修改时间：09:55:58" itemprop="dateCreated datePublished" datetime="2022-01-15T10:00:00+08:00">2022-01-15</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -369,7 +295,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81/" itemprop="url" rel="index"><span itemprop="name">视频编码</span></a>
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
                 </span>
             </span>
 
@@ -384,10 +310,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>这篇文章一起学习一下视频编码中的常见名词。</p>
+          <h1 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h1><ul>
+<li>逻辑（logistic）回归是一个二分类器，函数是sigmoid形式，输出落在0~1之间，输出有概率意义。
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/01/15/%E8%A7%86%E9%A2%91%E7%BC%96%E8%A7%A3%E7%A0%81-%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A/#more" rel="contents">
+              <a class="btn" href="/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E8%AF%A6%E8%A7%A3/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -416,7 +343,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="yuxiang.yan">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="yuxiangdaily@163.com">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -486,12 +413,87 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/15/%E8%A7%86%E9%A2%91%E7%BC%96%E8%A7%A3%E7%A0%81-%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="yuxiang.yan">
+      <meta itemprop="description" content="yuxiangdaily@163.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yuxiang.Yan Daily">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/15/%E8%A7%86%E9%A2%91%E7%BC%96%E8%A7%A3%E7%A0%81-%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A/" class="post-title-link" itemprop="url">视频编码名词解释</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-01-15 10:00:00 / 修改时间：09:57:12" itemprop="dateCreated datePublished" datetime="2022-01-15T10:00:00+08:00">2022-01-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81/" itemprop="url" rel="index"><span itemprop="name">视频编码</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>这篇文章一起学习一下视频编码中的常见名词。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/01/15/%E8%A7%86%E9%A2%91%E7%BC%96%E8%A7%A3%E7%A0%81-%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/14/python-python%20pep8%20%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="yuxiang.yan">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="yuxiangdaily@163.com">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -572,7 +574,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="yuxiang.yan">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="yuxiangdaily@163.com">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -648,93 +650,12 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/13/python-Counter/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="yuxiang.yan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yuxiang.Yan Daily">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/13/python-Counter/" class="post-title-link" itemprop="url">Counter</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-01-13 21:13:00" itemprop="dateCreated datePublished" datetime="2022-01-13T21:13:00+08:00">2022-01-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-01-15 08:20:10" itemprop="dateModified" datetime="2022-01-15T08:20:10+08:00">2022-01-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>本专栏的目的是通过算法题学习python技巧，并非实现算法题的最优解。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/01/13/python-Counter/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/13/python-__all__/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="yuxiang.yan">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="yuxiangdaily@163.com">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -810,12 +731,93 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/13/python-bin%20%E4%B8%8E%20count/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="yuxiang.yan">
+      <meta itemprop="description" content="yuxiangdaily@163.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yuxiang.Yan Daily">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/13/python-bin%20%E4%B8%8E%20count/" class="post-title-link" itemprop="url">bin 与 count</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-13 21:13:00" itemprop="dateCreated datePublished" datetime="2022-01-13T21:13:00+08:00">2022-01-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-15 08:18:07" itemprop="dateModified" datetime="2022-01-15T08:18:07+08:00">2022-01-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>本专栏的目的是通过算法题学习python技巧，并非实现算法题的最优解。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/01/13/python-bin%20%E4%B8%8E%20count/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/13/python-__getattr__/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="yuxiang.yan">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="yuxiangdaily@163.com">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -896,7 +898,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="yuxiang.yan">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="yuxiangdaily@163.com">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1030,7 +1032,7 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">yuxiang.yan</p>
-  <div class="site-description" itemprop="description"></div>
+  <div class="site-description" itemprop="description">yuxiangdaily@163.com</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
