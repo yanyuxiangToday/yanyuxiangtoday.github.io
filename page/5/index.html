@@ -184,7 +184,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2035%E3%80%91python%E4%B8%AD%E7%9A%84%E6%B7%B1%E5%B1%82%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E5%B1%82%E6%8B%B7%E8%B4%9D%E4%BB%A5%E5%8F%8A%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E4%B8%89%E7%BB%B4%E9%87%8D%E5%BB%BA%E4%B8%AD%E7%9A%84%E7%82%B9%E4%BA%91%E3%80%81%E4%BD%93%E7%B4%A0%E3%80%81mesh/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -198,7 +198,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2035%E3%80%91python%E4%B8%AD%E7%9A%84%E6%B7%B1%E5%B1%82%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E5%B1%82%E6%8B%B7%E8%B4%9D%E4%BB%A5%E5%8F%8A%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/" class="post-title-link" itemprop="url">【深度学习基础知识 - 35】python中的深层拷贝和浅层拷贝以及应用场景</a>
+            <a href="/2022/01/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E4%B8%89%E7%BB%B4%E9%87%8D%E5%BB%BA%E4%B8%AD%E7%9A%84%E7%82%B9%E4%BA%91%E3%80%81%E4%BD%93%E7%B4%A0%E3%80%81mesh/" class="post-title-link" itemprop="url">三维重建中的点云、体素、mesh</a>
         </h2>
 
         <div class="post-meta">
@@ -207,10 +207,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-01-13 21:13:00 / 修改时间：22:32:46" itemprop="dateCreated datePublished" datetime="2022-01-13T21:13:00+08:00">2022-01-13</time>
+              <time title="创建时间：2022-01-13 21:13:00" itemprop="dateCreated datePublished" datetime="2022-01-13T21:13:00+08:00">2022-01-13</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-15 08:12:35" itemprop="dateModified" datetime="2022-01-15T08:12:35+08:00">2022-01-15</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -232,10 +238,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>python的深层拷贝和浅层拷贝是一个重要但容易忽视的基础知识，这可能会导致代码出现难以定位的错误。</p>
+          <p>点云、体素和mesh都是三维重建中常用的三维物体的表示方法，这篇博客简单做个介绍。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2035%E3%80%91python%E4%B8%AD%E7%9A%84%E6%B7%B1%E5%B1%82%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E5%B1%82%E6%8B%B7%E8%B4%9D%E4%BB%A5%E5%8F%8A%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/#more" rel="contents">
+              <a class="btn" href="/2022/01/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E4%B8%89%E7%BB%B4%E9%87%8D%E5%BB%BA%E4%B8%AD%E7%9A%84%E7%82%B9%E4%BA%91%E3%80%81%E4%BD%93%E7%B4%A0%E3%80%81mesh/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -259,7 +265,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2036%E3%80%91python%E7%94%9F%E6%88%90%E5%99%A8%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8%E3%80%81%E4%BF%AE%E9%A5%B0%E5%99%A8/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E4%BA%A4%E5%8F%89%E7%86%B5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -273,7 +279,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2036%E3%80%91python%E7%94%9F%E6%88%90%E5%99%A8%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8%E3%80%81%E4%BF%AE%E9%A5%B0%E5%99%A8/" class="post-title-link" itemprop="url">【深度学习基础知识 - 36】python生成器、迭代器、修饰器</a>
+            <a href="/2022/01/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E4%BA%A4%E5%8F%89%E7%86%B5/" class="post-title-link" itemprop="url">交叉熵</a>
         </h2>
 
         <div class="post-meta">
@@ -282,10 +288,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-01-13 21:13:00 / 修改时间：22:32:46" itemprop="dateCreated datePublished" datetime="2022-01-13T21:13:00+08:00">2022-01-13</time>
+              <time title="创建时间：2022-01-13 21:13:00" itemprop="dateCreated datePublished" datetime="2022-01-13T21:13:00+08:00">2022-01-13</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-15 08:12:06" itemprop="dateModified" datetime="2022-01-15T08:12:06+08:00">2022-01-15</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -307,10 +319,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>python中的生成器、迭代器和修饰器是深度学习框架源码中常用的语法，本文简单介绍一下它们的概念。</p>
+          <p>交叉熵通常用于各种分类任务中，这篇文章会对交叉熵做一个简单介绍。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2036%E3%80%91python%E7%94%9F%E6%88%90%E5%99%A8%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8%E3%80%81%E4%BF%AE%E9%A5%B0%E5%99%A8/#more" rel="contents">
+              <a class="btn" href="/2022/01/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E4%BA%A4%E5%8F%89%E7%86%B5/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -334,7 +346,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2037%E3%80%91%E8%A7%A3%E5%86%B3%E6%AD%A3%E8%B4%9F%E6%A0%B7%E6%9C%AC%E4%B8%8D%E5%9D%87%E8%A1%A1%20Focal%20Loss/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E4%BB%80%E4%B9%88%E6%98%AF%E6%99%AF%E6%B7%B1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -348,7 +360,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2037%E3%80%91%E8%A7%A3%E5%86%B3%E6%AD%A3%E8%B4%9F%E6%A0%B7%E6%9C%AC%E4%B8%8D%E5%9D%87%E8%A1%A1%20Focal%20Loss/" class="post-title-link" itemprop="url">【深度学习基础知识 - 37】解决正负样本不均衡 Focal Loss</a>
+            <a href="/2022/01/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E4%BB%80%E4%B9%88%E6%98%AF%E6%99%AF%E6%B7%B1/" class="post-title-link" itemprop="url">景深</a>
         </h2>
 
         <div class="post-meta">
@@ -357,10 +369,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-01-13 21:13:00 / 修改时间：22:32:46" itemprop="dateCreated datePublished" datetime="2022-01-13T21:13:00+08:00">2022-01-13</time>
+              <time title="创建时间：2022-01-13 21:13:00" itemprop="dateCreated datePublished" datetime="2022-01-13T21:13:00+08:00">2022-01-13</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-15 08:12:49" itemprop="dateModified" datetime="2022-01-15T08:12:49+08:00">2022-01-15</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -382,10 +400,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>正负样本不均衡是检测任务中常见的问题，在目标检测中，大量样本都是不包含目标的负样本，只有少量是包含目标的正样本，而Focal Loss就是为了解决这个问题而提出的。</p>
+          <p>在计算机视觉中的一些任务中可能会出现景深的概念，如深度估计、SLAM、视觉里程计等，这篇文章简单介绍一下景深概念。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2037%E3%80%91%E8%A7%A3%E5%86%B3%E6%AD%A3%E8%B4%9F%E6%A0%B7%E6%9C%AC%E4%B8%8D%E5%9D%87%E8%A1%A1%20Focal%20Loss/#more" rel="contents">
+              <a class="btn" href="/2022/01/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E4%BB%80%E4%B9%88%E6%98%AF%E6%99%AF%E6%B7%B1/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -409,7 +427,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2038%E3%80%91L1%E6%AD%A3%E5%88%99%E5%8C%96%E5%92%8CL2%E6%AD%A3%E5%88%99%E5%8C%96%E7%9A%84%E5%8C%BA%E5%88%AB/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%87%BA%E7%8E%B0nan%E5%80%BC%E7%9A%84%E5%A4%84%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -423,7 +441,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2038%E3%80%91L1%E6%AD%A3%E5%88%99%E5%8C%96%E5%92%8CL2%E6%AD%A3%E5%88%99%E5%8C%96%E7%9A%84%E5%8C%BA%E5%88%AB/" class="post-title-link" itemprop="url">【深度学习基础知识 - 38】L1正则化和L2正则化的区别</a>
+            <a href="/2022/01/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%87%BA%E7%8E%B0nan%E5%80%BC%E7%9A%84%E5%A4%84%E7%90%86/" class="post-title-link" itemprop="url">出现nan值的处理</a>
         </h2>
 
         <div class="post-meta">
@@ -432,10 +450,426 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-01-13 21:13:00 / 修改时间：22:32:46" itemprop="dateCreated datePublished" datetime="2022-01-13T21:13:00+08:00">2022-01-13</time>
+              <time title="创建时间：2022-01-13 21:13:00" itemprop="dateCreated datePublished" datetime="2022-01-13T21:13:00+08:00">2022-01-13</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-15 08:11:16" itemprop="dateModified" datetime="2022-01-15T08:11:16+08:00">2022-01-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在深度学习模型训练的时候loss可能会出现nan，本文简要介绍几个可能导致nan出现的原因。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/01/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%87%BA%E7%8E%B0nan%E5%80%BC%E7%9A%84%E5%A4%84%E7%90%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-softmax%E7%9A%84%E6%A6%82%E5%BF%B5%E3%80%81%E4%BD%9C%E7%94%A8%E4%BB%A5%E5%8F%8A%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="yuxiang.yan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yuxiang.Yan Daily">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-softmax%E7%9A%84%E6%A6%82%E5%BF%B5%E3%80%81%E4%BD%9C%E7%94%A8%E4%BB%A5%E5%8F%8A%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">softmax的概念、作用以及存在的问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-13 21:13:00" itemprop="dateCreated datePublished" datetime="2022-01-13T21:13:00+08:00">2022-01-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-15 08:15:09" itemprop="dateModified" datetime="2022-01-15T08:15:09+08:00">2022-01-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>softmax是深度学习任务中常用于计算最终输出类别的函数。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/01/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-softmax%E7%9A%84%E6%A6%82%E5%BF%B5%E3%80%81%E4%BD%9C%E7%94%A8%E4%BB%A5%E5%8F%8A%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%8D%95%E7%9B%AESLAM%E4%B8%AD%E7%9A%84%E5%B0%BA%E5%BA%A6%E6%BC%82%E7%A7%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="yuxiang.yan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yuxiang.Yan Daily">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%8D%95%E7%9B%AESLAM%E4%B8%AD%E7%9A%84%E5%B0%BA%E5%BA%A6%E6%BC%82%E7%A7%BB/" class="post-title-link" itemprop="url">单目SLAM中的尺度漂移</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-13 21:13:00" itemprop="dateCreated datePublished" datetime="2022-01-13T21:13:00+08:00">2022-01-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-15 08:11:19" itemprop="dateModified" datetime="2022-01-15T08:11:19+08:00">2022-01-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="单目SLAM中的尺度漂移是什么"><a href="#单目SLAM中的尺度漂移是什么" class="headerlink" title="单目SLAM中的尺度漂移是什么"></a>单目SLAM中的尺度漂移是什么</h1><ul>
+<li>在使用单目相机估计相机姿态和3D坐标时，需要对极几何、三角化估计，这个过程中会产生累积误差，进而导致尺度的不一致，产生尺度漂移。</li>
+<li>单目SLAM产生尺度漂移的根本原因是单目相机无法根据一张图片就会的图中物体的大小信息，这就是尺度漂移的根源。
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/01/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%8D%95%E7%9B%AESLAM%E4%B8%AD%E7%9A%84%E5%B0%BA%E5%BA%A6%E6%BC%82%E7%A7%BB/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-tensorflow%E5%92%8Cpytorch%E7%9A%84%E7%9B%B8%E5%90%8C%E7%82%B9%E5%92%8C%E5%8C%BA%E5%88%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="yuxiang.yan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yuxiang.Yan Daily">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-tensorflow%E5%92%8Cpytorch%E7%9A%84%E7%9B%B8%E5%90%8C%E7%82%B9%E5%92%8C%E5%8C%BA%E5%88%AB/" class="post-title-link" itemprop="url">tensorflow和pytorch的相同点和区别</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-13 21:13:00" itemprop="dateCreated datePublished" datetime="2022-01-13T21:13:00+08:00">2022-01-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-15 08:15:12" itemprop="dateModified" datetime="2022-01-15T08:15:12+08:00">2022-01-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h1><ul>
+<li>tensorflow和pytorch都是为深度学习提供的开源框架。</li>
+<li>都有专门的团队在维护和更新。</li>
+<li>社区环境都很好，开源项目、模型很多。
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/01/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-tensorflow%E5%92%8Cpytorch%E7%9A%84%E7%9B%B8%E5%90%8C%E7%82%B9%E5%92%8C%E5%8C%BA%E5%88%AB/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%8A%A0%E5%BF%AB%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E9%80%9F%E5%BA%A6%E7%9A%84%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="yuxiang.yan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yuxiang.Yan Daily">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%8A%A0%E5%BF%AB%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E9%80%9F%E5%BA%A6%E7%9A%84%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">加快模型训练速度的方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-13 21:13:00" itemprop="dateCreated datePublished" datetime="2022-01-13T21:13:00+08:00">2022-01-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-15 08:12:03" itemprop="dateModified" datetime="2022-01-15T08:12:03+08:00">2022-01-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在深度学习任务中，虽然可以通过堆叠参数、设计更复杂的结构来提高模型的表征能力，但这也会导致模型的计算量增加，训练时间延长，大大降低模型的产出效率。这篇文章根据博主的经验简单介绍一些加快模型训练速度的方法，以及为什么需要关注模型的训练速度。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/01/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%8A%A0%E5%BF%AB%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E9%80%9F%E5%BA%A6%E7%9A%84%E6%96%B9%E6%B3%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%8F%8D%E5%8D%B7%E7%A7%AF%E7%9A%84%E6%A6%82%E5%BF%B5%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="yuxiang.yan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yuxiang.Yan Daily">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%8F%8D%E5%8D%B7%E7%A7%AF%E7%9A%84%E6%A6%82%E5%BF%B5%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/" class="post-title-link" itemprop="url">反卷积的概念以及使用场景</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-13 21:13:00" itemprop="dateCreated datePublished" datetime="2022-01-13T21:13:00+08:00">2022-01-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-15 08:11:25" itemprop="dateModified" datetime="2022-01-15T08:11:25+08:00">2022-01-15</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -458,11 +892,11 @@
 
       
           <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
-<li>L1正则化就是在损失函数中加的正则化项为模型参数的L1范数。</li>
-<li>L2正则化就是在损失函数中加的正则化项为模型参数的L2范数。
+<li>反卷积（deconv）是输入一张小的特征图，输出一张大的特征图。首先会对特征图进行padding，然后就可以像正常卷积操作一样进行计算。</li>
+<li>反卷积比正常卷积增加了一个参数，叫做output_shape，这是由于不同的特征图，如5x5和6x6的特征图在进行3x3的卷积之后都会得到3x3的特征图，因此反卷积的时候就需要输入一个参数用于指定输出的特征图尺寸。
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2038%E3%80%91L1%E6%AD%A3%E5%88%99%E5%8C%96%E5%92%8CL2%E6%AD%A3%E5%88%99%E5%8C%96%E7%9A%84%E5%8C%BA%E5%88%AB/#more" rel="contents">
+              <a class="btn" href="/2022/01/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%8F%8D%E5%8D%B7%E7%A7%AF%E7%9A%84%E6%A6%82%E5%BF%B5%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -486,7 +920,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2039%E3%80%91BN%E3%80%81LN%E3%80%81WN%E7%9A%84%E6%AF%94%E8%BE%83/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E7%9A%84%E6%A2%AF%E5%BA%A6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -500,7 +934,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2039%E3%80%91BN%E3%80%81LN%E3%80%81WN%E7%9A%84%E6%AF%94%E8%BE%83/" class="post-title-link" itemprop="url">【深度学习基础知识 - 39】BN、LN、WN的比较</a>
+            <a href="/2022/01/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E7%9A%84%E6%A2%AF%E5%BA%A6/" class="post-title-link" itemprop="url">图像的梯度</a>
         </h2>
 
         <div class="post-meta">
@@ -509,10 +943,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-01-13 21:13:00 / 修改时间：22:32:46" itemprop="dateCreated datePublished" datetime="2022-01-13T21:13:00+08:00">2022-01-13</time>
+              <time title="创建时间：2022-01-13 21:13:00" itemprop="dateCreated datePublished" datetime="2022-01-13T21:13:00+08:00">2022-01-13</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-15 08:13:00" itemprop="dateModified" datetime="2022-01-15T08:13:00+08:00">2022-01-15</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -534,381 +974,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="BN"><a href="#BN" class="headerlink" title="BN"></a>BN</h1><ul>
-<li>batch normalization，使之在激活函数接收输入之前将数据的分布规范到标准正态分布中，使得激活函数的输入值落在对输入比较敏感的区域，也就是梯度较大的区域。从而避免梯度消失、减少训练时间。</li>
-<li>BN比较适合batch较大的场景，并且数据分布要相对比较接近。
+          <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
+<li>对于图像的梯度，如果理解数学中离散点的梯度求导方法就会发现一点也不神秘。梯度表示的是某一函数在该点处的方向导数沿着这个方向取得最大值，简单来说就是它总指向函数增长最快的方向。
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2039%E3%80%91BN%E3%80%81LN%E3%80%81WN%E7%9A%84%E6%AF%94%E8%BE%83/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2040%E3%80%91CNN%E4%B8%BA%E4%BB%80%E4%B9%88%E6%AF%94DNN%E5%9C%A8%E5%9B%BE%E5%83%8F%E9%A2%86%E5%9F%9F%E6%9B%B4%E5%85%B7%E4%BC%98%E5%8A%BF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="yuxiang.yan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yuxiang.Yan Daily">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2040%E3%80%91CNN%E4%B8%BA%E4%BB%80%E4%B9%88%E6%AF%94DNN%E5%9C%A8%E5%9B%BE%E5%83%8F%E9%A2%86%E5%9F%9F%E6%9B%B4%E5%85%B7%E4%BC%98%E5%8A%BF/" class="post-title-link" itemprop="url">【深度学习基础知识 - 40】CNN为什么比DNN在图像领域更具优势</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-01-13 21:13:00 / 修改时间：22:32:46" itemprop="dateCreated datePublished" datetime="2022-01-13T21:13:00+08:00">2022-01-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><ul>
-<li>CNN模型输入的一般都是图像矩阵，然后通过卷积操作进行特征提取，每次卷积都会考虑特征的上下文信息，并且随着模型的加深，从浅层提取的局部特征不断地处理、整合得到深层的高维特征。在这个过程中，特征的整合是缓慢有序发生的。同时，卷及操作还具有平移不变形特性，只管来解释就是：一个物体在图像中的任何区域都能被正确识别。因此，CNN在处理图像特征时候更具优势。</li>
-<li>DNN的输入时向量形式，并未考虑到图像的结构信息，每一层都会做一个全局的特征提取，但是由于这个过程并非递进的，因此最终的特征质量并不好，因此难以在图像领域发挥出优势。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2041%E3%80%91%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="yuxiang.yan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yuxiang.Yan Daily">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2041%E3%80%91%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/" class="post-title-link" itemprop="url">【深度学习基础知识 - 41】深度学习快速入门学习资料</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-01-13 21:13:00 / 修改时间：22:32:46" itemprop="dateCreated datePublished" datetime="2022-01-13T21:13:00+08:00">2022-01-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>快开学了，给实验室师弟师妹们推荐一些深度学习快速入门的学习资料：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2041%E3%80%91%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2042%E3%80%91%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E8%AF%A6%E8%A7%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="yuxiang.yan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yuxiang.Yan Daily">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2042%E3%80%91%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E8%AF%A6%E8%A7%A3/" class="post-title-link" itemprop="url">【深度学习基础知识 - 42】逻辑回归详解</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-01-13 21:13:00 / 修改时间：22:32:46" itemprop="dateCreated datePublished" datetime="2022-01-13T21:13:00+08:00">2022-01-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h1><ul>
-<li>逻辑（logistic）回归是一个二分类器，函数是sigmoid形式，输出落在0~1之间，输出有概率意义。
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2042%E3%80%91%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E8%AF%A6%E8%A7%A3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2043%E3%80%91%E4%BC%98%E5%8A%BF%E6%AF%94%E7%9A%84%E6%A6%82%E5%BF%B5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="yuxiang.yan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yuxiang.Yan Daily">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2043%E3%80%91%E4%BC%98%E5%8A%BF%E6%AF%94%E7%9A%84%E6%A6%82%E5%BF%B5/" class="post-title-link" itemprop="url">【深度学习基础知识 - 43】优势比的概念</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-01-13 21:13:00 / 修改时间：22:32:46" itemprop="dateCreated datePublished" datetime="2022-01-13T21:13:00+08:00">2022-01-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="优势比"><a href="#优势比" class="headerlink" title="优势比"></a>优势比</h1><ul>
-<li>假设在m个独立自变量，x1、x2…xm的作用下，记事件y取1的概率为：<img src="https://img-blog.csdnimg.cn/e8019f9b4fd64ecc90380e1ff634bd98.png" alt="在这里插入图片描述"><br>则事件y取0的概率为p = 1 - p，则取1和取0的概率之比为：<br><img src="https://img-blog.csdnimg.cn/f194b8ce950b4c9cb9fe790d3f84bcdb.png" alt="在这里插入图片描述"><br>上式就称为事件的优势比。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2044%E3%80%91%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E5%AE%9E%E7%8E%B0%E5%A4%9A%E5%88%86%E7%B1%BB%E7%9A%84%E6%96%B9%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="yuxiang.yan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yuxiang.Yan Daily">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2044%E3%80%91%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E5%AE%9E%E7%8E%B0%E5%A4%9A%E5%88%86%E7%B1%BB%E7%9A%84%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">【深度学习基础知识 - 44】逻辑回归实现多分类的方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-01-13 21:13:00 / 修改时间：22:32:46" itemprop="dateCreated datePublished" datetime="2022-01-13T21:13:00+08:00">2022-01-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>方式1</p>
-<ul>
-<li>在二分类问题上逻辑回归用的激活函数是sigmoid，在多分类的时候可以改为softmax函数。
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/01/13/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%20-%2044%E3%80%91%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E5%AE%9E%E7%8E%B0%E5%A4%9A%E5%88%86%E7%B1%BB%E7%9A%84%E6%96%B9%E6%B3%95/#more" rel="contents">
+              <a class="btn" href="/2022/01/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%9B%BE%E5%83%8F%E7%9A%84%E6%A2%AF%E5%BA%A6/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
