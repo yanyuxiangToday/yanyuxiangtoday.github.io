@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Batch Normalization也是深度学习中的一个高频词汇，这篇文章将会对其做一个简单介绍。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BatchNormalization 的原理和作用">
+<meta property="og:url" content="http://example.com/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-BN%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E4%BD%9C%E7%94%A8/index.html">
+<meta property="og:site_name" content="Yuxiang.Yan Daily">
+<meta property="og:description" content="Batch Normalization也是深度学习中的一个高频词汇，这篇文章将会对其做一个简单介绍。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/e5f2c852e2aa4563bb3199dc892b216b.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbnl1eGlhbmd0b2RheQ==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2022-01-15T02:00:00.000Z">
+<meta property="article:modified_time" content="2022-01-15T01:56:50.769Z">
+<meta property="article:author" content="yuxiang.yan">
+<meta property="article:tag" content="深度学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/e5f2c852e2aa4563bb3199dc892b216b.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbnl1eGlhbmd0b2RheQ==,size_16,color_FFFFFF,t_70">
+
+<link rel="canonical" href="http://example.com/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-BN%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E4%BD%9C%E7%94%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>BatchNormalization 的原理和作用 | Yuxiang.Yan Daily</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Yuxiang.Yan Daily</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录知识的地方</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-BN%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E4%BD%9C%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="yuxiang.yan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yuxiang.Yan Daily">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          BatchNormalization 的原理和作用
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-01-15 10:00:00 / 修改时间：09:56:50" itemprop="dateCreated datePublished" datetime="2022-01-15T10:00:00+08:00">2022-01-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Batch Normalization也是深度学习中的一个高频词汇，这篇文章将会对其做一个简单介绍。</p>
+<span id="more"></span>
+<h1 id="1-BN的原理"><a href="#1-BN的原理" class="headerlink" title="1. BN的原理"></a>1. BN的原理</h1><ul>
+<li>BN就是在激活函数接收输入之前对数据分布进行规范化，具体计算就是去均值归一化，将数据的分布都规范到标准正态分布中，使得激活函数的输入值落在函数较为敏感的区域，也即梯度较大的区域，从而避免梯度消失、减少训练时间。因此，BN也通常需要放在激活函数之前。<h1 id="2-BN的作用"><a href="#2-BN的作用" class="headerlink" title="2. BN的作用"></a>2. BN的作用</h1></li>
+</ul>
+<ol>
+<li>对数据进行规范化，降低样本之间的差异。</li>
+<li>使激活函数的输入落在梯度较大的区域，一个很小的输入差异也会带来较大的梯度差异，可以有效的避免梯度消失，加快网络的收敛。</li>
+<li>降低了层与层之间的依赖关系，不加BN的时候当前层会直接接收上一层的输出，而加了BN之后当前层接收的是一些规范化的数据，因此使得模型参数更容易训练，同时降低了层与层之间的依赖关系。<h1 id="3-BN层的可学习参数"><a href="#3-BN层的可学习参数" class="headerlink" title="3. BN层的可学习参数"></a>3. BN层的可学习参数</h1></li>
+</ol>
+<ul>
+<li>scale（γ），即缩放尺度，用于乘以输入进行缩放。</li>
+<li>offset（β），即偏移量，用于和输入相加进行偏移。</li>
+<li>BN的对象是特征图，因此会以每个特征图为单元取一堆γ和β。<h1 id="4-infer时BN的处理"><a href="#4-infer时BN的处理" class="headerlink" title="4. infer时BN的处理"></a>4. infer时BN的处理</h1></li>
+<li>在infer（预测）的时候，γ和β作为一个可学习参数有自己的数值，而计算BN所需要的均值和方差则是训练时统计的平均值。<h1 id="5-BN的具体计算步骤以及公式"><a href="#5-BN的具体计算步骤以及公式" class="headerlink" title="5. BN的具体计算步骤以及公式"></a>5. BN的具体计算步骤以及公式</h1></li>
+</ul>
+<ol>
+<li>求均值。</li>
+<li>求方差。</li>
+<li>对数据进行标准化（将数据规范到标准正态分布）。</li>
+<li>训练参数γ和β。</li>
+<li>通过线性变换输出。<br><img src="https://img-blog.csdnimg.cn/e5f2c852e2aa4563bb3199dc892b216b.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbnl1eGlhbmd0b2RheQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">（图片来源于网络）<h1 id="6-BN和L2参数权重正则化的区别"><a href="#6-BN和L2参数权重正则化的区别" class="headerlink" title="6. BN和L2参数权重正则化的区别"></a>6. BN和L2参数权重正则化的区别</h1></li>
+</ol>
+<ul>
+<li>BN是拉平不同特征图（也可以说是特征）之间的差异，进行去均值归一化。而L2参数权重正则化则没有改变同一层参数的相对大小，而是对当前参数自身进行正则化。</li>
+<li>本身每个参数的模长是不同的，而L2参数权重正则化会拉平参数之间的差异，让他们都往0靠近。而BN则不对此产生影响。</li>
+<li>对于一个特征图，它们量级、方差可能都不同，而BN就让方差为1，均值为0，从而导致特征图之间的差异减小了。L2参数权重正则化不以此层面为目标产生影响。</li>
+<li>L2参数权重正则化是对各个参数权重本身的，而BN是对特征图全局的。</li>
+<li>L2参数权重正则化让网络的权重不会过大，而BN的主要目的是加快训练同时防止梯度消失。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-CNN%E4%B8%BA%E4%BB%80%E4%B9%88%E6%AF%94DNN%E5%9C%A8%E5%9B%BE%E5%83%8F%E9%A2%86%E5%9F%9F%E6%9B%B4%E5%85%B7%E4%BC%98%E5%8A%BF/" rel="prev" title="CNN为什么比DNN在图像领域更具优势">
+      <i class="fa fa-chevron-left"></i> CNN为什么比DNN在图像领域更具优势
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/01/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-BN%E3%80%81LN%E3%80%81WN%E7%9A%84%E6%AF%94%E8%BE%83/" rel="next" title="BN、LN、WN的比较">
+      BN、LN、WN的比较 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-BN%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">1. BN的原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-BN%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">2. BN的作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-BN%E5%B1%82%E7%9A%84%E5%8F%AF%E5%AD%A6%E4%B9%A0%E5%8F%82%E6%95%B0"><span class="nav-number">3.</span> <span class="nav-text">3. BN层的可学习参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-infer%E6%97%B6BN%E7%9A%84%E5%A4%84%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">4. infer时BN的处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-BN%E7%9A%84%E5%85%B7%E4%BD%93%E8%AE%A1%E7%AE%97%E6%AD%A5%E9%AA%A4%E4%BB%A5%E5%8F%8A%E5%85%AC%E5%BC%8F"><span class="nav-number">5.</span> <span class="nav-text">5. BN的具体计算步骤以及公式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-BN%E5%92%8CL2%E5%8F%82%E6%95%B0%E6%9D%83%E9%87%8D%E6%AD%A3%E5%88%99%E5%8C%96%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">6.</span> <span class="nav-text">6. BN和L2参数权重正则化的区别</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">yuxiang.yan</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yuxiang.yan</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
